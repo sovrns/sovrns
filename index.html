@@ -289,6 +289,10 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
 .creds { display: flex; flex-wrap: wrap; gap: 8px; }
 .creds span { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--line); padding: 6px 12px; border-radius: 4px; color: var(--muted); transition: border-color 0.2s, color 0.2s, background 0.2s; }
 .creds span:hover { border-color: var(--accent); color: var(--accent); background: var(--surface-2); }
+.creds a { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--line); padding: 6px 12px; border-radius: 4px; color: var(--muted); text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+.creds a:hover, .creds a:focus-visible { border-color: var(--accent); color: var(--accent); background: var(--surface-2); }
+.cdet a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+.cdet a:hover, .cdet a:focus-visible { color: var(--green); border-bottom-color: var(--green); }
 @container (max-width: 560px) { .about-grid { grid-template-columns: minmax(0, 1fr); } .about-grid .photo { aspect-ratio: 16 / 10; max-height: 220px; } }
 
 /* contact */
@@ -416,7 +420,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
                 <button class="btn" type="button" data-go="tools">Find my program</button>
               </div>
             </div>
-            <button class="slot portrait" type="button" data-slot aria-label="Add your portrait photo"><span class="hint2">Add your portrait photo</span></button>
+            <div class="slot portrait has-img" role="img" aria-label="Aman Kumar Panika, certified fitness personal trainer" style="background-image:url('assets/aman.jpg');background-position:center 22%;cursor:default"></div>
           </div>
           <div class="proof">
             <div><b>Certified</b><span>Fitness personal trainer</span></div>
@@ -539,18 +543,18 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
       <section class="panel" data-id="about" data-title="About" aria-label="About Aman">
         <div class="pbody">
           <div class="about-grid">
-            <button class="slot photo" type="button" data-slot aria-label="Add a picture of yourself"><span class="hint2">Add a picture of yourself</span></button>
+            <div class="slot photo has-img" role="img" aria-label="Aman Kumar Panika" style="background-image:url('assets/aman.jpg');background-position:center 22%;cursor:default"></div>
             <div class="copy">
               <p class="eyebrow">About Aman</p>
               <div class="ph" style="gap:0"><h2>Certified, hands-on and focused on your progress.</h2></div>
-              <p>I am a certified fitness personal trainer. I work with people who want to get stronger, lose fat and build habits that last.</p>
-              <p>Placeholder text. Replace this with your story: why you coach, how your sessions run and who you work best with.</p>
-              <div class="creds"><span>Certified trainer</span><span>Strength and conditioning</span><span>In person and online</span></div>
+              <p>I am Aman Kumar Panika, a certified fitness personal trainer. I help people get stronger, lose fat and build habits that last.</p>
+              <p>Every plan is built around your goal, your schedule and your current level, with clear progress to track. We can train in person or online.</p>
+              <div class="creds"><a href="assets/cert-advanced-fitness.jpg" target="_blank" rel="noopener">Advanced Fitness, 2026</a><a href="assets/cert-fitness.jpg" target="_blank" rel="noopener">Fitness, 2025</a><span>In person and online</span></div>
               <dl class="facts">
                 <div><dt>Role</dt><dd>Certified fitness personal trainer</dd></div>
+                <div><dt>Certified by</dt><dd>Fabulous Body Academy</dd></div>
                 <div><dt>Style</dt><dd>Strength and conditioning</dd></div>
                 <div><dt>Sessions</dt><dd>In person and online</dd></div>
-                <div><dt>Based in</dt><dd>Your city</dd></div>
               </dl>
             </div>
           </div>
@@ -565,9 +569,10 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
               <h2>Ready to <em>begin?</em></h2>
               <p class="lead">Book a free consultation to talk about your goals and find the right program.</p>
               <dl class="cdet">
-                <div><dt>Email</dt><dd id="mail">your@email.com</dd></div>
-                <div><dt>Phone</dt><dd>Add your number</dd></div>
-                <div><dt>Location</dt><dd>Your city, and online</dd></div>
+                <div><dt>WhatsApp and phone</dt><dd><a href="https://wa.me/919399862732" target="_blank" rel="noopener">+91 93998 62732</a></dd></div>
+                <div><dt>Email</dt><dd id="mail"><a href="mailto:amanpanika7067@gmail.com">amanpanika7067@gmail.com</a></dd></div>
+                <div><dt>Instagram</dt><dd><a href="https://instagram.com/_amanpanika" target="_blank" rel="noopener">@_amanpanika</a></dd></div>
+                <div><dt>Sessions</dt><dd>In person and online</dd></div>
               </dl>
             </div>
             <div class="builder">
@@ -579,7 +584,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
               </div>
               <label class="field"><span>Your goal</span><textarea id="qGoal" placeholder="For example: lose 5 kg and learn to squat properly"></textarea></label>
               <div class="msg" id="msg" aria-live="polite"></div>
-              <div class="actions" style="margin-top:0"><button class="btn primary mag" id="copy" type="button">Copy message</button><span class="fine" style="align-self:center;color:var(--paper-muted)">Paste it into an email or a chat to Aman.</span></div>
+              <div class="actions" style="margin-top:0"><a class="btn primary mag" id="wa" href="https://wa.me/919399862732" target="_blank" rel="noopener" style="text-decoration:none">Send on WhatsApp <span class="arr">&rarr;</span></a><button class="btn" id="copy" type="button">Copy message</button><span class="fine" style="align-self:center;color:var(--paper-muted)">Or paste it into an email.</span></div>
             </div>
           </div>
         </div>
@@ -989,6 +994,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
     if (goal) t += '\n\nMy goal: ' + goal;
     t += '\n\nCould we book a free consultation? Thank you.';
     msg.textContent = t;
+    var wa = document.getElementById('wa');
+    if (wa) wa.href = 'https://wa.me/919399862732?text=' + encodeURIComponent(t);
   }
   ['qName', 'qProg', 'qMode', 'qGoal'].forEach(function (id) {
     var el = document.getElementById(id); el.addEventListener('input', buildMsg); el.addEventListener('change', buildMsg);
