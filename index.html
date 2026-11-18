@@ -545,6 +545,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
                   <div class="mac"><div class="top"><span>Fat</span><b id="mF">0 g</b></div><div class="track"><i class="c3" id="bF"></i></div></div>
                 </div>
               </div>
+              <div class="actions" style="margin-top:0"><button class="btn primary" type="button" id="calcCta">Get a plan built on these numbers <span class="arr">&rarr;</span></button></div>
               <p class="fine">An estimate from the Mifflin-St Jeor equation, not medical advice. Your coach will adjust it to you.</p>
             </div>
           </div>
@@ -592,10 +593,15 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
                 <label class="field"><span>Your name</span><input id="qName" type="text" placeholder="Your name" autocomplete="name"></label>
                 <label class="field"><span>Program</span><select id="qProg"><option value="">Not sure yet</option><option>Foundations</option><option>Lean in 8</option><option>Muscle build</option></select></label>
                 <label class="field"><span>Where</span><select id="qMode"><option>in person</option><option>online</option></select></label>
+                <label class="field"><span>Phone or WhatsApp</span><input id="qPhone" type="tel" inputmode="tel" placeholder="+91 98765 43210" autocomplete="tel" required></label>
+                <label class="field"><span>Email (optional)</span><input id="qEmail" type="email" placeholder="you@example.com" autocomplete="email"></label>
+                <label class="field"><span>Best time to call</span><select id="qTime"><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Any time</option></select></label>
               </div>
+              <input id="qHoney" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
               <label class="field"><span>Your goal</span><textarea id="qGoal" placeholder="For example: lose 5 kg and learn to squat properly"></textarea></label>
               <div class="msg" id="msg" aria-live="polite"></div>
-              <div class="actions" style="margin-top:0"><a class="btn primary mag" id="wa" href="https://wa.me/919399862732" target="_blank" rel="noopener" style="text-decoration:none">Send on WhatsApp <span class="arr">&rarr;</span></a><button class="btn" id="copy" type="button">Copy message</button><span class="fine" style="align-self:center;color:var(--paper-muted)">Or paste it into an email.</span></div>
+              <p class="err" id="qStatus" role="status" aria-live="polite"></p>
+              <div class="actions" style="margin-top:0"><button class="btn primary mag" id="book" type="button">Book free consultation <span class="arr">&rarr;</span></button><a class="btn" id="wa" href="https://wa.me/919399862732" target="_blank" rel="noopener" style="text-decoration:none">Chat on WhatsApp</a><button class="btn" id="copy" type="button">Copy message</button></div>
             </div>
           </div>
         </div>
@@ -991,7 +997,10 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
     document.getElementById('bP').style.width = Math.min(100, p * 4 / tgt * 100).toFixed(1) + '%';
     document.getElementById('bC').style.width = Math.min(100, c * 4 / tgt * 100).toFixed(1) + '%';
     document.getElementById('bF').style.width = Math.min(100, f * 9 / tgt * 100).toFixed(1) + '%';
+    var gl = document.getElementById('cGoal');
+    calcNote = 'Calorie calculator result: ' + tgt.toLocaleString() + ' kcal/day (' + gl.options[gl.selectedIndex].text.toLowerCase() + '), protein ' + p + ' g, carbs ' + c + ' g, fat ' + f + ' g. Age ' + age + ', ' + ht + ' cm, ' + wt + ' kg.';
   }
+  var calcNote = '', calcUsed = false;
 
   /* contact: enquiry builder */
   var msg = document.getElementById('msg');
@@ -1003,12 +1012,15 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
     var t = 'Hi Aman,\n\nI am ' + (name || 'interested in training with you') + '. ';
     t += prog ? 'I would like to know more about the ' + prog + ' program, training ' + mode + '.' : 'I am not sure which program suits me yet and would like to train ' + mode + '.';
     if (goal) t += '\n\nMy goal: ' + goal;
+    if (calcUsed && calcNote) t += '\n\n' + calcNote;
+    var ph = document.getElementById('qPhone').value.trim();
+    if (ph) t += '\n\nYou can reach me on ' + ph + ' (' + document.getElementById('qTime').value.toLowerCase() + ').';
     t += '\n\nCould we book a free consultation? Thank you.';
     msg.textContent = t;
     var wa = document.getElementById('wa');
     if (wa) wa.href = 'https://wa.me/919399862732?text=' + encodeURIComponent(t);
   }
-  ['qName', 'qProg', 'qMode', 'qGoal'].forEach(function (id) {
+  ['qName', 'qProg', 'qMode', 'qGoal', 'qPhone', 'qEmail', 'qTime'].forEach(function (id) {
     var el = document.getElementById(id); el.addEventListener('input', buildMsg); el.addEventListener('change', buildMsg);
   });
   var copyBtn = document.getElementById('copy');
@@ -1021,6 +1033,60 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
     }
     try { navigator.clipboard.writeText(msg.textContent).then(done, fallback); } catch (e) { fallback(); }
   });
+  /* calculator: send the result into the enquiry */
+  document.getElementById('calcCta').addEventListener('click', function () {
+    calcUsed = true; buildMsg();
+    var g = document.getElementById('qGoal');
+    if (!g.value.trim()) g.value = 'Please help me plan training and nutrition around my calorie target.';
+    buildMsg();
+    goId('contact');
+  });
+
+  /* contact: real submission, emailed to Aman */
+  var bookBtn = document.getElementById('book'), qStatus = document.getElementById('qStatus');
+  function setStatus(t, ok) { qStatus.textContent = t; qStatus.style.color = ok ? 'var(--green, #3DFF9A)' : ''; }
+  bookBtn.addEventListener('click', function () {
+    var name = document.getElementById('qName').value.trim();
+    var phone = document.getElementById('qPhone').value.trim();
+    var email = document.getElementById('qEmail').value.trim();
+    if (document.getElementById('qHoney').value) return;
+    if (name.length < 2) { setStatus('Please enter your name.', false); document.getElementById('qName').focus(); return; }
+    if (phone.replace(/\D/g, '').length < 8) { setStatus('Please enter a valid phone or WhatsApp number so Aman can reach you.', false); document.getElementById('qPhone').focus(); return; }
+    if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { setStatus('That email does not look right. Fix it or leave it empty.', false); document.getElementById('qEmail').focus(); return; }
+    setStatus('', false);
+    buildMsg();
+    var label = bookBtn.innerHTML; bookBtn.disabled = true; bookBtn.textContent = 'Sending...';
+    var payload = {
+      _subject: 'New consultation request from ' + name + ' (Sovrns)',
+      _template: 'table', _captcha: 'false',
+      Name: name, Phone: phone, Email: email || 'not given',
+      Program: document.getElementById('qProg').value || 'Not sure yet',
+      Where: document.getElementById('qMode').value,
+      'Best time to call': document.getElementById('qTime').value,
+      Goal: document.getElementById('qGoal').value.trim() || 'not given',
+      Calculator: (calcUsed && calcNote) ? calcNote : 'not used',
+      Message: msg.textContent
+    };
+    if (email) payload._replyto = email;
+    var fail = function () {
+      bookBtn.disabled = false; bookBtn.innerHTML = label;
+      setStatus('Could not send right now. Tap Chat on WhatsApp and your message is ready to send.', false);
+    };
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var to = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
+    fetch('https://formsubmit.co/ajax/amanpanika7067@gmail.com', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload), signal: ctl ? ctl.signal : undefined
+    }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        clearTimeout(to);
+        if (res.ok && String(res.j.success) !== 'false') {
+          bookBtn.textContent = 'Request sent';
+          setStatus('Thank you, ' + name.split(' ')[0] + '. Aman will contact you on ' + phone + ' soon.', true);
+        } else { fail(); }
+      }).catch(function () { clearTimeout(to); fail(); });
+  });
+
   buildMsg(); finder(true); calc();
 
   /* photo slots (preview in this browser only) */
