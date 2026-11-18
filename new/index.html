@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sovrns | Aman, certified personal trainer</title>
+<meta name="description" content="Structured strength and fat loss coaching with Aman, a certified fitness personal trainer. In person and online.">
+<meta name="theme-color" content="#050706">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050706; --surface: #0c110e; --surface-2: #131a16; --line: #1f2823; --fg: #f2f5f3; --muted: #98a29c;
+  --green: #3dff9a; --green-soft: rgba(61, 255, 154, 0.14); --warm: #ff7a3d;
+  --display: "Space Grotesk", "Inter", system-ui, sans-serif; --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gut: clamp(18px, 5vw, 72px);
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+html:not(.lenis) { scroll-behavior: smooth; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+body { margin: 0; background: transparent; color: var(--fg); font: 400 16px/1.6 var(--body); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, ul, ol, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 4px; }
+.skip { position: fixed; left: 12px; top: -60px; z-index: 100; background: var(--green); color: #04110a; padding: 10px 16px; border-radius: 6px; font-weight: 600; text-decoration: none; transition: top 0.2s; }
+.skip:focus { top: 12px; }
+
+#gl { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.bgfade { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(1200px 700px at 78% 20%, rgba(61, 255, 154, 0.10), transparent 60%), radial-gradient(900px 600px at 10% 90%, rgba(255, 122, 61, 0.06), transparent 60%), var(--bg); }
+#gl { z-index: 1; }
+main, footer, .nav { position: relative; z-index: 2; }
+.grain { position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: 0.05; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+
+/* loader */
+.loader { position: fixed; inset: 0; z-index: 120; background: var(--bg); display: grid; place-items: center; transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1); animation: loaderFallback 0.1s 4.2s forwards; }
+.loader span { font: 700 clamp(34px, 8vw, 72px)/1 var(--display); letter-spacing: -0.03em; }
+.loader span b { color: var(--green); }
+.loader i { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--green); transform-origin: left; animation: lbar 1.2s cubic-bezier(0.6, 0, 0.2, 1) forwards; box-shadow: 0 0 20px var(--green); }
+.loader.done { transform: translateY(-100%); pointer-events: none; }
+@keyframes lbar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes loaderFallback { to { transform: translateY(-100%); visibility: hidden; pointer-events: none; } }
+
+/* cursor */
+.cursor, .cdot { position: fixed; left: 0; top: 0; z-index: 110; pointer-events: none; border-radius: 50%; display: none; }
+.cursor { width: 38px; height: 38px; margin: -19px 0 0 -19px; border: 1px solid rgba(61, 255, 154, 0.7); transition: width 0.25s, height 0.25s, margin 0.25s, background 0.25s; }
+.cdot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--green); }
+.cursor.big { width: 74px; height: 74px; margin: -37px 0 0 -37px; background: var(--green-soft); }
+@media (hover: hover) and (pointer: fine) { .has-cursor .cursor, .has-cursor .cdot { display: block; } .has-cursor, .has-cursor a, .has-cursor button { cursor: none; } .has-cursor input, .has-cursor select, .has-cursor textarea { cursor: text; } }
+
+/* nav */
+.nav { position: fixed; left: 0; right: 0; top: 0; z-index: 60; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: calc(14px + env(safe-area-inset-top, 0px)) var(--gut) 14px; transition: background 0.3s, backdrop-filter 0.3s, transform 0.4s; }
+.nav.scrolled { background: rgba(5, 7, 6, 0.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.logo { font: 700 22px var(--display); letter-spacing: -0.03em; text-decoration: none; }
+.logo span { color: var(--green); }
+.links { display: flex; gap: 30px; }
+.links a { font-size: 14px; font-weight: 500; text-decoration: none; color: var(--muted); position: relative; padding: 6px 0; transition: color 0.2s; }
+.links a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+.links a:hover { color: var(--fg); }
+.links a:hover::after { transform: scaleX(1); }
+.nav-r { display: flex; align-items: center; gap: 10px; }
+.burger { display: none; width: 44px; height: 44px; border: 1px solid var(--line); background: var(--surface); border-radius: 8px; color: var(--fg); position: relative; cursor: pointer; }
+.burger i { position: absolute; left: 12px; right: 12px; height: 2px; background: currentColor; transition: transform 0.3s, top 0.3s; }
+.burger i:nth-child(1) { top: 16px; } .burger i:nth-child(2) { top: 26px; }
+.menu-open .burger i:nth-child(1) { top: 21px; transform: rotate(45deg); } .menu-open .burger i:nth-child(2) { top: 21px; transform: rotate(-45deg); }
+.sheet { position: fixed; inset: 0; z-index: 55; background: rgba(5, 7, 6, 0.96); display: grid; align-content: center; gap: 6px; padding: 80px var(--gut) 40px; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+.menu-open .sheet { opacity: 1; visibility: visible; }
+.sheet a { font: 700 clamp(34px, 11vw, 56px)/1.15 var(--display); letter-spacing: -0.03em; text-decoration: none; padding: 6px 0; }
+.sheet a:hover { color: var(--green); }
+@media (max-width: 860px) { .links { display: none; } .burger { display: block; } }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 24px; border-radius: 999px; border: 1px solid #36423b; background: transparent; color: var(--fg); font: 600 15px var(--body); text-decoration: none; cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s, box-shadow 0.3s, transform 0.25s; will-change: transform; }
+.btn:hover { border-color: var(--green); box-shadow: 0 0 28px -6px rgba(61, 255, 154, 0.6); }
+.btn.primary { background: var(--green); color: #04110a; border-color: var(--green); box-shadow: 0 0 36px -8px rgba(61, 255, 154, 0.8); }
+.btn.primary:hover { background: #7dffbd; }
+.btn:disabled { opacity: 0.7; cursor: default; }
+.btn.sm { min-height: 40px; padding: 8px 18px; font-size: 14px; }
+
+/* layout */
+section { position: relative; padding: clamp(80px, 12vw, 160px) var(--gut); }
+.eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); }
+.eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--green); box-shadow: 0 0 10px var(--green); }
+.h2 { font: 700 clamp(36px, 7vw, 96px)/0.98 var(--display); letter-spacing: -0.04em; text-transform: uppercase; margin-top: 18px; }
+.h2 em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px var(--green); }
+.lead { color: var(--muted); font-size: clamp(16px, 1.6vw, 19px); max-width: 560px; margin-top: 20px; }
+
+/* hero */
+.hero { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 120px; padding-bottom: 80px; }
+.hero h1 { font: 700 clamp(48px, 12.5vw, 190px)/0.88 var(--display); letter-spacing: -0.05em; text-transform: uppercase; margin-top: 22px; }
+.ln { display: block; overflow: hidden; padding-bottom: 0.06em; }
+.ln > span { display: block; }
+.ln .out { color: transparent; -webkit-text-stroke: 2px var(--green); transition: color 0.4s; }
+.ln .out:hover { color: var(--green); }
+.hero .sub { max-width: 520px; color: var(--muted); font-size: clamp(16px, 1.7vw, 20px); margin-top: 28px; }
+.cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+.stats { display: flex; flex-wrap: wrap; gap: 14px 48px; margin-top: clamp(40px, 7vw, 80px); padding-top: 26px; border-top: 1px solid var(--line); max-width: 760px; }
+.stats b { display: block; font: 700 clamp(32px, 4.4vw, 52px)/1 var(--display); letter-spacing: -0.03em; }
+.stats b small { color: var(--green); font-size: 0.6em; }
+.stats span { font-size: 13px; color: var(--muted); letter-spacing: 0.04em; }
+.scrollhint { position: absolute; right: var(--gut); bottom: 36px; display: flex; align-items: center; gap: 12px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+.scrollhint i { width: 1px; height: 54px; background: linear-gradient(var(--green), transparent); animation: drip 1.8s ease-in-out infinite; transform-origin: top; }
+@keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+@media (max-width: 700px) { .scrollhint { display: none; } }
+
+/* marquee */
+.marq { padding: 0; border-block: 1px solid var(--line); background: rgba(5, 7, 6, 0.7); overflow: hidden; }
+.marq-in { display: flex; width: max-content; animation: marq 28s linear infinite; }
+.marq span { font: 700 clamp(28px, 5vw, 60px)/1 var(--display); text-transform: uppercase; letter-spacing: -0.03em; padding: 22px 28px; white-space: nowrap; }
+.marq span:nth-child(even) { color: transparent; -webkit-text-stroke: 1px var(--muted); }
+.marq b { color: var(--green); font-weight: 400; }
+@keyframes marq { to { transform: translateX(-50%); } }
+
+/* about */
+.about { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(30px, 6vw, 90px); align-items: center; }
+.about-img { position: relative; overflow: hidden; border-radius: 14px; aspect-ratio: 4 / 5; border: 1px solid var(--line); background: var(--surface); }
+.about-img img { width: 100%; height: 118%; object-fit: cover; object-position: center 40%; position: absolute; left: 0; top: -9%; }
+.about-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(5, 7, 6, 0.55)); pointer-events: none; }
+.facts { margin-top: 30px; border-top: 1px solid var(--line); }
+.facts div { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.facts dt { color: var(--muted); } .facts dd { text-align: right; font-weight: 500; }
+.pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.pills span { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 14px; border: 1px solid #2a352f; border-radius: 999px; color: var(--muted); transition: color 0.2s, border-color 0.2s; }
+.pills span:hover { color: var(--green); border-color: var(--green); }
+@media (max-width: 860px) { .about { grid-template-columns: minmax(0, 1fr); } .about-img { aspect-ratio: 16 / 11; } }
+
+/* programs: stacked by default; horizontal pin only when gsap is on and screen is wide */
+.hs { padding-inline: 0; }
+.hs-head { padding-inline: var(--gut); }
+.hs-wrap { margin-top: clamp(30px, 5vw, 60px); }
+.hs-track { display: grid; gap: 18px; padding-inline: var(--gut); }
+@media (min-width: 700px) { .hs-track { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 699px) { .hs-track { grid-template-columns: minmax(0, 1fr); } }
+.hs-on .hs { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-block: 90px 40px; }
+.hs-on .hs-wrap { overflow: hidden; }
+.hs-on .hs-track { display: flex; width: max-content; gap: 28px; padding-right: var(--gut); }
+.hs-on .card { width: min(440px, 42vw); flex: none; }
+.card { position: relative; border: 1px solid var(--line); border-radius: 16px; padding: clamp(22px, 3vw, 36px); background: linear-gradient(180deg, rgba(19, 26, 22, 0.9), rgba(12, 17, 14, 0.9)); display: flex; flex-direction: column; gap: 14px; overflow: hidden; transition: border-color 0.3s, transform 0.4s, box-shadow 0.4s; transform-style: preserve-3d; }
+.card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 0%), rgba(61, 255, 154, 0.16), transparent 60%); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.card:hover { border-color: var(--green); box-shadow: 0 0 50px -14px rgba(61, 255, 154, 0.6); }
+.card:hover::before { opacity: 1; }
+.card .num { font: 700 64px/1 var(--display); color: transparent; -webkit-text-stroke: 1px #33403a; letter-spacing: -0.04em; }
+.card h3 { font: 700 clamp(26px, 3vw, 36px)/1.05 var(--display); letter-spacing: -0.03em; text-transform: uppercase; }
+.card .tag { align-self: flex-start; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--green); color: #04110a; padding: 4px 10px; border-radius: 999px; font-weight: 700; }
+.card .meta { color: var(--green); font-size: 14px; font-weight: 600; }
+.card p { color: var(--muted); font-size: 15px; }
+.card ul { display: grid; gap: 8px; margin-block: 4px 8px; }
+.card li { font-size: 14px; padding-left: 22px; position: relative; }
+.card li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 10px; height: 1px; background: var(--green); }
+.card .btn { margin-top: auto; align-self: flex-start; }
+
+/* workouts */
+.wtabs { display: inline-flex; gap: 6px; padding: 6px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); margin-top: 34px; }
+.wtabs button { min-height: 44px; padding: 8px 22px; border-radius: 999px; border: 0; background: transparent; color: var(--muted); font: 600 14px var(--body); cursor: pointer; transition: background 0.2s, color 0.2s; }
+.wtabs button[aria-pressed="true"] { background: var(--green); color: #04110a; }
+.days { margin-top: 28px; border-top: 1px solid var(--line); }
+.day { border-bottom: 1px solid var(--line); }
+.day > button { width: 100%; display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 22px 6px; background: none; border: 0; color: var(--fg); text-align: left; cursor: pointer; font: inherit; transition: background 0.25s, padding 0.25s; min-height: 44px; }
+.day > button:hover { background: rgba(61, 255, 154, 0.05); padding-inline: 16px; }
+.day .d { font: 700 14px var(--display); color: var(--green); letter-spacing: 0.1em; }
+.day h3 { font: 700 clamp(20px, 2.6vw, 30px)/1.1 var(--display); letter-spacing: -0.02em; text-transform: uppercase; }
+.day small { display: block; color: var(--muted); font: 400 14px var(--body); letter-spacing: 0; text-transform: none; margin-top: 4px; }
+.day .pm { width: 28px; height: 28px; position: relative; }
+.day .pm::before, .day .pm::after { content: ""; position: absolute; left: 50%; top: 50%; width: 16px; height: 2px; background: var(--green); transform: translate(-50%, -50%); transition: transform 0.3s; }
+.day .pm::after { transform: translate(-50%, -50%) rotate(90deg); }
+.day.open .pm::after { transform: translate(-50%, -50%) rotate(0deg); }
+.day-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s ease; }
+.day.open .day-body { grid-template-rows: 1fr; }
+.day-body > div { overflow: hidden; }
+.day-body ul { padding: 0 6px 22px 86px; display: grid; gap: 0; max-width: 720px; }
+.day-body li { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px dashed var(--line); font-size: 15px; }
+.day-body li span:last-child { color: var(--green); font-weight: 600; white-space: nowrap; }
+@media (max-width: 600px) { .day > button { grid-template-columns: 50px minmax(0, 1fr) auto; } .day-body ul { padding-left: 6px; } }
+
+/* tools */
+.tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 44px; }
+@media (max-width: 960px) { .tools { grid-template-columns: minmax(0, 1fr); } }
+.tool { border: 1px solid var(--line); border-radius: 16px; padding: clamp(20px, 3vw, 34px); background: rgba(12, 17, 14, 0.88); display: grid; gap: 18px; align-content: start; }
+.tool h3 { font: 700 24px var(--display); letter-spacing: -0.02em; text-transform: uppercase; }
+.q { display: grid; gap: 8px; }
+.q > span, .field > span { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 1px solid #2a352f; background: transparent; color: var(--muted); font: 500 14px var(--body); cursor: pointer; transition: all 0.2s; }
+.chip:hover { border-color: var(--green); color: var(--fg); }
+.chip[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #04110a; font-weight: 600; }
+.result { border: 1px dashed #2f3b34; border-radius: 12px; padding: 18px; min-height: 96px; }
+.result b { display: block; font: 700 28px/1.1 var(--display); text-transform: uppercase; letter-spacing: -0.02em; color: var(--green); }
+.result p { color: var(--muted); font-size: 15px; margin-top: 8px; }
+.fgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+.field { display: grid; gap: 6px; }
+.field input, .field select, .field textarea { width: 100%; font: 500 16px var(--body); padding: 12px 14px; border-radius: 10px; border: 1px solid #2a352f; background: var(--surface-2); color: var(--fg); transition: border-color 0.2s, box-shadow 0.2s; }
+.field textarea { resize: vertical; min-height: 84px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px var(--green-soft); }
+.field input::placeholder, .field textarea::placeholder { color: #5d6962; }
+.kcal { display: flex; align-items: baseline; gap: 10px; }
+.kcal b { font: 700 clamp(48px, 7vw, 76px)/1 var(--display); letter-spacing: -0.04em; color: var(--green); font-variant-numeric: tabular-nums; }
+.kcal span { color: var(--muted); }
+.mac { display: grid; gap: 6px; }
+.mac .t { display: flex; justify-content: space-between; font-size: 14px; }
+.mac .t span { color: var(--muted); }
+.track { height: 6px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.track i { display: block; height: 100%; width: 0; background: var(--green); border-radius: 99px; transition: width 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); box-shadow: 0 0 12px var(--green); }
+.track i.c2 { background: #7dd3ff; box-shadow: 0 0 12px #7dd3ff; } .track i.c3 { background: var(--warm); box-shadow: 0 0 12px var(--warm); }
+.err { color: var(--warm); font-size: 14px; min-height: 1.4em; }
+.fine { color: #6f7b74; font-size: 13px; }
+
+/* contact */
+.contact { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(30px, 6vw, 90px); align-items: start; }
+.cdet { margin-top: 36px; border-top: 1px solid var(--line); }
+.cdet div { padding: 18px 0; border-bottom: 1px solid var(--line); }
+.cdet dt { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.cdet dd { font: 500 clamp(18px, 2.2vw, 24px)/1.3 var(--display); margin-top: 4px; overflow-wrap: anywhere; }
+.cdet a { text-decoration: none; display: inline-block; padding-block: 4px; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+.cdet a:hover { color: var(--green); border-color: var(--green); }
+.form { border: 1px solid var(--line); border-radius: 18px; padding: clamp(20px, 3vw, 36px); background: rgba(12, 17, 14, 0.9); display: grid; gap: 16px; }
+.form h3 { font: 700 26px var(--display); text-transform: uppercase; letter-spacing: -0.02em; }
+.form .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 860px) { .contact { grid-template-columns: minmax(0, 1fr); } .form .actions .btn { width: 100%; } }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+footer { padding: 40px var(--gut) calc(40px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; color: var(--muted); font-size: 14px; background: rgba(5, 7, 6, 0.85); }
+footer a { text-decoration: none; margin-left: 18px; } footer a:first-child { margin-left: 0; } footer a:hover { color: var(--green); }
+
+@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } html { scroll-behavior: auto !important; } .marq-in { animation: none; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#about">Skip to content</a>
+<div class="bgfade" aria-hidden="true"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div><div class="cdot" id="cdot" aria-hidden="true"></div>
+<div class="loader" id="loader" aria-hidden="true"><span>Sovrns<b>.</b></span><i></i></div>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top">Sovrns<span>.</span></a>
+  <nav class="links" aria-label="Main"><a href="#about">About</a><a href="#programs">Programs</a><a href="#workouts">Workouts</a><a href="#tools">Tools</a><a href="#contact">Contact</a></nav>
+  <div class="nav-r"><a class="btn primary sm mag" href="#contact">Book a consultation</a><button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button></div>
+</header>
+<div class="sheet" id="sheet"><a href="#about">About</a><a href="#programs">Programs</a><a href="#workouts">Workouts</a><a href="#tools">Tools</a><a href="#contact">Contact</a></div>
+
+<main id="top">
+  <section class="hero" id="home">
+    <p class="eyebrow" data-fade>Certified personal trainer</p>
+    <h1 aria-label="Build a stronger you.">
+      <span class="ln"><span>Build a</span></span>
+      <span class="ln"><span class="out">Stronger</span></span>
+      <span class="ln"><span>You<span style="color:var(--green)">.</span></span></span>
+    </h1>
+    <p class="sub" data-fade>Structured training, clear progress and a coach who keeps you accountable. With Aman, in person and online.</p>
+    <div class="cta" data-fade><a class="btn primary mag" href="#contact">Book free consultation &rarr;</a><a class="btn mag" href="#tools">Find my program</a></div>
+    <div class="stats" data-fade>
+      <div><b><span data-count="30">30</span><small>+</small></b><span>Clients trained</span></div>
+      <div><b><span data-count="2">2</span></b><span>Certifications</span></div>
+      <div><b><span data-count="5">5</span></b><span>Day plans available</span></div>
+    </div>
+    <div class="scrollhint" aria-hidden="true"><span>Scroll</span><i></i></div>
+  </section>
+
+  <div class="marq" aria-hidden="true"><div class="marq-in">
+    <span>Strength</span><span>Fat loss</span><span>Muscle</span><span>Mobility</span><span>Confidence</span><span><b>&#9679;</b></span>
+    <span>Strength</span><span>Fat loss</span><span>Muscle</span><span>Mobility</span><span>Confidence</span><span><b>&#9679;</b></span>
+  </div></div>
+
+  <section class="about" id="about">
+    <div class="about-img"><img src="../assets/aman-about-v3.jpg" alt="Aman training at the gym" width="900" height="1600" loading="lazy" decoding="async"></div>
+    <div>
+      <p class="eyebrow" data-rise>About Aman</p>
+      <h2 class="h2" data-rise>Certified. Hands-on. <em>Focused.</em></h2>
+      <p class="lead" data-rise>I am Aman, a certified fitness personal trainer. I have trained 30 clients to get stronger, lose fat and build habits that last.</p>
+      <p class="lead" data-rise style="margin-top:12px">Every plan is built around your goal, your schedule and your current level, with clear progress to track.</p>
+      <dl class="facts" data-rise>
+        <div><dt>Role</dt><dd>Certified fitness personal trainer</dd></div>
+        <div><dt>Certified by</dt><dd>Fabulous Body Academy</dd></div>
+        <div><dt>Style</dt><dd>Strength and conditioning</dd></div>
+        <div><dt>Sessions</dt><dd>In person and online</dd></div>
+      </dl>
+      <div class="pills" data-rise><span>Advanced Fitness, 2026</span><span>Fitness, 2025</span><span>In person and online</span></div>
+    </div>
+  </section>
+
+  <section class="hs" id="programs">
+    <div class="hs-head">
+      <p class="eyebrow" data-rise>Programs</p>
+      <h2 class="h2" data-rise>Pick your <em>path.</em></h2>
+    </div>
+    <div class="hs-wrap"><div class="hs-track">
+      <article class="card" data-tilt><span class="num">01</span><h3>Foundations</h3><p class="meta">4 weeks &middot; 3 sessions a week</p><p>Learn the main lifts with good form and build a base you can grow on.</p><ul><li>Squat, hinge, push and pull technique</li><li>Full body sessions</li><li>Simple weekly check-ins</li></ul><button class="btn sm" type="button" data-prog="Foundations">Enquire &rarr;</button></article>
+      <article class="card" data-tilt><span class="num">02</span><h3>Lean in 8</h3><span class="tag">Popular</span><p class="meta">8 weeks &middot; 4 sessions a week</p><p>Strength training and conditioning for steady, lasting fat loss.</p><ul><li>Upper and lower split</li><li>Conditioning finishers</li><li>Calorie and protein targets</li></ul><button class="btn sm primary" type="button" data-prog="Lean in 8">Enquire &rarr;</button></article>
+      <article class="card" data-tilt><span class="num">03</span><h3>Muscle build</h3><p class="meta">12 weeks &middot; 5 sessions a week</p><p>Push, pull and legs with planned progression to build size and strength.</p><ul><li>Push, pull, legs, upper and lower</li><li>Progressive overload tracking</li><li>Nutrition for a calorie surplus</li></ul><button class="btn sm" type="button" data-prog="Muscle build">Enquire &rarr;</button></article>
+    </div></div>
+  </section>
+
+  <section id="workouts">
+    <p class="eyebrow" data-rise>Workout collection</p>
+    <h2 class="h2" data-rise>A full week, <em>planned.</em></h2>
+    <p class="lead" data-rise>Choose the 4-day or 5-day plan. Tap a day to see the exercises, sets and reps.</p>
+    <div class="wtabs" id="wtabs" data-rise role="group" aria-label="Choose a plan"><button type="button" data-plan="p4" aria-pressed="true">4-day plan</button><button type="button" data-plan="p5" aria-pressed="false">5-day plan</button></div>
+    <div class="days" id="days" data-rise></div>
+  </section>
+
+  <section id="tools">
+    <p class="eyebrow" data-rise>Tools</p>
+    <h2 class="h2" data-rise>Find your program. <em>Plan your food.</em></h2>
+    <div class="tools">
+      <div class="tool" data-rise>
+        <h3>Program finder</h3>
+        <div class="q"><span>Your goal</span><div class="opts" data-q="goal"><button class="chip" type="button" data-v="fat" aria-pressed="false">Lose fat</button><button class="chip" type="button" data-v="muscle" aria-pressed="false">Build muscle</button><button class="chip" type="button" data-v="basics" aria-pressed="false">Learn the basics</button></div></div>
+        <div class="q"><span>Experience</span><div class="opts" data-q="exp"><button class="chip" type="button" data-v="beginner" aria-pressed="false">Beginner</button><button class="chip" type="button" data-v="inter" aria-pressed="false">Intermediate</button><button class="chip" type="button" data-v="adv" aria-pressed="false">Advanced</button></div></div>
+        <div class="q"><span>Days you can train each week</span><div class="opts" data-q="days"><button class="chip" type="button" data-v="3" aria-pressed="false">3 days</button><button class="chip" type="button" data-v="4" aria-pressed="false">4 days</button><button class="chip" type="button" data-v="5" aria-pressed="false">5 days</button></div></div>
+        <div class="result" id="fres" aria-live="polite"><p>Answer the three questions and your recommended program appears here.</p></div>
+        <button class="btn primary" id="fcta" type="button" hidden>Enquire about this program &rarr;</button>
+      </div>
+      <div class="tool" data-rise>
+        <h3>Calorie calculator</h3>
+        <div class="fgrid">
+          <div class="field"><span>Sex</span><div class="opts" id="sexOpts"><button class="chip" type="button" data-v="m" aria-pressed="true">Male</button><button class="chip" type="button" data-v="f" aria-pressed="false">Female</button></div></div>
+          <label class="field"><span>Age</span><input id="cAge" type="number" inputmode="numeric" min="14" max="90" value="28"></label>
+          <label class="field"><span>Height (cm)</span><input id="cHt" type="number" inputmode="numeric" min="120" max="230" value="175"></label>
+          <label class="field"><span>Weight (kg)</span><input id="cWt" type="number" inputmode="decimal" min="35" max="250" value="75"></label>
+          <label class="field"><span>Activity</span><select id="cAct"><option value="1.2">Mostly seated</option><option value="1.375">Light, 1 to 3 days</option><option value="1.55" selected>Moderate, 3 to 5 days</option><option value="1.725">Heavy, 6 to 7 days</option></select></label>
+          <label class="field"><span>Goal</span><select id="cGoal"><option value="-450">Lose fat</option><option value="0" selected>Maintain</option><option value="300">Build muscle</option></select></label>
+        </div>
+        <p class="err" id="cErr" role="alert"></p>
+        <div class="kcal"><b id="kcal">0</b><span>kcal / day</span></div>
+        <p class="fine" id="maint"></p>
+        <div class="mac"><div class="t"><span>Protein</span><b id="mP">0 g</b></div><div class="track"><i id="bP"></i></div></div>
+        <div class="mac"><div class="t"><span>Carbohydrate</span><b id="mC">0 g</b></div><div class="track"><i class="c2" id="bC"></i></div></div>
+        <div class="mac"><div class="t"><span>Fat</span><b id="mF">0 g</b></div><div class="track"><i class="c3" id="bF"></i></div></div>
+        <button class="btn primary" id="calcCta" type="button">Get a plan built on these numbers &rarr;</button>
+        <p class="fine">An estimate from the Mifflin-St Jeor equation, not medical advice. Your coach will adjust it to you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div>
+      <p class="eyebrow" data-rise>Get started</p>
+      <h2 class="h2" data-rise>Ready to <em>begin?</em></h2>
+      <p class="lead" data-rise>Book a free consultation to talk about your goals and find the right program.</p>
+      <dl class="cdet" data-rise>
+        <div><dt>WhatsApp and phone</dt><dd><a href="https://wa.me/919399862732" target="_blank" rel="noopener">+91 93998 62732</a></dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:amanpanika7067@gmail.com">amanpanika7067@gmail.com</a></dd></div>
+        <div><dt>Instagram</dt><dd><a href="https://instagram.com/_amanpanika" target="_blank" rel="noopener">@_amanpanika</a></dd></div>
+        <div><dt>Sessions</dt><dd>In person and online</dd></div>
+      </dl>
+    </div>
+    <form class="form" id="form" data-rise novalidate>
+      <h3>Write your enquiry</h3>
+      <div class="fgrid">
+        <label class="field"><span>Your name</span><input id="qName" type="text" placeholder="Your name" autocomplete="name"></label>
+        <label class="field"><span>Phone or WhatsApp</span><input id="qPhone" type="tel" inputmode="tel" placeholder="+91 98765 43210" autocomplete="tel"></label>
+        <label class="field"><span>Email (optional)</span><input id="qEmail" type="email" placeholder="you@example.com" autocomplete="email"></label>
+        <label class="field"><span>Program</span><select id="qProg"><option value="">Not sure yet</option><option>Foundations</option><option>Lean in 8</option><option>Muscle build</option></select></label>
+        <label class="field"><span>Where</span><select id="qMode"><option>in person</option><option>online</option></select></label>
+        <label class="field"><span>Best time to call</span><select id="qTime"><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Any time</option></select></label>
+      </div>
+      <label class="field"><span>Your goal</span><textarea id="qGoal" placeholder="For example: lose 5 kg and learn to squat properly"></textarea></label>
+      <input id="qHoney" class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="err" id="qStatus" role="status" aria-live="polite"></p>
+      <div class="actions"><button class="btn primary mag" id="book" type="submit">Book free consultation &rarr;</button><a class="btn" id="wa" href="https://wa.me/919399862732" target="_blank" rel="noopener">Chat on WhatsApp</a></div>
+    </form>
+  </section>
+</main>
+<footer><span>&copy; <span id="yr">2026</span> Sovrns. Coaching by Aman.</span><span><a href="https://wa.me/919399862732" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com/_amanpanika" target="_blank" rel="noopener">Instagram</a><a href="mailto:amanpanika7067@gmail.com">Email</a></span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var root = document.documentElement;
+  function safe(name, fn) { try { fn(); } catch (e) { if (window.console) console.warn('[sovrns] ' + name, e); } }
+
+  /* ---------- shared state for the enquiry ---------- */
+  var calcNote = '', calcUsed = false;
+  function goTo(id) {
+    var t = $(id); if (!t) return;
+    closeMenu();
+    if (window.__lenis) window.__lenis.scrollTo(t, { offset: -60, duration: 1.4 });
+    else t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  /* ---------- menu ---------- */
+  function closeMenu() { root.classList.remove('menu-open'); var b = $('#burger'); if (b) { b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-label', 'Open menu'); } }
+  safe('menu', function () {
+    $('#burger').addEventListener('click', function () {
+      var open = root.classList.toggle('menu-open');
+      this.setAttribute('aria-expanded', open ? 'true' : 'false'); this.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+    $$('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href'); if (!id || id.length < 2) { if (id === '#') e.preventDefault(); return; }
+        if (!$(id)) return; e.preventDefault(); goTo(id);
+      });
+    });
+    var nav = $('#nav');
+    function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+    $('#yr').textContent = new Date().getFullYear();
+  });
+
+  /* ---------- loader ---------- */
+  var introRan = false, introFn = null;
+  function runIntro() { if (introRan) return; introRan = true; if (introFn) safe('intro', introFn); }
+  safe('loader', function () {
+    var l = $('#loader'), finished = false;
+    function done() { if (finished) return; finished = true; l.classList.add('done'); root.classList.add('ready'); setTimeout(runIntro, reduce ? 0 : 350); }
+    window.addEventListener('load', function () { setTimeout(done, reduce ? 0 : 900); });
+    setTimeout(done, 3500);
+  });
+
+  /* ---------- custom cursor + magnetic buttons + card tilt (mouse only) ---------- */
+  safe('cursor', function () {
+    if (!finePointer || reduce) return;
+    root.classList.add('has-cursor');
+    var c = $('#cursor'), d = $('#cdot'), x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
+    window.addEventListener('pointermove', function (e) { x = e.clientX; y = e.clientY; d.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)'; });
+    (function loop() { cx += (x - cx) * 0.18; cy += (y - cy) * 0.18; c.style.transform = 'translate3d(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px,0)'; requestAnimationFrame(loop); })();
+    document.addEventListener('pointerover', function (e) { var h = e.target.closest && e.target.closest('a, button, .card, input, select, textarea, label'); c.classList.toggle('big', !!h); });
+    $$('.mag').forEach(function (b) {
+      b.addEventListener('pointermove', function (e) { var r = b.getBoundingClientRect(); b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * 0.22).toFixed(1) + 'px,' + ((e.clientY - r.top - r.height / 2) * 0.32).toFixed(1) + 'px)'; });
+      b.addEventListener('pointerleave', function () { b.style.transform = ''; });
+    });
+    $$('[data-tilt]').forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--mx', (px * 100).toFixed(1) + '%'); card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+        card.style.transform = 'perspective(900px) rotateX(' + ((0.5 - py) * 7).toFixed(2) + 'deg) rotateY(' + ((px - 0.5) * 9).toFixed(2) + 'deg)';
+      });
+      card.addEventListener('pointerleave', function () { card.style.transform = ''; });
+    });
+  });
+
+  /* ---------- Three.js: a neon dumbbell and particle field that follow the scroll ---------- */
+  safe('three', function () {
+    var canvas = $('#gl');
+    if (!window.THREE) { canvas.style.display = 'none'; return; }
+    var mobile = innerWidth < 760 || window.matchMedia('(pointer: coarse)').matches;
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !mobile, alpha: true, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2));
+    renderer.setClearColor(0x000000, 0);
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100); camera.position.set(0, 0, 10);
+    var GREEN = 0x3dff9a;
+
+    scene.add(new THREE.AmbientLight(0x2a4a3a, 0.9));
+    var l1 = new THREE.PointLight(GREEN, 1.6, 40); l1.position.set(5, 4, 6); scene.add(l1);
+    var l2 = new THREE.PointLight(0xff7a3d, 0.9, 40); l2.position.set(-6, -3, 4); scene.add(l2);
+
+    var bell = new THREE.Group(); scene.add(bell);
+    var solid = new THREE.MeshStandardMaterial({ color: 0x0a100c, metalness: 0.85, roughness: 0.32, emissive: 0x03140b });
+    function part(geo, x) {
+      var g = new THREE.Group();
+      g.add(new THREE.Mesh(geo, solid));
+      g.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo, 20), new THREE.LineBasicMaterial({ color: GREEN, transparent: true, opacity: 0.85 })));
+      g.rotation.z = Math.PI / 2; g.position.x = x; bell.add(g);
+    }
+    part(new THREE.CylinderGeometry(0.13, 0.13, 6.2, 28, 1), 0);
+    [-1, 1].forEach(function (s) {
+      part(new THREE.CylinderGeometry(1.25, 1.25, 0.32, 44, 1), s * 1.55);
+      part(new THREE.CylinderGeometry(1.0, 1.0, 0.3, 40, 1), s * 1.92);
+      part(new THREE.CylinderGeometry(0.7, 0.7, 0.28, 36, 1), s * 2.27);
+      part(new THREE.CylinderGeometry(0.2, 0.2, 0.26, 24, 1), s * 2.62);
+    });
+    var ringMat = new THREE.MeshBasicMaterial({ color: GREEN, transparent: true, opacity: 0.35 });
+    var ring = new THREE.Mesh(new THREE.TorusGeometry(3.7, 0.012, 8, 160), ringMat); scene.add(ring);
+    var ring2 = new THREE.Mesh(new THREE.TorusGeometry(4.5, 0.008, 8, 160), new THREE.MeshBasicMaterial({ color: 0xff7a3d, transparent: true, opacity: 0.22 })); scene.add(ring2);
+
+    var N = mobile ? 450 : 1300, arr = new Float32Array(N * 3), i, r, a, b;
+    for (i = 0; i < N; i++) {
+      r = 6 + Math.random() * 16; a = Math.random() * Math.PI * 2; b = Math.acos(2 * Math.random() - 1);
+      arr[i * 3] = r * Math.sin(b) * Math.cos(a); arr[i * 3 + 1] = r * Math.sin(b) * Math.sin(a); arr[i * 3 + 2] = r * Math.cos(b) - 4;
+    }
+    var pg = new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+    var pts = new THREE.Points(pg, new THREE.PointsMaterial({ color: GREEN, size: mobile ? 0.06 : 0.045, transparent: true, opacity: 0.75, sizeAttenuation: true, depthWrite: false }));
+    scene.add(pts);
+
+    var W = 0, H = 0, docH = 1, mx = 0, my = 0, px = 0, py = 0;
+    function size() {
+      var w = innerWidth, h = innerHeight;
+      if (w === W && Math.abs(h - H) < 120) return;
+      W = w; H = h; mobile = w < 760 || window.matchMedia('(pointer: coarse)').matches;
+      renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+      canvas.style.opacity = mobile ? '0.55' : '1';
+    }
+    function measure() { docH = Math.max(1, document.documentElement.scrollHeight - innerHeight); }
+    size(); measure();
+    window.addEventListener('resize', function () { size(); measure(); });
+    window.addEventListener('load', measure); setInterval(measure, 1500);
+    window.addEventListener('pointermove', function (e) { mx = (e.clientX / innerWidth - 0.5) * 2; my = (e.clientY / innerHeight - 0.5) * 2; }, { passive: true });
+
+    var cur = { x: 0, y: 0, s: 1, ry: 0 }, clock = new THREE.Clock();
+    function frame() {
+      var t = clock.getElapsedTime(), p = Math.min(1, Math.max(0, window.scrollY / docH));
+      var tx = mobile ? 0 : Math.cos(p * Math.PI * 2.4) * 2.9;
+      var ty = mobile ? 2.2 - p * 2.4 : Math.sin(p * Math.PI * 1.6) * 0.8;
+      var ts = mobile ? 0.55 : 1 - p * 0.18;
+      var tr = p * Math.PI * 5;
+      cur.x += (tx - cur.x) * 0.06; cur.y += (ty - cur.y) * 0.06; cur.s += (ts - cur.s) * 0.06; cur.ry += (tr - cur.ry) * 0.06;
+      px += (mx - px) * 0.05; py += (my - py) * 0.05;
+      bell.position.set(cur.x, cur.y + Math.sin(t * 0.9) * 0.14, 0);
+      bell.scale.setScalar(cur.s);
+      bell.rotation.set(0.32 + py * 0.18, cur.ry + t * 0.18 + px * 0.5, -0.28 + Math.sin(t * 0.4) * 0.05);
+      ring.position.copy(bell.position); ring.scale.setScalar(cur.s); ring.rotation.set(1.2 + py * 0.2, t * 0.12, t * 0.08);
+      ring2.position.copy(bell.position); ring2.scale.setScalar(cur.s); ring2.rotation.set(0.5, -t * 0.1 + px * 0.3, 0.4 + t * 0.05);
+      pts.rotation.y = t * 0.02 + p * 1.5; pts.rotation.x = p * 0.6;
+      camera.position.x = px * 0.35; camera.position.y = -py * 0.25; camera.lookAt(0, 0, 0);
+      renderer.render(scene, camera);
+    }
+    if (reduce) { frame(); window.addEventListener('scroll', frame, { passive: true }); window.addEventListener('resize', frame); }
+    else { (function loop() { requestAnimationFrame(loop); if (!document.hidden) frame(); })(); }
+    canvas.addEventListener('webglcontextlost', function (e) { e.preventDefault(); canvas.style.display = 'none'; });
+  });
+
+  /* ---------- GSAP + Lenis: smooth scroll and scroll animations ---------- */
+  safe('motion', function () {
+    if (!window.gsap || !window.ScrollTrigger || reduce) return;
+    gsap.registerPlugin(ScrollTrigger);
+    root.classList.add('gsap-on');
+
+    if (window.Lenis) {
+      var lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+      window.__lenis = lenis; root.classList.add('lenis', 'lenis-smooth');
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    gsap.set('.hero .ln > span', { yPercent: 115 });
+    gsap.set('.hero [data-fade]', { opacity: 0, y: 26 });
+    introFn = function () {
+      gsap.to('.hero .ln > span', { yPercent: 0, duration: 1.15, stagger: 0.12, ease: 'power4.out' });
+      gsap.to('.hero [data-fade]', { opacity: 1, y: 0, duration: 0.9, stagger: 0.12, delay: 0.45, ease: 'power3.out', clearProps: 'transform' });
+      $$('.stats [data-count]').forEach(function (el) {
+        var to = +el.getAttribute('data-count'), o = { v: 0 }; el.textContent = '0';
+        gsap.to(o, { v: to, duration: 1.8, delay: 0.9, ease: 'power2.out', onUpdate: function () { el.textContent = Math.round(o.v); } });
+      });
+    };
+    setTimeout(runIntro, 5000);
+
+    var rise = $$('[data-rise]'); gsap.set(rise, { opacity: 0, y: 44 });
+    ScrollTrigger.batch(rise, { start: 'top 92%', once: true, onEnter: function (b) { gsap.to(b, { opacity: 1, y: 0, duration: 0.95, stagger: 0.1, ease: 'power3.out', overwrite: true, clearProps: 'transform' }); } });
+
+    var img = $('.about-img');
+    if (img) {
+      gsap.fromTo(img, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'power4.out', scrollTrigger: { trigger: img, start: 'top 88%', once: true } });
+      gsap.fromTo('.about-img img', { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } });
+    }
+
+    var mm = gsap.matchMedia();
+    mm.add('(min-width: 900px)', function () {
+      root.classList.add('hs-on');
+      var track = $('.hs-track'), wrap = $('.hs-wrap');
+      var dist = function () { return Math.max(0, track.scrollWidth - wrap.clientWidth); };
+      gsap.to(track, { x: function () { return -dist(); }, ease: 'none', scrollTrigger: { trigger: '.hs', start: 'top top', end: function () { return '+=' + dist(); }, pin: true, scrub: 0.7, invalidateOnRefresh: true, anticipatePin: 1 } });
+      return function () { root.classList.remove('hs-on'); };
+    });
+    window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+    setTimeout(function () { ScrollTrigger.refresh(); }, 1200);
+  });
+
+  /* ---------- workouts ---------- */
+  var PLANS = {
+    p4: [
+      ['Day 1', 'Upper A', 'Mon · Chest, back, shoulders · 55 min', [['Bench press', '4 x 6-8'], ['Barbell row', '4 x 8'], ['Overhead press', '3 x 8-10'], ['Lat pulldown', '3 x 10'], ['Lateral raise', '3 x 15'], ['Triceps pushdown', '3 x 12']]],
+      ['Day 2', 'Lower A', 'Tue · Quads, hamstrings, calves · 55 min', [['Back squat', '4 x 6-8'], ['Romanian deadlift', '3 x 8-10'], ['Leg press', '3 x 10-12'], ['Leg curl', '3 x 12'], ['Standing calf raise', '4 x 12-15'], ['Plank', '3 x 45 sec']]],
+      ['Day 3', 'Upper B', 'Thu · Chest, back, arms · 55 min', [['Incline dumbbell press', '4 x 8-10'], ['Pull-up', '4 x 6-10'], ['Seated dumbbell press', '3 x 10'], ['Seated cable row', '3 x 10-12'], ['Dumbbell curl', '3 x 12'], ['Overhead triceps extension', '3 x 12']]],
+      ['Day 4', 'Lower B', 'Fri · Glutes, hamstrings, core · 55 min', [['Deadlift', '3 x 5'], ['Walking lunge', '3 x 12 each leg'], ['Hip thrust', '3 x 10'], ['Leg extension', '3 x 12'], ['Seated calf raise', '4 x 15'], ['Hanging knee raise', '3 x 12']]]
+    ],
+    p5: [
+      ['Day 1', 'Push', 'Mon · Chest, shoulders, triceps · 50 min', [['Bench press', '4 x 8'], ['Overhead press', '3 x 10'], ['Incline dumbbell press', '3 x 10'], ['Lateral raise', '3 x 15'], ['Triceps pushdown', '3 x 12']]],
+      ['Day 2', 'Pull', 'Tue · Back, biceps · 50 min', [['Deadlift', '3 x 5'], ['Pull-up', '4 x 8'], ['Barbell row', '3 x 10'], ['Face pull', '3 x 15'], ['Dumbbell curl', '3 x 12']]],
+      ['Day 3', 'Legs', 'Wed · Quads, hamstrings, glutes · 55 min', [['Back squat', '4 x 8'], ['Romanian deadlift', '3 x 10'], ['Walking lunge', '3 x 12 each leg'], ['Leg press', '3 x 12'], ['Calf raise', '4 x 15']]],
+      ['Day 4', 'Upper', 'Thu · Chest, back, shoulders, arms · 55 min', [['Incline barbell press', '3 x 10'], ['Lat pulldown', '3 x 10'], ['Seated dumbbell press', '3 x 10'], ['Seated cable row', '3 x 12'], ['Hammer curl', '3 x 12'], ['Overhead triceps extension', '3 x 12']]],
+      ['Day 5', 'Lower and core', 'Fri · Glutes, hamstrings, core · 55 min', [['Hip thrust', '4 x 10'], ['Bulgarian split squat', '3 x 10 each leg'], ['Leg curl', '3 x 12'], ['Leg extension', '3 x 12'], ['Hanging knee raise', '3 x 12'], ['Plank', '3 x 45 sec']]]
+    ]
+  };
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  safe('workouts', function () {
+    var box = $('#days'), tabs = $$('#wtabs button');
+    function render(k) {
+      box.innerHTML = PLANS[k].map(function (d, i) {
+        return '<div class="day"><button type="button" aria-expanded="false" aria-controls="dd' + i + '"><span class="d">' + esc(d[0]) + '</span><h3>' + esc(d[1]) + '<small>' + esc(d[2]) + '</small></h3><span class="pm" aria-hidden="true"></span></button>' +
+          '<div class="day-body" id="dd' + i + '"><div><ul>' + d[3].map(function (m) { return '<li><span>' + esc(m[0]) + '</span><span>' + esc(m[1]) + '</span></li>'; }).join('') + '<li><span>Rest between sets</span><span>60 to 90 sec</span></li></ul></div></div></div>';
+      }).join('');
+      if (window.ScrollTrigger) setTimeout(function () { ScrollTrigger.refresh(); }, 60);
+    }
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('.day > button'); if (!b) return;
+      var d = b.parentNode, open = d.classList.toggle('open'); b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (window.ScrollTrigger) setTimeout(function () { ScrollTrigger.refresh(); }, 450);
+    });
+    tabs.forEach(function (t) { t.addEventListener('click', function () { tabs.forEach(function (x) { x.setAttribute('aria-pressed', x === t ? 'true' : 'false'); }); render(t.getAttribute('data-plan')); }); });
+    render('p4'); box.querySelector('.day').classList.add('open'); box.querySelector('.day > button').setAttribute('aria-expanded', 'true');
+  });
+
+  /* ---------- tools: program finder + calorie calculator ---------- */
+  var sex = 'm', fin = { goal: '', exp: '', days: '' }, finProg = '';
+  function tween(el, to) {
+    var from = +String(el.textContent).replace(/,/g, '') || 0, t0 = performance.now(), d = reduce ? 0 : 600;
+    (function s(t) { var k = d ? Math.min(1, (t - t0) / d) : 1, e = 1 - Math.pow(1 - k, 3); el.textContent = Math.round(from + (to - from) * e).toLocaleString(); if (k < 1) requestAnimationFrame(s); })(t0);
+  }
+  safe('finder', function () {
+    function find() {
+      var out = $('#fres'), cta = $('#fcta');
+      if (!fin.goal || !fin.exp || !fin.days) { return; }
+      var p, why;
+      if (fin.goal === 'basics' || fin.exp === 'beginner') { p = 'Foundations'; why = 'Start by learning the main lifts with good form. Three full body sessions a week is a strong base.'; }
+      else if (fin.goal === 'fat') { p = 'Lean in 8'; why = 'Strength training plus conditioning for steady fat loss. Best with ' + (+fin.days >= 4 ? 'the 4-day upper and lower plan.' : 'a 4-day week if you can fit it in.'); }
+      else { p = (+fin.days >= 4) ? 'Muscle build' : 'Foundations'; why = (+fin.days >= 5) ? 'Push, pull and legs across five days gives the volume you need to build size.' : (+fin.days === 4 ? 'The 4-day upper and lower split builds size with good recovery.' : 'With three days, build a strong base first, then step up to a 4 or 5 day plan.'); }
+      finProg = p; out.innerHTML = '<b>' + esc(p) + '</b><p>' + esc(why) + '</p>'; cta.hidden = false;
+    }
+    $$('.opts[data-q]').forEach(function (g) {
+      $$('.chip', g).forEach(function (c) { c.addEventListener('click', function () { $$('.chip', g).forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); }); fin[g.getAttribute('data-q')] = c.getAttribute('data-v'); find(); }); });
+    });
+    $('#fcta').addEventListener('click', function () { $('#qProg').value = finProg; buildMsg(); goTo('#contact'); });
+  });
+  safe('calc', function () {
+    function calc() {
+      var age = +$('#cAge').value, ht = +$('#cHt').value, wt = +$('#cWt').value, act = +$('#cAct').value, adj = +$('#cGoal').value, err = $('#cErr');
+      if (!(age >= 14 && age <= 90) || !(ht >= 120 && ht <= 230) || !(wt >= 35 && wt <= 250)) { err.textContent = 'Enter an age from 14 to 90, a height from 120 to 230 cm and a weight from 35 to 250 kg.'; return; }
+      err.textContent = '';
+      var bmr = 10 * wt + 6.25 * ht - 5 * age + (sex === 'm' ? 5 : -161), maint = Math.round(bmr * act), tgt = Math.max(1200, maint + adj);
+      var p = Math.round(1.8 * wt), f = Math.round(tgt * 0.25 / 9), c = Math.max(0, Math.round((tgt - p * 4 - f * 9) / 4));
+      tween($('#kcal'), tgt);
+      $('#maint').textContent = 'Maintenance is about ' + maint.toLocaleString() + ' kcal a day.';
+      $('#mP').textContent = p + ' g'; $('#mC').textContent = c + ' g'; $('#mF').textContent = f + ' g';
+      $('#bP').style.width = Math.min(100, p * 4 / tgt * 100).toFixed(1) + '%'; $('#bC').style.width = Math.min(100, c * 4 / tgt * 100).toFixed(1) + '%'; $('#bF').style.width = Math.min(100, f * 9 / tgt * 100).toFixed(1) + '%';
+      var gl = $('#cGoal');
+      calcNote = 'Calorie calculator result: ' + tgt.toLocaleString() + ' kcal/day (' + gl.options[gl.selectedIndex].text.toLowerCase() + '), protein ' + p + ' g, carbs ' + c + ' g, fat ' + f + ' g. Age ' + age + ', ' + ht + ' cm, ' + wt + ' kg.';
+    }
+    ['cAge', 'cHt', 'cWt', 'cAct', 'cGoal'].forEach(function (id) { var el = $('#' + id); el.addEventListener('input', calc); el.addEventListener('change', calc); });
+    $$('#sexOpts .chip').forEach(function (c) { c.addEventListener('click', function () { sex = c.getAttribute('data-v'); $$('#sexOpts .chip').forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); }); calc(); }); });
+    $('#calcCta').addEventListener('click', function () {
+      calcUsed = true; var g = $('#qGoal'); if (!g.value.trim()) g.value = 'Please help me plan training and nutrition around my calorie target.';
+      buildMsg(); goTo('#contact');
+    });
+    calc();
+  });
+
+  /* ---------- enquiry form: emailed to Aman, with a WhatsApp fallback ---------- */
+  function msgText() {
+    var name = $('#qName').value.trim(), prog = $('#qProg').value, mode = $('#qMode').value, goal = $('#qGoal').value.trim(), ph = $('#qPhone').value.trim();
+    var t = 'Hi Aman,\n\nI am ' + (name || 'interested in training with you') + '. ';
+    t += prog ? 'I would like to know more about the ' + prog + ' program, training ' + mode + '.' : 'I am not sure which program suits me yet and would like to train ' + mode + '.';
+    if (goal) t += '\n\nMy goal: ' + goal;
+    if (calcUsed && calcNote) t += '\n\n' + calcNote;
+    if (ph) t += '\n\nYou can reach me on ' + ph + ' (' + $('#qTime').value.toLowerCase() + ').';
+    return t + '\n\nCould we book a free consultation? Thank you.';
+  }
+  function buildMsg() { var wa = $('#wa'); if (wa) wa.href = 'https://wa.me/919399862732?text=' + encodeURIComponent(msgText()); }
+  safe('form', function () {
+    ['qName', 'qProg', 'qMode', 'qGoal', 'qPhone', 'qEmail', 'qTime'].forEach(function (id) { var el = $('#' + id); el.addEventListener('input', buildMsg); el.addEventListener('change', buildMsg); });
+    $$('[data-prog]').forEach(function (b) { b.addEventListener('click', function () { $('#qProg').value = b.getAttribute('data-prog'); buildMsg(); goTo('#contact'); }); });
+    var form = $('#form'), btn = $('#book'), st = $('#qStatus');
+    function status(t, ok) { st.textContent = t; st.style.color = ok ? 'var(--green)' : ''; }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = $('#qName').value.trim(), phone = $('#qPhone').value.trim(), email = $('#qEmail').value.trim();
+      if ($('#qHoney').value) return;
+      if (name.length < 2) { status('Please enter your name.', false); $('#qName').focus(); return; }
+      if (phone.replace(/\D/g, '').length < 8) { status('Please enter a valid phone or WhatsApp number so Aman can reach you.', false); $('#qPhone').focus(); return; }
+      if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { status('That email does not look right. Fix it or leave it empty.', false); $('#qEmail').focus(); return; }
+      status('', false); buildMsg();
+      var label = btn.innerHTML; btn.disabled = true; btn.textContent = 'Sending...';
+      var payload = { _subject: 'New consultation request from ' + name + ' (Sovrns)', _template: 'table', _captcha: 'false', Name: name, Phone: phone, Email: email || 'not given', Program: $('#qProg').value || 'Not sure yet', Where: $('#qMode').value, 'Best time to call': $('#qTime').value, Goal: $('#qGoal').value.trim() || 'not given', Calculator: (calcUsed && calcNote) ? calcNote : 'not used', Message: msgText() };
+      if (email) payload._replyto = email;
+      var fail = function () { btn.disabled = false; btn.innerHTML = label; status('Could not send right now. Tap Chat on WhatsApp and your message is ready to send.', false); };
+      var ctl = ('AbortController' in window) ? new AbortController() : null, to = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
+      fetch('https://formsubmit.co/ajax/amanpanika7067@gmail.com', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload), signal: ctl ? ctl.signal : undefined })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) { clearTimeout(to); if (res.ok && String(res.j.success) !== 'false') { btn.textContent = 'Request sent'; status('Thank you, ' + name.split(' ')[0] + '. Aman will contact you on ' + phone + ' soon.', true); } else { fail(); } })
+        .catch(function () { clearTimeout(to); fail(); });
+    });
+    buildMsg();
+  });
+})();
+</script>
+</body>
+</html>
