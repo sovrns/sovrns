@@ -1,0 +1,1159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sovrns: certified fitness personal trainer. Strength coaching, training programs, workouts and free consultations, in person and online.">
+<meta name="theme-color" content="#070908">
+<link rel="canonical" href="https://sovrns.in/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sovrns">
+<meta property="og:title" content="Sovrns | Certified fitness personal trainer">
+<meta property="og:description" content="Strength coaching, training programs and free consultations, in person and online.">
+<meta property="og:url" content="https://sovrns.in/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23070908'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='40' font-weight='700' text-anchor='middle' fill='%233DFF9A'%3ES%3C/text%3E%3C/svg%3E">
+<title>Sovrns</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: the whole site is a 360 ring of seven panels (Home, Programs, Process, Workouts, Tools, About, Contact). Fixed top bar and bottom dial; drag, swipe, arrows or the menu turn the ring. */
+:root {
+  --bg: #EEF1EF;
+  --surface: #FFFFFF;
+  --surface-2: #E8ECEA;
+  --fg: #0C0F0D;
+  --muted: #5C6560;
+  --line: #D6DCD8;
+  --accent: #138A4B;
+  --on-accent: #FFFFFF;
+  --warm: #D9531E;
+  --dial: rgba(19, 138, 75, 0.14);
+  --glow: #FFFFFF;
+  --glow-edge: rgba(0, 210, 106, 0.12);
+  --panel: #EFF3F1;
+  --panel-hover: #FFFFFF;
+  --hover-bg: #FFFFFF;
+  --panel-drag: #FFFFFF;
+  --glow-strong: #FFFFFF;
+  --glow-edge-strong: rgba(0, 230, 120, 0.3);
+  --neon: #00D26A;
+  --neon-glow: rgba(0, 210, 106, 0.5);
+  --neon-ring: rgba(0, 210, 106, 0.45);
+  --neon-soft: rgba(0, 210, 106, 0.22);
+  --neon2: #FF6A2B;
+  --neon2-soft: rgba(255, 106, 43, 0.18);
+  --tick: rgba(0, 190, 100, 0.34);
+  --ink: #0C0F0D;
+  --ink-line: #262E29;
+  --paper: #F2F5F3;
+  --paper-muted: #9CA6A0;
+  --green: #3DFF9A;
+  --font-display: "Archivo", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #070908; --surface: #111513; --surface-2: #1A201D; --fg: #F2F5F3; --muted: #98A29C;
+    --line: #242B27; --accent: #3DFF9A; --on-accent: #07110B; --warm: #FF7A3D; --dial: rgba(61, 255, 154, 0.16); --glow: rgba(120, 255, 190, 0.18); --glow-edge: rgba(61, 255, 154, 0.05); --panel: #111513; --panel-hover: #18211C; --hover-bg: #1F2B25; --panel-drag: #223029; --glow-strong: rgba(150, 255, 210, 0.38); --glow-edge-strong: rgba(61, 255, 154, 0.14); --neon: #3DFF9A; --neon-glow: rgba(61, 255, 154, 0.55); --neon-ring: rgba(61, 255, 154, 0.4); --neon-soft: rgba(61, 255, 154, 0.2); --neon2: #FF8A4D; --neon2-soft: rgba(255, 138, 77, 0.16); --tick: rgba(61, 255, 154, 0.3); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #070908; --surface: #111513; --surface-2: #1A201D; --fg: #F2F5F3; --muted: #98A29C;
+  --line: #242B27; --accent: #3DFF9A; --on-accent: #07110B; --warm: #FF7A3D; --dial: rgba(61, 255, 154, 0.16); --glow: rgba(120, 255, 190, 0.18); --glow-edge: rgba(61, 255, 154, 0.05); --panel: #111513; --panel-hover: #18211C; --hover-bg: #1F2B25; --panel-drag: #223029; --glow-strong: rgba(150, 255, 210, 0.38); --glow-edge-strong: rgba(61, 255, 154, 0.14); --neon: #3DFF9A; --neon-glow: rgba(61, 255, 154, 0.55); --neon-ring: rgba(61, 255, 154, 0.4); --neon-soft: rgba(61, 255, 154, 0.2); --neon2: #FF8A4D; --neon2-soft: rgba(255, 138, 77, 0.16); --tick: rgba(61, 255, 154, 0.3); color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0; overflow: hidden;
+}
+h1, h2, h3, p, ul, ol, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.app { height: 100%; max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; }
+
+/* top bar */
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; padding-block: 12px; flex: none; }
+.logo { font: 700 20px var(--font-display); letter-spacing: -0.02em; background: none; border: 0; color: inherit; cursor: pointer; padding: 0; }
+.logo span { color: var(--accent); }
+.menu { display: flex; gap: 4px 22px; }
+.menu button { position: relative; background: none; border: 0; padding: 6px 0; font: 500 14px var(--font-body); color: var(--muted); cursor: pointer; }
+.menu button::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 2px; background: var(--accent); transition: right 0.2s; }
+.menu button:hover { color: var(--fg); }
+.menu button:hover::after, .menu button[aria-current="true"]::after { right: 0; }
+.menu button[aria-current="true"] { color: var(--fg); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: 600 14px var(--font-body); padding: 12px 20px; border-radius: 4px; border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; transition: border-color 0.18s, filter 0.18s, background 0.18s, color 0.18s, transform 0.18s; text-decoration: none; }
+.btn:hover { border-color: var(--fg); }
+.btn.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.btn.primary:hover { filter: brightness(1.1); }
+.btn .arr { transition: transform 0.18s; }
+.btn:hover .arr { transform: translateX(4px); }
+.bar .btn { padding: 9px 16px; }
+@media (max-width: 1060px) { .menu { display: none; } }
+
+/* 360 scene */
+.scene { position: relative; flex: 1; min-height: 0; perspective: 1700px; overflow: hidden; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+.scene.drag { cursor: grabbing; }
+.dial { position: absolute; left: 50%; top: 50%; width: 170vmax; height: 170vmax; margin: -85vmax 0 0 -85vmax; border-radius: 50%; pointer-events: none;
+  background: repeating-conic-gradient(from 0deg, var(--tick) 0 0.35deg, transparent 0.35deg 6deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 0 22%, #000 23% 46%, transparent 62%);
+  mask-image: radial-gradient(circle, transparent 0 22%, #000 23% 46%, transparent 62%); }
+.ring { position: absolute; inset: 0; transform-style: preserve-3d; }
+.panel { position: absolute; left: 50%; top: 50%; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; cursor: auto; user-select: text; -webkit-user-select: text; transition: border-color 0.2s, box-shadow 0.3s, background 0.3s; will-change: transform, opacity; }
+.panel::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(480px circle at var(--mx, 50%) var(--my, 30%), var(--glow), var(--glow-edge) 55%, transparent 72%); opacity: 0; transition: opacity 0.3s; }
+.panel.dark { background: var(--ink); color: var(--paper); border-color: var(--ink-line); color-scheme: dark; --glow: rgba(120, 255, 190, 0.2); --glow-edge: rgba(61, 255, 154, 0.06); }
+.pbody { container-type: inline-size; width: 100%; overflow-y: auto; overflow-x: hidden; padding: clamp(20px, 4vw, 44px); display: flex; flex-direction: column; gap: 26px; touch-action: pan-y; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+.panel.active .pbody > * { animation: rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 60ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.ph { display: grid; gap: 10px; max-width: 560px; }
+.ph h2 { font-size: clamp(28px, 4.4vw, 46px); }
+.ph p { color: var(--muted); font-size: 16px; }
+.dark .ph p, .dark .muted { color: var(--paper-muted); }
+.dark .btn { color: var(--paper); border-color: #3a453f; }
+.dark .btn:hover { border-color: var(--green); }
+.dark .btn.primary { background: var(--green); color: #07110B; border-color: var(--green); }
+.dark .eyebrow { color: var(--green); }
+.hint { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); z-index: 5; font-size: 12px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); padding: 6px 12px; border-radius: 4px; pointer-events: none; transition: opacity 0.4s; white-space: nowrap; }
+.hint.gone { opacity: 0; }
+.hint { display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px; font-weight: 600; letter-spacing: 0.03em; color: var(--fg); border-color: var(--accent); box-shadow: 0 0 24px -6px rgba(61, 255, 154, 0.6); animation: hintFloat 2.4s ease-in-out infinite; }
+.hint i { font-style: normal; font-size: 22px; line-height: 1; color: var(--accent); animation: nudgeL 1.1s ease-in-out infinite; }
+.hint i:last-child { animation-name: nudgeR; }
+@keyframes nudgeL { 50% { transform: translateX(-6px); } } @keyframes nudgeR { 50% { transform: translateX(6px); } }
+@keyframes hintFloat { 50% { margin-top: 4px; } }
+@media (prefers-reduced-motion: reduce) { .hint, .hint i { animation: none; } }
+
+/* hud */
+.hud { flex: none; display: flex; align-items: center; justify-content: center; gap: 14px 22px; padding-block: 12px 14px; flex-wrap: wrap; }
+.arrow { width: 44px; height: 44px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font: 600 18px var(--font-body); cursor: pointer; transition: border-color 0.15s, background 0.15s, color 0.15s; }
+.arrow:hover { border-color: var(--accent); background: var(--accent); color: var(--on-accent); }
+.dots { display: flex; gap: 8px; align-items: center; }
+.dot { width: 10px; height: 10px; padding: 0; border-radius: 999px; border: 0; background: var(--line); cursor: pointer; transition: width 0.25s, background 0.2s; }
+.dot:hover { background: var(--muted); }
+.dot[aria-current="true"] { width: 28px; background: var(--accent); }
+.read { display: grid; text-align: center; min-width: 110px; }
+.read b { font: 700 22px var(--font-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.read span { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+@media (max-width: 520px) { .hud { gap: 10px; } .read { min-width: 72px; } .arrow { width: 40px; height: 40px; } }
+
+/* home */
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 28px; align-items: center; }
+.hero-grid h1 { font-size: clamp(34px, 5.2vw, 62px); margin-block: 12px 16px; }
+.hero-grid h1 em { font-style: normal; color: var(--green); display: inline-block; }
+.hero-grid h1 em.swap { animation: wordin 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes wordin { from { opacity: 0; transform: translateY(0.4em); } to { opacity: 1; transform: none; } }
+.lead { color: var(--paper-muted); font-size: 17px; max-width: 44ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.slot { cursor: pointer; border: 1px solid var(--ink-line); padding: 0; font: 600 13px var(--font-body); color: var(--paper-muted); display: grid; place-items: center; text-align: center; background: #151A17 center / cover no-repeat; border-radius: 6px; transition: border-color 0.2s, color 0.2s; }
+.slot .hint2 { display: grid; gap: 8px; padding: 18px; }
+.slot .hint2::before { content: ""; width: 40px; height: 40px; margin: 0 auto; border: 1px dashed currentColor; border-radius: 50%; }
+.slot:hover { color: var(--green); border-color: var(--green); }
+.slot.has-img .hint2 { display: none; }
+.portrait { aspect-ratio: 4 / 5; width: 100%; max-height: 420px; justify-self: end; }
+.proof { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; border-top: 1px solid var(--ink-line); }
+.proof div { padding: 16px 0; display: grid; gap: 2px; transition: transform 0.2s; }
+.proof div:hover { transform: translateY(-3px); }
+.proof div + div { padding-left: 18px; border-left: 1px solid var(--ink-line); }
+.proof b { font: 700 26px var(--font-display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.proof div:hover b { color: var(--green); }
+.proof span { color: var(--paper-muted); font-size: 13px; }
+@container (max-width: 560px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } .portrait { aspect-ratio: 16 / 10; max-height: 220px; justify-self: stretch; } .proof div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--ink-line); } }
+
+/* programs */
+.progs { border-top: 1px solid var(--line); }
+.prog { position: relative; border-bottom: 1px solid var(--line); cursor: pointer; transition: background 0.2s; outline-offset: -2px; }
+.prog::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform 0.25s; }
+.prog:hover, .prog:focus-within, .prog.open { background: var(--surface-2); }
+.prog:hover::before, .prog:focus-within::before, .prog.open::before { transform: scaleY(1); }
+.prog-head { display: grid; grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1.4fr) auto; gap: 6px 22px; align-items: center; padding: 20px 14px; transition: padding-left 0.2s; }
+.prog:hover .prog-head, .prog.open .prog-head { padding-left: 22px; }
+.prog h3 { font-size: 22px; }
+.prog .m { font-size: 13px; color: var(--muted); display: grid; }
+.prog .m b { color: var(--fg); font: 600 15px var(--font-display); }
+.prog p { color: var(--muted); font-size: 14px; }
+.prog .go { font: 600 13px var(--font-body); color: var(--accent); background: none; border: 0; padding: 6px 0; cursor: pointer; white-space: nowrap; }
+.prog .go .arr { display: inline-block; transition: transform 0.2s; }
+.prog .go:hover .arr { transform: translateX(5px); }
+.pop { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm); margin-left: 8px; vertical-align: middle; }
+.incw { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s; }
+.incw > div { overflow: hidden; }
+.prog:hover .incw, .prog:focus-within .incw, .prog.open .incw { grid-template-rows: 1fr; }
+.inc { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px 24px; padding: 2px 22px 20px; }
+.inc li { font-size: 14px; display: flex; gap: 8px; }
+.inc li::before { content: ""; flex: none; width: 14px; height: 14px; margin-top: 4px; border-radius: 50%; background: var(--accent); -webkit-mask: radial-gradient(circle at 50% 50%, #000 40%, transparent 41%); mask: radial-gradient(circle at 50% 50%, #000 40%, transparent 41%); }
+.inc li.best { grid-column: 1 / -1; color: var(--muted); }
+.inc li.best::before { background: var(--warm); }
+@container (max-width: 620px) { .prog-head { grid-template-columns: minmax(0, 1fr) auto; } .prog .m, .prog p { grid-column: 1 / -1; } .prog .go { grid-row: 1; grid-column: 2; } }
+
+/* process and faq */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; counter-reset: s; }
+.step { border: 1px solid var(--line); border-radius: 6px; padding: 20px; display: grid; gap: 8px; align-content: start; position: relative; overflow: hidden; transition: transform 0.2s, border-color 0.2s, background 0.2s; }
+.step::before { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.35s; }
+.step:hover { transform: translateY(-4px); border-color: var(--accent); background: var(--surface-2); }
+.step:hover::before { transform: scaleX(1); }
+.step .n { font: 700 13px var(--font-display); color: var(--accent); }
+.step h3 { font-size: 21px; }
+.step p { color: var(--muted); font-size: 14px; }
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); transition: background 0.2s; }
+.faq details:hover, .faq details[open] { background: var(--surface-2); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 16px 8px; font: 600 17px var(--font-display); letter-spacing: -0.01em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font: 500 22px var(--font-body); color: var(--accent); transition: transform 0.2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding: 0 8px 18px; color: var(--muted); font-size: 15px; max-width: 62ch; }
+.sub { font: 700 20px var(--font-display); letter-spacing: -0.02em; }
+
+/* workouts */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: 600 13px var(--font-body); padding: 8px 14px; border-radius: 4px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+.chip:hover { color: var(--fg); border-color: var(--fg); }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.lib { border-top: 1px solid var(--line); }
+.wk { border-bottom: 1px solid var(--line); transition: background 0.2s; }
+.wk-head { width: 100%; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) 62px 62px 24px; gap: 8px 16px; align-items: center; padding: 16px 8px; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.wk-head h3 { font-size: 20px; }
+.wk-head .f { color: var(--muted); font-size: 14px; }
+.wk-head .t { font-weight: 600; font-size: 14px; }
+.int { display: flex; gap: 3px; align-items: flex-end; height: 18px; }
+.int i { width: 6px; height: 100%; border-radius: 1px; background: var(--line); transform-origin: bottom; }
+.int i.on { background: var(--muted); }
+.wk:hover .int i.on, .wk.open .int i.on { background: var(--accent); animation: bar 0.4s both; animation-delay: calc(var(--k) * 50ms); }
+@keyframes bar { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
+.wk-head .pm { width: 20px; height: 20px; position: relative; justify-self: end; }
+.wk-head .pm::before, .wk-head .pm::after { content: ""; position: absolute; left: 3px; right: 3px; top: 9px; height: 2px; background: var(--accent); transition: transform 0.2s; }
+.wk-head .pm::after { transform: rotate(90deg); }
+.wk.open .pm::after { transform: rotate(0); }
+.wk:hover { background: var(--surface-2); }
+.wk-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s; }
+.wk-body > div { overflow: hidden; }
+.wk.open .wk-body, .wk:hover .wk-body { grid-template-rows: 1fr; }
+.moves { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0 32px; padding: 0 8px 16px; }
+.moves li { display: flex; justify-content: space-between; gap: 12px; padding-block: 8px; border-top: 1px solid var(--line); font-size: 14px; }
+.moves li span:last-child { color: var(--accent); font-weight: 600; white-space: nowrap; }
+@media (hover: none) { .wk-body { grid-template-rows: 0fr; } .wk.open .wk-body { grid-template-rows: 1fr; } .wk:hover { background: none; } .prog:hover .incw { grid-template-rows: 0fr; } .prog.open .incw { grid-template-rows: 1fr; } .prog:hover { background: none; } .prog.open { background: var(--surface-2); } }
+@container (max-width: 560px) { .wk-head { grid-template-columns: minmax(0, 1fr) 24px; } .wk-head .f, .wk-head .t { grid-column: 1; } .wk-head .int { display: none; } .wk-head .pm { grid-row: 1; grid-column: 2; } }
+
+/* tools */
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 4px; padding: 3px; gap: 3px; align-self: flex-start; }
+.seg button { font: 600 13px var(--font-body); padding: 8px 16px; border: 0; border-radius: 3px; background: transparent; color: var(--muted); cursor: pointer; transition: background 0.15s, color 0.15s; }
+.seg button:hover { color: var(--fg); }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.pane[hidden] { display: none; }
+.q { display: grid; gap: 10px; }
+.q > span, .field > span { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.result { border-radius: 6px; padding: clamp(18px, 3vw, 28px); background: var(--ink); color: var(--paper); display: grid; gap: 10px; border: 1px solid var(--ink-line); position: relative; overflow: hidden; }
+.result::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--green); }
+.result .eyebrow { color: var(--green); }
+.result h3 { font-size: clamp(30px, 4.6vw, 46px); }
+.result .rm { display: flex; flex-wrap: wrap; gap: 6px 18px; font: 600 15px var(--font-display); color: var(--green); }
+.result p { color: var(--paper-muted); font-size: 15px; max-width: 56ch; }
+.result .btn { justify-self: start; margin-top: 4px; background: var(--green); color: #07110B; border-color: var(--green); }
+.result.flash { animation: flash 0.5s ease; }
+@keyframes flash { from { transform: translateY(6px); opacity: 0.4; } to { transform: none; opacity: 1; } }
+.fgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+.field { display: grid; gap: 6px; }
+.field input, .field select, .field textarea { width: 100%; font: 500 15px var(--font-body); padding: 11px 12px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); transition: border-color 0.15s; }
+.field textarea { resize: vertical; min-height: 70px; }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--muted); }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.dark .field input, .dark .field select, .dark .field textarea { background: #151A17; color: var(--paper); border-color: var(--ink-line); }
+.dark .field > span { color: var(--paper-muted); }
+.out { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 20px 28px; align-items: center; border: 1px solid var(--line); border-radius: 6px; padding: clamp(18px, 3vw, 26px); background: var(--surface-2); }
+.big { font: 700 clamp(42px, 8vw, 70px) var(--font-display); letter-spacing: -0.04em; line-height: 0.95; font-variant-numeric: tabular-nums; }
+.big small { font: 600 14px var(--font-body); letter-spacing: 0; color: var(--muted); margin-left: 6px; }
+.out .sub2 { color: var(--muted); font-size: 14px; margin-top: 8px; }
+.macros { display: grid; gap: 12px; }
+.mac { display: grid; gap: 5px; }
+.mac .top { display: flex; justify-content: space-between; font-size: 14px; font-weight: 500; }
+.mac .top b { font-variant-numeric: tabular-nums; }
+.track { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.track i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.track i.c2 { background: var(--warm); }
+.track i.c3 { background: var(--muted); }
+.fine { font-size: 12px; color: var(--muted); }
+.err { color: var(--warm); font-size: 14px; min-height: 1.4em; }
+@container (max-width: 560px) { .out { grid-template-columns: minmax(0, 1fr); } }
+
+/* about */
+.about-grid { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 32px; align-items: start; }
+.about-grid .photo { aspect-ratio: 4 / 5; width: 100%; max-height: 380px; background-color: var(--surface-2); color: var(--muted); border-color: var(--line); }
+.about-grid .photo:hover { color: var(--accent); border-color: var(--accent); }
+.about-grid p { color: var(--muted); }
+.copy { display: grid; gap: 14px; }
+.facts { border-top: 1px solid var(--line); margin-top: 6px; }
+.facts div { display: flex; justify-content: space-between; gap: 18px; padding: 12px 6px; border-bottom: 1px solid var(--line); font-size: 14px; transition: background 0.2s, padding 0.2s; }
+.facts div:hover { background: var(--surface-2); padding-inline: 12px; }
+.facts dt { color: var(--muted); }
+.facts dd { text-align: right; font-weight: 500; }
+.creds { display: flex; flex-wrap: wrap; gap: 8px; }
+.creds span { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--line); padding: 6px 12px; border-radius: 4px; color: var(--muted); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+.creds span:hover { border-color: var(--accent); color: var(--accent); background: var(--surface-2); }
+.creds a { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--line); padding: 6px 12px; border-radius: 4px; color: var(--muted); text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+.creds a:hover, .creds a:focus-visible { border-color: var(--accent); color: var(--accent); background: var(--surface-2); }
+.cdet a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+.cdet a:hover, .cdet a:focus-visible { color: var(--green); border-bottom-color: var(--green); }
+@container (max-width: 560px) { .about-grid { grid-template-columns: minmax(0, 1fr); } .about-grid .photo { aspect-ratio: 16 / 10; max-height: 220px; } }
+
+/* contact */
+.cgrid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 32px; align-items: start; }
+.cgrid h2 { font-size: clamp(34px, 5.4vw, 60px); max-width: 11ch; margin-block: 12px 14px; }
+.cgrid h2 em { font-style: normal; color: var(--green); }
+.cdet { border-top: 1px solid var(--ink-line); margin-top: 22px; }
+.cdet div { display: grid; gap: 2px; padding-block: 12px; border-bottom: 1px solid var(--ink-line); transition: padding 0.2s; }
+.cdet div:hover { padding-left: 8px; }
+.cdet dt { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-muted); }
+.cdet dd { font: 600 18px var(--font-display); overflow-wrap: anywhere; }
+.builder { display: grid; gap: 14px; border: 1px solid var(--ink-line); border-radius: 6px; padding: clamp(16px, 3vw, 24px); background: var(--ink-2, #121714); }
+.builder .sub { color: var(--paper); }
+.msg { white-space: pre-wrap; font-size: 14px; line-height: 1.55; color: var(--paper); background: #0A0D0B; border: 1px dashed #36423b; border-radius: 4px; padding: 14px; min-height: 120px; overflow-wrap: anywhere; user-select: all; }
+@container (max-width: 640px) { .cgrid { grid-template-columns: minmax(0, 1fr); } }
+/* neon lighting and brighter hover */
+@property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes spin { to { --ang: 360deg; } }
+@keyframes breathe { 50% { box-shadow: 0 0 0 1px var(--neon-ring), 0 0 64px -6px var(--neon-glow), 0 0 180px -24px var(--neon-glow); } }
+@keyframes drift { to { transform: translate3d(6vmax, -4vmax, 0) scale(1.15); } }
+@keyframes hum { from { opacity: 0.5; } to { opacity: 1; } }
+.orbs { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.orbs i { position: absolute; border-radius: 50%; filter: blur(70px); animation: drift 16s ease-in-out infinite alternate; }
+.orbs i:nth-child(1) { width: 46vmax; height: 46vmax; left: -10vmax; bottom: -24vmax; background: var(--neon-soft); }
+.orbs i:nth-child(2) { width: 34vmax; height: 34vmax; right: -8vmax; top: -18vmax; background: var(--neon2-soft); animation-duration: 21s; animation-delay: -6s; }
+.orbs i:nth-child(3) { width: 30vmax; height: 30vmax; right: 18%; bottom: -20vmax; background: var(--neon-soft); animation-duration: 18s; animation-delay: -3s; }
+.scene::before { content: ""; position: absolute; left: 10%; right: 10%; top: 0; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, var(--neon2), transparent); box-shadow: 0 0 18px 1px var(--neon2-soft); opacity: 0.8; }
+.scene::after { content: ""; position: absolute; left: 6%; right: 6%; bottom: 0; height: 2px; pointer-events: none; z-index: 5; background: linear-gradient(90deg, transparent, var(--neon) 20%, var(--neon) 80%, transparent); box-shadow: 0 0 22px 3px var(--neon-glow); animation: hum 3.2s ease-in-out infinite alternate; }
+.panel::before { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 2px; pointer-events: none; opacity: 0; transition: opacity 0.4s;
+  background: conic-gradient(from var(--ang), transparent 0 55%, var(--neon) 78%, #fff 88%, var(--neon2) 94%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.panel.active::before { opacity: 1; animation: spin 5s linear infinite; }
+.panel.active { box-shadow: 0 0 0 1px var(--neon-ring), 0 0 46px -8px var(--neon-glow), 0 0 140px -30px var(--neon-glow); animation: breathe 4.5s ease-in-out infinite; }
+.panel.active:hover, .panel.active.lit { animation: none; background: var(--panel-hover); border-color: var(--neon); box-shadow: 0 0 0 1px var(--neon), 0 0 60px -4px var(--neon-glow), 0 0 200px -20px var(--neon-glow); }
+.panel.dark.active:hover, .panel.dark.active.lit { background: #131B16; }
+.panel.active:hover::after, .panel.active.lit::after { opacity: 1; }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ""; flex: none; width: 22px; height: 2px; background: var(--neon); box-shadow: 0 0 10px 1px var(--neon-glow); }
+.hero-grid h1 em, .cgrid h2 em { text-shadow: 0 0 16px var(--neon-glow), 0 0 44px var(--neon-glow); }
+.logo span { color: var(--neon); text-shadow: 0 0 12px var(--neon-glow); }
+.menu button::after { background: var(--neon); box-shadow: 0 0 10px var(--neon-glow); }
+.dot[aria-current="true"] { background: var(--neon); box-shadow: 0 0 12px 1px var(--neon-glow); }
+.arrow:hover { box-shadow: 0 0 18px -2px var(--neon-glow); border-color: var(--neon); }
+.read b { text-shadow: 0 0 14px var(--neon-glow); }
+.btn.primary { box-shadow: 0 0 0 1px var(--neon-ring), 0 0 20px -3px var(--neon-glow); }
+.btn.primary:hover { box-shadow: 0 0 0 1px var(--neon), 0 0 34px 2px var(--neon-glow); }
+.dark .btn.primary { box-shadow: 0 0 0 1px rgba(61, 255, 154, 0.5), 0 0 22px -2px rgba(61, 255, 154, 0.6); }
+.dark .btn.primary:hover { box-shadow: 0 0 0 1px var(--green), 0 0 38px 3px rgba(61, 255, 154, 0.65); }
+.dark .btn:hover { box-shadow: 0 0 18px -4px rgba(61, 255, 154, 0.5); }
+.prog::before { background: var(--neon); }
+.prog:hover::before, .prog:focus-within::before, .prog.open::before { box-shadow: 0 0 16px 1px var(--neon-glow); }
+.prog:hover, .prog:focus-within, .prog.open { background: var(--hover-bg); }
+.step::before { background: var(--neon); box-shadow: 0 0 12px var(--neon-glow); }
+.step:hover { background: var(--hover-bg); box-shadow: 0 0 0 1px var(--neon), 0 14px 44px -14px var(--neon-glow); }
+.faq details:hover, .faq details[open] { background: var(--hover-bg); }
+.faq details[open] { box-shadow: inset 3px 0 0 var(--neon); }
+.wk:hover { background: var(--hover-bg); box-shadow: inset 3px 0 0 var(--neon); }
+.wk:hover .int i.on, .wk.open .int i.on { background: var(--neon); box-shadow: 0 0 10px var(--neon-glow); }
+.facts div:hover { background: var(--hover-bg); box-shadow: inset 3px 0 0 var(--neon); }
+.creds span:hover { background: var(--hover-bg); border-color: var(--neon); box-shadow: 0 0 16px -4px var(--neon-glow); }
+.chip:hover { border-color: var(--neon); box-shadow: 0 0 14px -4px var(--neon-glow); }
+.chip[aria-pressed="true"] { box-shadow: 0 0 18px -3px var(--neon-glow); }
+.seg button[aria-pressed="true"] { box-shadow: 0 0 16px -3px var(--neon-glow); }
+.track i { background: var(--neon); box-shadow: 0 0 10px var(--neon-glow); }
+.track i.c2 { background: var(--neon2); box-shadow: 0 0 10px rgba(255, 106, 43, 0.5); }
+.track i.c3 { background: var(--muted); box-shadow: none; }
+.result { box-shadow: 0 0 0 1px rgba(61, 255, 154, 0.28), 0 0 44px -10px rgba(61, 255, 154, 0.5); }
+.result::before { box-shadow: 0 0 14px var(--green); }
+.result h3 { text-shadow: 0 0 22px rgba(61, 255, 154, 0.35); }
+.big { text-shadow: 0 0 26px var(--neon-glow); }
+.out { transition: background 0.2s, box-shadow 0.2s; }
+.out:hover { background: var(--hover-bg); box-shadow: 0 0 36px -10px var(--neon-glow); }
+.proof div:hover b { text-shadow: 0 0 16px rgba(61, 255, 154, 0.6); }
+.slot:hover { box-shadow: 0 0 24px -6px rgba(61, 255, 154, 0.6); }
+.about-grid .photo:hover { box-shadow: 0 0 24px -6px var(--neon-glow); }
+.field input:hover, .field select:hover, .field textarea:hover { background: var(--hover-bg); }
+.dark .field input:hover, .dark .field select:hover, .dark .field textarea:hover { background: #1B2520; }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { box-shadow: 0 0 0 3px var(--neon-soft); }
+.cdet div:hover { box-shadow: inset 3px 0 0 var(--green); }
+.builder { box-shadow: 0 0 0 1px rgba(61, 255, 154, 0.12), 0 0 50px -20px rgba(61, 255, 154, 0.4); }
+.msg { box-shadow: inset 0 0 30px -12px rgba(61, 255, 154, 0.35); }
+/* brightest state while dragging */
+.scene.spot .panel.active { animation: none; background: var(--panel-drag); border-color: var(--neon); box-shadow: 0 0 0 2px var(--neon), 0 0 90px 0 var(--neon-glow), 0 0 260px -10px var(--neon-glow); }
+.scene.spot .panel.dark.active { background: #1B2820; }
+.scene.spot .panel.active::after { opacity: 1; background: radial-gradient(680px circle at var(--mx, 50%) var(--my, 40%), var(--glow-strong), var(--glow-edge-strong) 55%, transparent 76%); }
+.scene.spot .panel.dark.active::after { --glow-strong: rgba(150, 255, 210, 0.4); --glow-edge-strong: rgba(61, 255, 154, 0.16); }
+.scene.spot .panel.active::before { animation-duration: 1.6s; }
+/* press or drag: background goes dark, the slide becomes the brightest thing on screen */
+.veil { position: fixed; inset: 0; z-index: -1; background: #040605; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.app.spot .veil { opacity: 1; }
+.bar, .hud { transition: color 0.3s; }
+.app.spot .bar, .app.spot .hud { --fg: #F2F5F3; --muted: #98A29C; --line: #242B27; --surface: #111513; --accent: #3DFF9A; --on-accent: #07110B; --neon: #3DFF9A; --neon-glow: rgba(61, 255, 154, 0.55); color: var(--fg); }
+.scene.spot { --tick: rgba(61, 255, 154, 0.34); }
+.pbody { transition: filter 0.25s; }
+.scene.spot .panel.inv.active, .scene.spot .panel.dark.inv.active { background: #F3F8F5; border-color: var(--neon); }
+.scene.spot .panel.inv.active .pbody { filter: invert(1) hue-rotate(180deg); }
+.scene.spot .panel.inv.active .slot.has-img { filter: invert(1) hue-rotate(180deg); }
+.scene.drag, .scene.drag * { user-select: none; -webkit-user-select: none; }
+
+/* phones and small tablets */
+.app { height: 100vh; height: 100dvh; }
+.hud { padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+.dot { position: relative; }
+.dot::after { content: ""; position: absolute; inset: -17px -4px; }
+@media (max-width: 700px) {
+  .scene .dial { display: none; }
+  .panel { will-change: auto; }
+  .field input, .field select, .field textarea { font-size: 16px; }
+  .btn, .chip, .go { min-height: 44px; }
+  .bar .btn { padding: 8px 12px; font-size: 14px; min-height: 40px; }
+  .ph h2 { font-size: clamp(26px, 8vw, 34px); }
+  .hint { font-size: 11px; max-width: 92vw; }
+  .pbody { -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding-bottom: 28px; }
+  .tabs button, [data-tab] { min-height: 44px; }
+  body { padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); }
+  .bar { padding-inline: 6px; }
+  .builder { padding: 14px; }
+  .builder .actions { flex-direction: column; align-items: stretch; }
+  .builder .actions .btn { width: 100%; justify-content: center; text-align: center; }
+  .msg { min-height: 0; }
+}
+@media (pointer: coarse) {
+  .btn, .chip, .go, [data-tab], .wk-head, .prog .go { min-height: 44px; }
+  .cdet a, .facts a { display: inline-block; padding-block: 11px; }
+  .creds a { min-height: 44px; display: inline-flex; align-items: center; }
+}
+@media (max-width: 380px) { .bar .btn { padding: 8px 10px; font-size: 13px; } .read { min-width: 64px; } .hud { gap: 8px; } }
+@media (max-height: 520px) and (orientation: landscape) { .bar { padding-block: 6px; } .hud { padding-block: 6px 8px; } .arrow { width: 36px; height: 36px; } .hint { display: none; } }
+@media (prefers-reduced-motion: reduce) { * { transition-duration: 0.01ms !important; animation: none !important; } }
+</style>
+
+<div class="app">
+  <div class="veil"></div>
+  <div class="bar">
+    <button class="logo" type="button" data-go="home">Sovrns<span>.</span></button>
+    <nav class="menu" id="menu" aria-label="Sections"></nav>
+    <button class="btn primary" type="button" data-go="contact">Book a consultation</button>
+  </div>
+
+  <main class="scene" id="scene" aria-label="Website, turn left or right to move between sections">
+    <div class="orbs"><i></i><i></i><i></i></div>
+    <div class="dial" id="dial"></div>
+    <div class="hint" id="hint"><i aria-hidden="true">&#8249;</i><span id="hintTxt">Drag left or right to turn the website</span><i aria-hidden="true">&#8250;</i></div>
+    <div class="ring" id="ring">
+
+      <section class="panel dark" data-id="home" data-title="Home" aria-label="Home">
+        <div class="pbody">
+          <div class="hero-grid">
+            <div>
+              <p class="eyebrow">Certified fitness personal trainer</p>
+              <h1>Coaching built for <em id="word">strength.</em></h1>
+              <p class="lead">Structured training, clear progress and a coach who keeps you accountable. In person and online.</p>
+              <div class="actions">
+                <button class="btn primary mag" type="button" data-go="contact">Book a consultation <span class="arr">&rarr;</span></button>
+                <button class="btn" type="button" data-go="tools">Find my program</button>
+              </div>
+            </div>
+            <div class="slot portrait has-img" role="img" aria-label="Aman, certified fitness personal trainer" style="background-image:url('../assets/aman-hero-v3.jpg');background-position:center 30%;cursor:default"></div>
+          </div>
+          <div class="proof">
+            <div><b>Certified</b><span>Fitness personal trainer</span></div>
+            <div><b data-count="3">3</b><span>Training programs</span></div>
+            <div><b data-count="6">6</b><span>Workout sessions</span></div>
+            <div><b data-count="12">12</b><span>Weeks, longest program</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" data-id="programs" data-title="Programs" aria-label="Training programs">
+        <div class="pbody">
+          <div class="ph"><p class="eyebrow">Training programs</p><h2>Choose the program that fits your goal.</h2><p>Hover or tap a program to see what is included.</p></div>
+          <div class="progs" id="progs">
+            <article class="prog" tabindex="0" data-p="foundations">
+              <div class="prog-head"><h3>Foundations</h3><span class="m"><b>4 weeks</b>3 sessions a week</span><p>Learn the main lifts with good form.</p><button class="go" type="button" data-go="contact" data-prog="Foundations">Enquire <span class="arr">&rarr;</span></button></div>
+              <div class="incw"><div><ul class="inc"><li>Written 4-week plan</li><li>Technique coaching on every lift</li><li>Simple weekly check-in</li><li class="best">Best for beginners and anyone returning to training.</li></ul></div></div>
+            </article>
+            <article class="prog" tabindex="0" data-p="lean">
+              <div class="prog-head"><h3><span style="white-space:nowrap">Lean in 8</span> <span class="pop">Popular</span></h3><span class="m"><b>8 weeks</b>4 sessions a week</span><p>Strength and conditioning for fat loss.</p><button class="go" type="button" data-go="contact" data-prog="Lean in 8">Enquire <span class="arr">&rarr;</span></button></div>
+              <div class="incw"><div><ul class="inc"><li>Strength and conditioning blocks</li><li>Nutrition guidelines</li><li>Weekly progress review</li><li class="best">Best for losing fat while keeping and building strength.</li></ul></div></div>
+            </article>
+            <article class="prog" tabindex="0" data-p="muscle">
+              <div class="prog-head"><h3>Muscle build</h3><span class="m"><b>12 weeks</b>5 sessions a week</span><p>Push, pull and legs with planned progression.</p><button class="go" type="button" data-go="contact" data-prog="Muscle build">Enquire <span class="arr">&rarr;</span></button></div>
+              <div class="incw"><div><ul class="inc"><li>Push, pull and legs split</li><li>Progressive overload plan</li><li>Fortnightly measurements</li><li class="best">Best for building size and strength over a full quarter.</li></ul></div></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" data-id="process" data-title="Process" aria-label="How it works and questions">
+        <div class="pbody">
+          <div class="ph"><p class="eyebrow">How it works</p><h2>A clear process from first call to results.</h2></div>
+          <ol class="steps">
+            <li class="step"><span class="n">Step 1</span><h3>Consultation</h3><p>We talk through your goals, history, schedule and any injuries.</p></li>
+            <li class="step"><span class="n">Step 2</span><h3>Your plan</h3><p>You receive a written program matched to your level and equipment.</p></li>
+            <li class="step"><span class="n">Step 3</span><h3>Train</h3><p>Coached sessions with feedback on technique, load and recovery.</p></li>
+            <li class="step"><span class="n">Step 4</span><h3>Review</h3><p>We measure progress and adjust the plan so results keep coming.</p></li>
+          </ol>
+          <div>
+            <h3 class="sub" style="margin-bottom:14px">Common questions</h3>
+            <div class="faq">
+              <details><summary>Do I need training experience?</summary><p>No. Foundations is built for beginners, and every program is matched to your level.</p></details>
+              <details><summary>Can I train online?</summary><p>Yes. Sessions run in person and online, so you can train where it suits you.</p></details>
+              <details><summary>How long are the programs?</summary><p>Programs run from 4 to 12 weeks, with progress reviews along the way.</p></details>
+              <details><summary>How do I get started?</summary><p>Book a free consultation. We agree on your goal and choose the right program together.</p></details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" data-id="workouts" data-title="Workouts" aria-label="Workout collection">
+        <div class="pbody">
+          <div class="ph"><p class="eyebrow">Workout collection</p><h2>A library of sessions you can follow.</h2><p>Hover or tap a workout to see the exercises, sets and reps. The bars show intensity. Choose the 4-day or 5-day plan for a full week of training.</p></div>
+          <div class="filters" role="group" aria-label="Filter workouts">
+            <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+            <button class="chip" type="button" data-f="strength" aria-pressed="false">Strength</button>
+            <button class="chip" type="button" data-f="conditioning" aria-pressed="false">Conditioning</button>
+            <button class="chip" type="button" data-f="mobility" aria-pressed="false">Mobility</button>
+            <button class="chip" type="button" data-f="plan4" aria-pressed="false">4-day plan</button>
+            <button class="chip" type="button" data-f="plan5" aria-pressed="false">5-day plan</button>
+          </div>
+          <div class="lib" id="lib">
+            <div class="wk" data-k="strength" data-l="4"><button class="wk-head" type="button" aria-expanded="false"><h3>Push day</h3><span class="f">Chest, shoulders, triceps</span><span class="int"></span><span class="t">45 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Bench press</span><span>4 x 8</span></li><li><span>Overhead press</span><span>3 x 10</span></li><li><span>Incline dumbbell press</span><span>3 x 10</span></li><li><span>Lateral raise</span><span>3 x 15</span></li><li><span>Triceps pushdown</span><span>3 x 12</span></li></ul></div></div></div>
+            <div class="wk" data-k="strength" data-l="4"><button class="wk-head" type="button" aria-expanded="false"><h3>Pull day</h3><span class="f">Back, biceps</span><span class="int"></span><span class="t">45 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Deadlift</span><span>3 x 5</span></li><li><span>Pull-up</span><span>4 x 8</span></li><li><span>Barbell row</span><span>3 x 10</span></li><li><span>Face pull</span><span>3 x 15</span></li><li><span>Dumbbell curl</span><span>3 x 12</span></li></ul></div></div></div>
+            <div class="wk" data-k="strength" data-l="5"><button class="wk-head" type="button" aria-expanded="false"><h3>Leg day</h3><span class="f">Quads, hamstrings, glutes</span><span class="int"></span><span class="t">55 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Back squat</span><span>4 x 8</span></li><li><span>Romanian deadlift</span><span>3 x 10</span></li><li><span>Walking lunge</span><span>3 x 12</span></li><li><span>Leg press</span><span>3 x 12</span></li><li><span>Calf raise</span><span>4 x 15</span></li></ul></div></div></div>
+            <div class="wk" data-k="conditioning" data-l="3"><button class="wk-head" type="button" aria-expanded="false"><h3>Full body burn</h3><span class="f">All muscle groups</span><span class="int"></span><span class="t">40 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Goblet squat</span><span>3 x 12</span></li><li><span>Push-up</span><span>3 x 15</span></li><li><span>Dumbbell row</span><span>3 x 12</span></li><li><span>Kettlebell swing</span><span>3 x 20</span></li><li><span>Plank</span><span>3 x 45 sec</span></li></ul></div></div></div>
+            <div class="wk" data-k="conditioning" data-l="5"><button class="wk-head" type="button" aria-expanded="false"><h3>HIIT 20</h3><span class="f">Conditioning intervals</span><span class="int"></span><span class="t">20 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Burpees</span><span>40 / 20 sec</span></li><li><span>Mountain climbers</span><span>40 / 20 sec</span></li><li><span>Jump squats</span><span>40 / 20 sec</span></li><li><span>High knees</span><span>40 / 20 sec</span></li><li><span>Rounds</span><span>4</span></li></ul></div></div></div>
+            <div class="wk" data-k="mobility" data-l="2"><button class="wk-head" type="button" aria-expanded="false"><h3>Core and mobility</h3><span class="f">Core, hips, spine</span><span class="int"></span><span class="t">30 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Dead bug</span><span>3 x 10</span></li><li><span>Hanging knee raise</span><span>3 x 12</span></li><li><span>Side plank</span><span>3 x 30 sec</span></li><li><span>World's greatest stretch</span><span>2 x 6</span></li><li><span>Cat-cow</span><span>2 x 10</span></li></ul></div></div></div>
+            <div class="wk" data-k="plan4" data-l="4" hidden><button class="wk-head" type="button" aria-expanded="false"><h3>Day 1: Upper A</h3><span class="f">4-day plan · Mon · Chest, back, shoulders</span><span class="int"></span><span class="t">55 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Bench press</span><span>4 x 6-8</span></li><li><span>Barbell row</span><span>4 x 8</span></li><li><span>Overhead press</span><span>3 x 8-10</span></li><li><span>Lat pulldown</span><span>3 x 10</span></li><li><span>Lateral raise</span><span>3 x 15</span></li><li><span>Triceps pushdown</span><span>3 x 12</span></li><li><span>Rest between sets</span><span>60 to 90 sec</span></li></ul></div></div></div>
+            <div class="wk" data-k="plan4" data-l="4" hidden><button class="wk-head" type="button" aria-expanded="false"><h3>Day 2: Lower A</h3><span class="f">4-day plan · Tue · Quads, hamstrings, calves</span><span class="int"></span><span class="t">55 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Back squat</span><span>4 x 6-8</span></li><li><span>Romanian deadlift</span><span>3 x 8-10</span></li><li><span>Leg press</span><span>3 x 10-12</span></li><li><span>Leg curl</span><span>3 x 12</span></li><li><span>Standing calf raise</span><span>4 x 12-15</span></li><li><span>Plank</span><span>3 x 45 sec</span></li><li><span>Rest between sets</span><span>60 to 90 sec</span></li></ul></div></div></div>
+            <div class="wk" data-k="plan4" data-l="4" hidden><button class="wk-head" type="button" aria-expanded="false"><h3>Day 3: Upper B</h3><span class="f">4-day plan · Thu · Chest, back, arms</span><span class="int"></span><span class="t">55 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Incline dumbbell press</span><span>4 x 8-10</span></li><li><span>Pull-up</span><span>4 x 6-10</span></li><li><span>Seated dumbbell press</span><span>3 x 10</span></li><li><span>Seated cable row</span><span>3 x 10-12</span></li><li><span>Dumbbell curl</span><span>3 x 12</span></li><li><span>Overhead triceps extension</span><span>3 x 12</span></li><li><span>Rest between sets</span><span>60 to 90 sec</span></li></ul></div></div></div>
+            <div class="wk" data-k="plan4" data-l="4" hidden><button class="wk-head" type="button" aria-expanded="false"><h3>Day 4: Lower B</h3><span class="f">4-day plan · Fri · Glutes, hamstrings, core</span><span class="int"></span><span class="t">55 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Deadlift</span><span>3 x 5</span></li><li><span>Walking lunge</span><span>3 x 12 each leg</span></li><li><span>Hip thrust</span><span>3 x 10</span></li><li><span>Leg extension</span><span>3 x 12</span></li><li><span>Seated calf raise</span><span>4 x 15</span></li><li><span>Hanging knee raise</span><span>3 x 12</span></li><li><span>Rest between sets</span><span>60 to 90 sec</span></li></ul></div></div></div>
+            <div class="wk" data-k="plan5" data-l="4" hidden><button class="wk-head" type="button" aria-expanded="false"><h3>Day 1: Push</h3><span class="f">5-day plan · Mon · Chest, shoulders, triceps</span><span class="int"></span><span class="t">50 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Bench press</span><span>4 x 8</span></li><li><span>Overhead press</span><span>3 x 10</span></li><li><span>Incline dumbbell press</span><span>3 x 10</span></li><li><span>Lateral raise</span><span>3 x 15</span></li><li><span>Triceps pushdown</span><span>3 x 12</span></li><li><span>Rest between sets</span><span>60 to 90 sec</span></li></ul></div></div></div>
+            <div class="wk" data-k="plan5" data-l="4" hidden><button class="wk-head" type="button" aria-expanded="false"><h3>Day 2: Pull</h3><span class="f">5-day plan · Tue · Back, biceps</span><span class="int"></span><span class="t">50 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Deadlift</span><span>3 x 5</span></li><li><span>Pull-up</span><span>4 x 8</span></li><li><span>Barbell row</span><span>3 x 10</span></li><li><span>Face pull</span><span>3 x 15</span></li><li><span>Dumbbell curl</span><span>3 x 12</span></li><li><span>Rest between sets</span><span>60 to 90 sec</span></li></ul></div></div></div>
+            <div class="wk" data-k="plan5" data-l="5" hidden><button class="wk-head" type="button" aria-expanded="false"><h3>Day 3: Legs</h3><span class="f">5-day plan · Wed · Quads, hamstrings, glutes</span><span class="int"></span><span class="t">55 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Back squat</span><span>4 x 8</span></li><li><span>Romanian deadlift</span><span>3 x 10</span></li><li><span>Walking lunge</span><span>3 x 12 each leg</span></li><li><span>Leg press</span><span>3 x 12</span></li><li><span>Calf raise</span><span>4 x 15</span></li><li><span>Rest between sets</span><span>60 to 90 sec</span></li></ul></div></div></div>
+            <div class="wk" data-k="plan5" data-l="4" hidden><button class="wk-head" type="button" aria-expanded="false"><h3>Day 4: Upper</h3><span class="f">5-day plan · Thu · Chest, back, shoulders, arms</span><span class="int"></span><span class="t">55 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Incline barbell press</span><span>3 x 10</span></li><li><span>Lat pulldown</span><span>3 x 10</span></li><li><span>Seated dumbbell press</span><span>3 x 10</span></li><li><span>Seated cable row</span><span>3 x 12</span></li><li><span>Hammer curl</span><span>3 x 12</span></li><li><span>Overhead triceps extension</span><span>3 x 12</span></li><li><span>Rest between sets</span><span>60 to 90 sec</span></li></ul></div></div></div>
+            <div class="wk" data-k="plan5" data-l="4" hidden><button class="wk-head" type="button" aria-expanded="false"><h3>Day 5: Lower and core</h3><span class="f">5-day plan · Fri · Glutes, hamstrings, core</span><span class="int"></span><span class="t">55 min</span><span class="pm"></span></button><div class="wk-body"><div><ul class="moves"><li><span>Hip thrust</span><span>4 x 10</span></li><li><span>Bulgarian split squat</span><span>3 x 10 each leg</span></li><li><span>Leg curl</span><span>3 x 12</span></li><li><span>Leg extension</span><span>3 x 12</span></li><li><span>Hanging knee raise</span><span>3 x 12</span></li><li><span>Plank</span><span>3 x 45 sec</span></li><li><span>Rest between sets</span><span>60 to 90 sec</span></li></ul></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" data-id="tools" data-title="Tools" aria-label="Program finder and calorie calculator">
+        <div class="pbody">
+          <div class="ph"><p class="eyebrow">Tools</p><h2>Find your program and plan your nutrition.</h2></div>
+          <div class="seg" role="group" aria-label="Choose a tool">
+            <button type="button" data-tab="finder" aria-pressed="true">Program finder</button>
+            <button type="button" data-tab="calc" aria-pressed="false">Calorie calculator</button>
+          </div>
+
+          <div class="pane" id="pane-finder">
+            <div style="display:grid;gap:20px">
+              <div class="q"><span>Your goal</span><div class="opts" data-q="goal"><button class="chip" type="button" data-v="fat" aria-pressed="false">Lose fat</button><button class="chip" type="button" data-v="muscle" aria-pressed="true">Build muscle</button><button class="chip" type="button" data-v="basics" aria-pressed="false">Learn the basics</button></div></div>
+              <div class="q"><span>Experience</span><div class="opts" data-q="exp"><button class="chip" type="button" data-v="beginner" aria-pressed="false">Beginner</button><button class="chip" type="button" data-v="inter" aria-pressed="true">Intermediate</button><button class="chip" type="button" data-v="adv" aria-pressed="false">Advanced</button></div></div>
+              <div class="q"><span>Days you can train each week</span><div class="opts" data-q="days"><button class="chip" type="button" data-v="3" aria-pressed="false">3 days</button><button class="chip" type="button" data-v="4" aria-pressed="true">4 days</button><button class="chip" type="button" data-v="5" aria-pressed="false">5 days</button></div></div>
+              <div class="result" id="result" aria-live="polite">
+                <p class="eyebrow">Recommended for you</p>
+                <h3 id="rName"></h3>
+                <div class="rm"><span id="rDur"></span><span id="rSes"></span></div>
+                <p id="rWhy"></p>
+                <button class="btn" type="button" id="rBtn" data-go="contact">Enquire about this program <span class="arr">&rarr;</span></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pane" id="pane-calc" hidden>
+            <div style="display:grid;gap:18px">
+              <div class="fgrid">
+                <div class="field"><span>Sex</span><div class="opts" id="sexOpts"><button class="chip" type="button" data-v="m" aria-pressed="true">Male</button><button class="chip" type="button" data-v="f" aria-pressed="false">Female</button></div></div>
+                <label class="field"><span>Age</span><input id="cAge" type="number" inputmode="numeric" min="14" max="90" value="28"></label>
+                <label class="field"><span>Height (cm)</span><input id="cHt" type="number" inputmode="numeric" min="120" max="230" value="175"></label>
+                <label class="field"><span>Weight (kg)</span><input id="cWt" type="number" inputmode="decimal" min="35" max="250" value="75"></label>
+                <label class="field"><span>Activity</span><select id="cAct"><option value="1.2">Mostly seated</option><option value="1.375">Light, 1 to 3 days</option><option value="1.55" selected>Moderate, 3 to 5 days</option><option value="1.725">Heavy, 6 to 7 days</option></select></label>
+                <label class="field"><span>Goal</span><select id="cGoal"><option value="-450">Lose fat</option><option value="0" selected>Maintain</option><option value="300">Build muscle</option></select></label>
+              </div>
+              <p class="err" id="cErr"></p>
+              <div class="out">
+                <div><div class="big"><span id="kcal" data-v="0">0</span><small>kcal / day</small></div><p class="sub2" id="maint"></p></div>
+                <div class="macros">
+                  <div class="mac"><div class="top"><span>Protein</span><b id="mP">0 g</b></div><div class="track"><i id="bP"></i></div></div>
+                  <div class="mac"><div class="top"><span>Carbohydrate</span><b id="mC">0 g</b></div><div class="track"><i class="c2" id="bC"></i></div></div>
+                  <div class="mac"><div class="top"><span>Fat</span><b id="mF">0 g</b></div><div class="track"><i class="c3" id="bF"></i></div></div>
+                </div>
+              </div>
+              <div class="actions" style="margin-top:0"><button class="btn primary" type="button" id="calcCta">Get a plan built on these numbers <span class="arr">&rarr;</span></button></div>
+              <p class="fine">An estimate from the Mifflin-St Jeor equation, not medical advice. Your coach will adjust it to you.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" data-id="about" data-title="About" aria-label="About Aman">
+        <div class="pbody">
+          <div class="about-grid">
+            <div class="slot photo has-img" role="img" aria-label="Aman training at the gym" style="background-image:url('../assets/aman-about-v3.jpg');background-position:center 42%;cursor:default"></div>
+            <div class="copy">
+              <p class="eyebrow">About Aman</p>
+              <div class="ph" style="gap:0"><h2>Certified, hands-on and focused on your progress.</h2></div>
+              <p>I am Aman, a certified fitness personal trainer. I have trained 30 clients to get stronger, lose fat and build habits that last.</p>
+              <p>Every plan is built around your goal, your schedule and your current level, with clear progress to track. We can train in person or online.</p>
+              <div class="creds"><span>Advanced Fitness, 2026</span><span>Fitness, 2025</span><span>In person and online</span></div>
+              <dl class="facts">
+                <div><dt>Role</dt><dd>Certified fitness personal trainer</dd></div>
+                <div><dt>Certified by</dt><dd>Fabulous Body Academy</dd></div>
+                <div><dt>Style</dt><dd>Strength and conditioning</dd></div>
+                <div><dt>Sessions</dt><dd>In person and online</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel dark" data-id="contact" data-title="Contact" aria-label="Contact">
+        <div class="pbody">
+          <div class="cgrid">
+            <div>
+              <p class="eyebrow">Get started</p>
+              <h2>Ready to <em>begin?</em></h2>
+              <p class="lead">Book a free consultation to talk about your goals and find the right program.</p>
+              <dl class="cdet">
+                <div><dt>WhatsApp and phone</dt><dd><a href="https://wa.me/919399862732" target="_blank" rel="noopener">+91 93998 62732</a></dd></div>
+                <div><dt>Email</dt><dd id="mail"><a href="mailto:amanpanika7067@gmail.com">amanpanika7067@gmail.com</a></dd></div>
+                <div><dt>Instagram</dt><dd><a href="https://instagram.com/_amanpanika" target="_blank" rel="noopener">@_amanpanika</a></dd></div>
+                <div><dt>Sessions</dt><dd>In person and online</dd></div>
+              </dl>
+            </div>
+            <div class="builder">
+              <h3 class="sub">Write your enquiry</h3>
+              <div class="fgrid">
+                <label class="field"><span>Your name</span><input id="qName" type="text" placeholder="Your name" autocomplete="name"></label>
+                <label class="field"><span>Program</span><select id="qProg"><option value="">Not sure yet</option><option>Foundations</option><option>Lean in 8</option><option>Muscle build</option></select></label>
+                <label class="field"><span>Where</span><select id="qMode"><option>in person</option><option>online</option></select></label>
+                <label class="field"><span>Phone or WhatsApp</span><input id="qPhone" type="tel" inputmode="tel" placeholder="+91 98765 43210" autocomplete="tel" required></label>
+                <label class="field"><span>Email (optional)</span><input id="qEmail" type="email" placeholder="you@example.com" autocomplete="email"></label>
+                <label class="field"><span>Best time to call</span><select id="qTime"><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Any time</option></select></label>
+              </div>
+              <input id="qHoney" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+              <label class="field"><span>Your goal</span><textarea id="qGoal" placeholder="For example: lose 5 kg and learn to squat properly"></textarea></label>
+              <div class="msg" id="msg" aria-live="polite"></div>
+              <p class="err" id="qStatus" role="status" aria-live="polite"></p>
+              <div class="actions" style="margin-top:0"><button class="btn primary mag" id="book" type="button">Book free consultation <span class="arr">&rarr;</span></button><a class="btn" id="wa" href="https://wa.me/919399862732" target="_blank" rel="noopener" style="text-decoration:none">Chat on WhatsApp</a><button class="btn" id="copy" type="button">Copy message</button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div class="hud">
+    <button class="arrow" id="prev" type="button" aria-label="Previous section">&larr;</button>
+    <div class="dots" id="dots"></div>
+    <div class="read"><b id="deg">0&deg;</b><span id="name">Home</span></div>
+    <button class="arrow" id="next" type="button" aria-label="Next section">&rarr;</button>
+  </div>
+</div>
+
+<input type="file" id="pick" accept="image/*" hidden>
+
+<script>
+(function () {
+  var scene = document.getElementById('scene');
+  var ring = document.getElementById('ring');
+  var dial = document.getElementById('dial');
+  var hint = document.getElementById('hint');
+  var panels = Array.prototype.slice.call(ring.children);
+  var N = panels.length, STEP = 360 / N;
+  var ids = panels.map(function (p) { return p.getAttribute('data-id'); });
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+
+  var cur = 0, target = null, R = 800, dragging = false, idx = 0, lastHash = null, vel = 0, sv = 0, lastMove = 0;
+  var tiltX = 0, tiltY = 0, tX = 0, tY = 0;
+  function wrap180(x) { return ((x + 180) % 360 + 360) % 360 - 180; }
+  function mod360(x) { return ((x % 360) + 360) % 360; }
+  function isField(el) { return el && el.closest && el.closest('input, select, textarea'); }
+
+  /* stagger index for the reveal animation */
+  panels.forEach(function (p) {
+    Array.prototype.forEach.call(p.querySelector('.pbody').children, function (c, i) { c.style.setProperty('--i', i); });
+  });
+
+  /* menu, dots */
+  var menu = document.getElementById('menu'), dots = document.getElementById('dots');
+  var menuBtns = [], dotBtns = [];
+  panels.forEach(function (p, i) {
+    var t = p.getAttribute('data-title');
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = t; b.setAttribute('data-go', ids[i]);
+    menu.appendChild(b); menuBtns.push(b);
+    var d = document.createElement('button'); d.type = 'button'; d.className = 'dot'; d.setAttribute('aria-label', t); d.setAttribute('data-go', ids[i]);
+    dots.appendChild(d); dotBtns.push(d);
+  });
+
+  function goTo(i) {
+    i = ((i % N) + N) % N;
+    target = cur + wrap180(i * STEP - cur);
+    if (reduce) { cur = target; target = null; }
+    hideHint();
+  }
+  function goId(id) { var i = ids.indexOf(id); if (i >= 0) goTo(i); }
+  function hideHint() { hint.classList.add('gone'); }
+  if (window.matchMedia('(pointer: coarse)').matches) { var ht = document.getElementById('hintTxt'); if (ht) ht.textContent = 'Swipe left or right to turn the website'; }
+
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest ? e.target.closest('[data-go]') : null;
+    if (!el) return;
+    e.preventDefault();
+    var pr = el.getAttribute('data-prog');
+    if (pr) { document.getElementById('qProg').value = pr; buildMsg(); }
+    goId(el.getAttribute('data-go'));
+  });
+  document.getElementById('prev').addEventListener('click', function () { goTo(idx - 1); });
+  document.getElementById('next').addEventListener('click', function () { goTo(idx + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (isField(e.target)) return;
+    if (e.key === 'ArrowRight') goTo(idx + 1);
+    else if (e.key === 'ArrowLeft') goTo(idx - 1);
+  });
+
+  /* layout (phones use a flat, crisp swipe layout; larger screens keep the 3D turn) */
+  var flat = false, flatW = 300;
+  function layout() {
+    var w = scene.clientWidth, h = scene.clientHeight;
+    flat = w <= 700;
+    var pw = flat ? w - 2 : Math.min(w * 0.9, 900), ph = flat ? h - 6 : Math.min(h - 14, 700);
+    flatW = pw + 12;
+    scene.style.perspective = flat ? 'none' : '';
+    ring.style.transformStyle = flat ? 'flat' : '';
+    R = (pw / 2) / Math.tan(Math.PI / N) * 1.05;
+    panels.forEach(function (p, i) {
+      p.style.width = pw + 'px'; p.style.height = ph + 'px';
+      p.style.marginLeft = (-pw / 2) + 'px'; p.style.marginTop = (-ph / 2) + 'px';
+      p.style.transform = flat ? 'translate3d(0,0,0)' : 'rotateY(' + (i * STEP) + 'deg) translateZ(' + R + 'px)';
+    });
+  }
+  if (window.ResizeObserver) new ResizeObserver(layout).observe(scene);
+  window.addEventListener('resize', layout);
+
+  /* drag to turn */
+  var down = false, sx = 0, sy = 0, lx = 0, moved = false, lastD = 0, pid = null;
+  scene.addEventListener('pointerdown', function (e) {
+    if ((e.button !== undefined && e.button !== 0) || isField(e.target)) return;
+    down = true; moved = false; sx = lx = e.clientX; sy = e.clientY; lastD = 0; pid = e.pointerId; vel = 0; sv = 0; lastMove = 0;
+  });
+  scene.addEventListener('pointermove', function (e) {
+    /* tilt, spotlight */
+    if (e.pointerType === 'mouse' && !reduce) {
+      var r = scene.getBoundingClientRect();
+      tY = ((e.clientX - r.left) / r.width - 0.5) * 3.2;
+      tX = -((e.clientY - r.top) / r.height - 0.5) * 2.4;
+      var ap = panels[idx];
+      if (ap) {
+        var pr = ap.getBoundingClientRect();
+        ap.style.setProperty('--mx', ((e.clientX - pr.left) / Math.max(1, pr.width) * 100).toFixed(1) + '%');
+        ap.style.setProperty('--my', ((e.clientY - pr.top) / Math.max(1, pr.height) * 100).toFixed(1) + '%');
+      }
+    }
+    if (!down) return;
+    if (!dragging) {
+      var dx = e.clientX - sx, dy = e.clientY - sy;
+      if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
+        dragging = true; moved = true; target = null; scene.classList.add('drag'); hideHint();
+        try { window.getSelection().removeAllRanges(); } catch (err) {}
+        try { scene.setPointerCapture(pid); } catch (err) {}
+        lx = e.clientX;
+      } else { return; }
+    }
+    var d = -(e.clientX - lx) * 0.14;
+    var nowT = performance.now(), dtT = Math.min(60, Math.max(4, nowT - (lastMove || nowT - 16)));
+    cur += d; lastD = d; lx = e.clientX; vel = vel * 0.6 + (d / dtT * 16) * 0.4; lastMove = nowT;
+    var dp = panels[idx];
+    if (dp) {
+      var dr = dp.getBoundingClientRect();
+      dp.style.setProperty('--mx', ((e.clientX - dr.left) / Math.max(1, dr.width) * 100).toFixed(1) + '%');
+      dp.style.setProperty('--my', ((e.clientY - dr.top) / Math.max(1, dr.height) * 100).toFixed(1) + '%');
+    }
+  });
+  scene.addEventListener('pointerleave', function () { tX = 0; tY = 0; });
+  function release() {
+    if (!down) return;
+    down = false;
+    if (dragging) {
+      dragging = false; scene.classList.remove('drag');
+      if (performance.now() - lastMove > 90) vel = 0;
+      var t = Math.round((cur + vel * 9) / STEP) * STEP;
+      var near = Math.round(cur / STEP) * STEP;
+      if (Math.abs(t - near) > STEP) t = near + (t > near ? STEP : -STEP);
+      target = t; sv = vel * 0.6;
+      if (reduce) { cur = target; target = null; }
+    }
+  }
+  scene.addEventListener('pointerup', release);
+  var litTimer = null, litOn = false;
+  scene.addEventListener('pointerdown', function (e) {
+    var p = e.target.closest ? e.target.closest('.panel') : null;
+    if (!p || !p.classList.contains('active') || (e.target.closest && e.target.closest('button, a, input, select, textarea, summary'))) return;
+    var pr = p.getBoundingClientRect();
+    p.style.setProperty('--mx', ((e.clientX - pr.left) / Math.max(1, pr.width) * 100).toFixed(1) + '%');
+    p.style.setProperty('--my', ((e.clientY - pr.top) / Math.max(1, pr.height) * 100).toFixed(1) + '%');
+    clearTimeout(litTimer); p.classList.add('lit'); litOn = true;
+    function off() { litTimer = setTimeout(function () { p.classList.remove('lit'); litOn = false; }, 700); }
+    window.addEventListener('pointerup', off, { once: true });
+    window.addEventListener('pointercancel', off, { once: true });
+  });
+  scene.addEventListener('pointercancel', release);
+  scene.addEventListener('click', function (e) {
+    if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+  }, true);
+
+  /* horizontal wheel or trackpad swipe */
+  var wheelTimer = null;
+  scene.addEventListener('wheel', function (e) {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 2) {
+      e.preventDefault(); hideHint();
+      target = null; cur += e.deltaX * 0.1;
+      clearTimeout(wheelTimer);
+      wheelTimer = setTimeout(function () { target = Math.round(cur / STEP) * STEP; if (reduce) { cur = target; target = null; } }, 140);
+    }
+  }, { passive: false });
+
+  /* magnetic primary buttons (mouse only) */
+  var magBtn = null;
+  document.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse' || reduce) return;
+    var b = e.target.closest ? e.target.closest('.mag') : null;
+    if (magBtn && magBtn !== b) { magBtn.style.transform = ''; magBtn = null; }
+    if (b) {
+      var r = b.getBoundingClientRect();
+      var dx = (e.clientX - (r.left + r.width / 2)) * 0.18, dy = (e.clientY - (r.top + r.height / 2)) * 0.3;
+      b.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)';
+      magBtn = b;
+    }
+  });
+
+  /* animated counters on the home panel */
+  function runCounters(p) {
+    var els = p.querySelectorAll('[data-count]');
+    Array.prototype.forEach.call(els, function (el) {
+      var to = +el.getAttribute('data-count');
+      if (reduce) { el.textContent = to; return; }
+      var t0 = performance.now(), d = 1000;
+      (function s(t) {
+        var k = Math.min(1, (t - t0) / d), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = Math.round(to * e);
+        if (k < 1) requestAnimationFrame(s);
+      })(t0);
+    });
+  }
+
+  /* rotating headline word */
+  var words = ['strength.', 'fat loss.', 'muscle.', 'confidence.', 'mobility.'], wi = 0, wordEl = document.getElementById('word');
+  if (!reduce) {
+    setInterval(function () {
+      if (idx !== 0) return;
+      wi = (wi + 1) % words.length;
+      wordEl.classList.remove('swap'); void wordEl.offsetWidth;
+      wordEl.textContent = words[wi]; wordEl.classList.add('swap');
+    }, 2600);
+  }
+
+  /* frame loop */
+  var degEl = document.getElementById('deg'), nameEl = document.getElementById('name'), lastDeg = -1, first = true, lastSpot = false, appEl = document.querySelector('.app');
+  function themeDark() {
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t === 'dark') return true;
+    if (t === 'light') return false;
+    return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  }
+  function frame() {
+    if (!dragging && target !== null) {
+      sv += (target - cur) * 0.04; sv *= 0.76; cur += sv;
+      if (Math.abs(target - cur) < 0.03 && Math.abs(sv) < 0.03) { cur = target; target = null; sv = 0; }
+    }
+    tiltX += (tX - tiltX) * 0.08; tiltY += (tY - tiltY) * 0.08;
+    ring.style.transform = flat ? 'none' : 'translateZ(' + (-R) + 'px) rotateX(' + tiltX.toFixed(3) + 'deg) rotateY(' + (-cur + tiltY).toFixed(3) + 'deg)';
+    dial.style.transform = 'rotate(' + (-cur * 0.5) + 'deg)';
+    var best = 0, bestD = 1e9;
+    panels.forEach(function (p, i) {
+      var d = Math.abs(wrap180(i * STEP - cur));
+      if (d < bestD) { bestD = d; best = i; }
+      var o = Math.max(0, 1 - d / (STEP * 1.3));
+      if (flat) {
+        var sd = wrap180(i * STEP - cur);
+        p.style.transform = 'translate3d(' + (sd / STEP * flatW).toFixed(1) + 'px,0,0)';
+        o = d >= STEP * 1.05 ? 0 : (d < 0.4 ? 1 : Math.max(0.35, 1 - d / (STEP * 1.6)));
+      }
+      p.style.opacity = o.toFixed(3);
+      p.style.visibility = o < 0.02 ? 'hidden' : 'visible';
+    });
+    if (best !== idx || first) {
+      idx = best;
+      panels.forEach(function (p, i) { p.classList.toggle('active', i === idx); p.inert = i !== idx; });
+      menuBtns.forEach(function (b, i) { b.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
+      dotBtns.forEach(function (b, i) { b.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
+      nameEl.textContent = panels[idx].getAttribute('data-title');
+      if (ids[idx] === 'home') runCounters(panels[idx]);
+      if (ids[idx] === 'tools') refreshTools();
+      first = false;
+    }
+    var spot = dragging || litOn;
+    if (spot !== lastSpot) { lastSpot = spot; appEl.classList.toggle('spot', spot); scene.classList.toggle('spot', spot); }
+    panels.forEach(function (p, i) {
+      var want = spot && i === idx && (p.classList.contains('dark') || themeDark());
+      if (want !== p.classList.contains('inv')) p.classList.toggle('inv', want);
+    });
+    var deg = Math.round(mod360(cur)) % 360;
+    if (deg !== lastDeg) { lastDeg = deg; degEl.textContent = deg + '°'; }
+    if (!dragging && target === null && lastHash !== idx) {
+      lastHash = idx;
+      try { history.replaceState(null, '', '#' + ids[idx]); } catch (e) {}
+    }
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener('hashchange', function () {
+    var i = ids.indexOf((location.hash || '').replace('#', ''));
+    if (i >= 0) goTo(i);
+  });
+  layout();
+  (function () { var i = ids.indexOf((location.hash || '').replace('#', '')); if (i >= 0) { cur = i * STEP; idx = i; } })();
+
+  /* programs: tap to open (hover also opens on desktop) */
+  Array.prototype.forEach.call(document.querySelectorAll('.prog'), function (p) {
+    p.addEventListener('click', function (e) {
+      if (e.target.closest('button')) return;
+      p.classList.toggle('open');
+    });
+    p.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target === p) { e.preventDefault(); p.classList.toggle('open'); }
+    });
+  });
+
+  /* workouts: intensity bars, filter, expand */
+  Array.prototype.forEach.call(document.querySelectorAll('.wk'), function (w) {
+    var l = +w.getAttribute('data-l'), box = w.querySelector('.int');
+    for (var k = 0; k < 5; k++) {
+      var i = document.createElement('i'); i.style.setProperty('--k', k);
+      if (k < l) i.className = 'on';
+      i.style.height = (45 + k * 14) + '%';
+      box.appendChild(i);
+    }
+    var h = w.querySelector('.wk-head');
+    h.addEventListener('click', function () {
+      var open = w.classList.toggle('open');
+      h.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  var chips = document.querySelectorAll('.filters .chip'), wks = document.querySelectorAll('#lib .wk');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      var f = c.getAttribute('data-f');
+      chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      wks.forEach(function (w) { var k = w.getAttribute('data-k'); w.hidden = f === 'all' ? k.indexOf('plan') === 0 : k !== f; });
+    });
+  });
+
+  /* tools: tabs */
+  var tabs = document.querySelectorAll('.seg button');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      var k = t.getAttribute('data-tab');
+      tabs.forEach(function (x) { x.setAttribute('aria-pressed', x === t ? 'true' : 'false'); });
+      document.getElementById('pane-finder').hidden = k !== 'finder';
+      document.getElementById('pane-calc').hidden = k !== 'calc';
+      refreshTools();
+    });
+  });
+  function refreshTools() { finder(true); calc(); }
+
+  /* tools: program finder */
+  var PROGS = {
+    foundations: { name: 'Foundations', dur: '4 weeks', ses: '3 sessions a week', n: 3, why: 'You will learn the main lifts with good form and build a base you can progress from.' },
+    lean: { name: 'Lean in 8', dur: '8 weeks', ses: '4 sessions a week', n: 4, why: 'Strength and conditioning with nutrition guidelines, built for losing fat while keeping your strength.' },
+    muscle: { name: 'Muscle build', dur: '12 weeks', ses: '5 sessions a week', n: 5, why: 'A push, pull and legs split with planned progression to build size and strength.' }
+  };
+  var ans = { goal: 'muscle', exp: 'inter', days: '4' };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-q]'), function (g) {
+    var key = g.getAttribute('data-q');
+    Array.prototype.forEach.call(g.querySelectorAll('.chip'), function (c) {
+      c.addEventListener('click', function () {
+        ans[key] = c.getAttribute('data-v');
+        Array.prototype.forEach.call(g.querySelectorAll('.chip'), function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+        finder(false);
+      });
+    });
+  });
+  var lastKey = '';
+  function finder(silent) {
+    var k = (ans.goal === 'basics' || ans.exp === 'beginner') ? 'foundations' : (ans.goal === 'fat' ? 'lean' : 'muscle');
+    var p = PROGS[k], d = +ans.days;
+    document.getElementById('rName').textContent = p.name;
+    document.getElementById('rDur').textContent = p.dur;
+    document.getElementById('rSes').textContent = p.ses;
+    var why = p.why;
+    if (d !== p.n) why += ' You can train ' + d + ' days a week, so we adjust the plan to fit.';
+    document.getElementById('rWhy').textContent = why;
+    document.getElementById('rBtn').setAttribute('data-prog', p.name);
+    if (!silent && k !== lastKey) {
+      var r = document.getElementById('result'); r.classList.remove('flash'); void r.offsetWidth; r.classList.add('flash');
+    }
+    lastKey = k;
+  }
+
+  /* tools: calorie calculator */
+  var sex = 'm';
+  Array.prototype.forEach.call(document.querySelectorAll('#sexOpts .chip'), function (c) {
+    c.addEventListener('click', function () {
+      sex = c.getAttribute('data-v');
+      Array.prototype.forEach.call(document.querySelectorAll('#sexOpts .chip'), function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      calc();
+    });
+  });
+  ['cAge', 'cHt', 'cWt', 'cAct', 'cGoal'].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener('input', calc); el.addEventListener('change', calc);
+  });
+  function tween(el, to, fmt) {
+    var from = +(el.getAttribute('data-v') || 0); el.setAttribute('data-v', to);
+    var id = (el._id = (el._id || 0) + 1);
+    if (reduce || from === to) { el.textContent = fmt(to); return; }
+    var t0 = performance.now(), d = 600;
+    (function s(t) {
+      if (el._id !== id) return;
+      var k = Math.min(1, (t - t0) / d), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = fmt(Math.round(from + (to - from) * e));
+      if (k < 1) requestAnimationFrame(s);
+    })(t0);
+  }
+  function calc() {
+    var age = +document.getElementById('cAge').value, ht = +document.getElementById('cHt').value, wt = +document.getElementById('cWt').value;
+    var act = +document.getElementById('cAct').value, adj = +document.getElementById('cGoal').value;
+    var err = document.getElementById('cErr');
+    if (!(age >= 14 && age <= 90) || !(ht >= 120 && ht <= 230) || !(wt >= 35 && wt <= 250)) {
+      err.textContent = 'Enter an age from 14 to 90, a height from 120 to 230 cm and a weight from 35 to 250 kg.';
+      return;
+    }
+    err.textContent = '';
+    var bmr = 10 * wt + 6.25 * ht - 5 * age + (sex === 'm' ? 5 : -161);
+    var maint = Math.round(bmr * act);
+    var tgt = Math.max(1200, maint + adj);
+    var p = Math.round(1.8 * wt), f = Math.round(tgt * 0.25 / 9);
+    var c = Math.max(0, Math.round((tgt - p * 4 - f * 9) / 4));
+    tween(document.getElementById('kcal'), tgt, function (v) { return v.toLocaleString(); });
+    document.getElementById('maint').textContent = 'Maintenance is about ' + maint.toLocaleString() + ' kcal a day.';
+    document.getElementById('mP').textContent = p + ' g';
+    document.getElementById('mC').textContent = c + ' g';
+    document.getElementById('mF').textContent = f + ' g';
+    document.getElementById('bP').style.width = Math.min(100, p * 4 / tgt * 100).toFixed(1) + '%';
+    document.getElementById('bC').style.width = Math.min(100, c * 4 / tgt * 100).toFixed(1) + '%';
+    document.getElementById('bF').style.width = Math.min(100, f * 9 / tgt * 100).toFixed(1) + '%';
+    var gl = document.getElementById('cGoal');
+    calcNote = 'Calorie calculator result: ' + tgt.toLocaleString() + ' kcal/day (' + gl.options[gl.selectedIndex].text.toLowerCase() + '), protein ' + p + ' g, carbs ' + c + ' g, fat ' + f + ' g. Age ' + age + ', ' + ht + ' cm, ' + wt + ' kg.';
+  }
+  var calcNote = '', calcUsed = false;
+
+  /* contact: enquiry builder */
+  var msg = document.getElementById('msg');
+  function buildMsg() {
+    var name = document.getElementById('qName').value.trim();
+    var prog = document.getElementById('qProg').value;
+    var mode = document.getElementById('qMode').value;
+    var goal = document.getElementById('qGoal').value.trim();
+    var t = 'Hi Aman,\n\nI am ' + (name || 'interested in training with you') + '. ';
+    t += prog ? 'I would like to know more about the ' + prog + ' program, training ' + mode + '.' : 'I am not sure which program suits me yet and would like to train ' + mode + '.';
+    if (goal) t += '\n\nMy goal: ' + goal;
+    if (calcUsed && calcNote) t += '\n\n' + calcNote;
+    var ph = document.getElementById('qPhone').value.trim();
+    if (ph) t += '\n\nYou can reach me on ' + ph + ' (' + document.getElementById('qTime').value.toLowerCase() + ').';
+    t += '\n\nCould we book a free consultation? Thank you.';
+    msg.textContent = t;
+    var wa = document.getElementById('wa');
+    if (wa) wa.href = 'https://wa.me/919399862732?text=' + encodeURIComponent(t);
+  }
+  ['qName', 'qProg', 'qMode', 'qGoal', 'qPhone', 'qEmail', 'qTime'].forEach(function (id) {
+    var el = document.getElementById(id); el.addEventListener('input', buildMsg); el.addEventListener('change', buildMsg);
+  });
+  var copyBtn = document.getElementById('copy');
+  copyBtn.addEventListener('click', function () {
+    function done() { copyBtn.textContent = 'Copied'; setTimeout(function () { copyBtn.textContent = 'Copy message'; }, 1800); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(msg);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      copyBtn.textContent = 'Press copy now';
+    }
+    try { navigator.clipboard.writeText(msg.textContent).then(done, fallback); } catch (e) { fallback(); }
+  });
+  /* calculator: send the result into the enquiry */
+  document.getElementById('calcCta').addEventListener('click', function () {
+    calcUsed = true; buildMsg();
+    var g = document.getElementById('qGoal');
+    if (!g.value.trim()) g.value = 'Please help me plan training and nutrition around my calorie target.';
+    buildMsg();
+    goId('contact');
+  });
+
+  /* contact: real submission, emailed to Aman */
+  var bookBtn = document.getElementById('book'), qStatus = document.getElementById('qStatus');
+  function setStatus(t, ok) { qStatus.textContent = t; qStatus.style.color = ok ? 'var(--green, #3DFF9A)' : ''; }
+  bookBtn.addEventListener('click', function () {
+    var name = document.getElementById('qName').value.trim();
+    var phone = document.getElementById('qPhone').value.trim();
+    var email = document.getElementById('qEmail').value.trim();
+    if (document.getElementById('qHoney').value) return;
+    if (name.length < 2) { setStatus('Please enter your name.', false); document.getElementById('qName').focus(); return; }
+    if (phone.replace(/\D/g, '').length < 8) { setStatus('Please enter a valid phone or WhatsApp number so Aman can reach you.', false); document.getElementById('qPhone').focus(); return; }
+    if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { setStatus('That email does not look right. Fix it or leave it empty.', false); document.getElementById('qEmail').focus(); return; }
+    setStatus('', false);
+    buildMsg();
+    var label = bookBtn.innerHTML; bookBtn.disabled = true; bookBtn.textContent = 'Sending...';
+    var payload = {
+      _subject: 'New consultation request from ' + name + ' (Sovrns)',
+      _template: 'table', _captcha: 'false',
+      Name: name, Phone: phone, Email: email || 'not given',
+      Program: document.getElementById('qProg').value || 'Not sure yet',
+      Where: document.getElementById('qMode').value,
+      'Best time to call': document.getElementById('qTime').value,
+      Goal: document.getElementById('qGoal').value.trim() || 'not given',
+      Calculator: (calcUsed && calcNote) ? calcNote : 'not used',
+      Message: msg.textContent
+    };
+    if (email) payload._replyto = email;
+    var fail = function () {
+      bookBtn.disabled = false; bookBtn.innerHTML = label;
+      setStatus('Could not send right now. Tap Chat on WhatsApp and your message is ready to send.', false);
+    };
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var to = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
+    fetch('https://formsubmit.co/ajax/amanpanika7067@gmail.com', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload), signal: ctl ? ctl.signal : undefined
+    }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        clearTimeout(to);
+        if (res.ok && String(res.j.success) !== 'false') {
+          bookBtn.textContent = 'Request sent';
+          setStatus('Thank you, ' + name.split(' ')[0] + '. Aman will contact you on ' + phone + ' soon.', true);
+        } else { fail(); }
+      }).catch(function () { clearTimeout(to); fail(); });
+  });
+
+  buildMsg(); finder(true); calc();
+
+  /* photo slots (preview in this browser only) */
+  var pick = document.getElementById('pick'), current = null;
+  Array.prototype.forEach.call(document.querySelectorAll('[data-slot]'), function (s) {
+    s.addEventListener('click', function () { current = s; pick.value = ''; pick.click(); });
+  });
+  pick.addEventListener('change', function () {
+    var file = pick.files && pick.files[0];
+    if (!file || !current) return;
+    var r = new FileReader(), t = current;
+    r.onload = function () { t.style.backgroundImage = 'url("' + r.result + '")'; t.classList.add('has-img'); };
+    r.readAsDataURL(file);
+  });
+
+  frame();
+})();
+</script>
+
+</html>
