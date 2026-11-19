@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="dark">
+<meta name="darkreader-lock">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sovrns | Aman, certified personal trainer</title>
+<meta name="description" content="Structured strength and fat loss coaching with Aman, a certified fitness personal trainer. In person and online.">
+<meta name="theme-color" content="#050706">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#050706;--ink:#f2f5ee;--mut:#8b948a;--g:#a6ff2e;--line:#1d241d;--card:#0c110c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--g);outline-offset:3px}
+h1,h2,h3{font-family:Anton,Impact,'Arial Narrow',sans-serif;font-weight:400;text-transform:uppercase;line-height:.95;letter-spacing:.01em}
+h1{font-size:clamp(3.4rem,13vw,11rem)}
+h2{font-size:clamp(2.4rem,7vw,5.5rem);margin-bottom:1.5rem}
+h3{font-size:1.9rem}
+em{font-style:normal;color:var(--g)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+section{padding:clamp(4rem,10vw,8rem) 0;position:relative}
+p.lead{color:var(--mut);max-width:52ch}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,header,footer{position:relative;z-index:1}
+/* loader */
+#ld{position:fixed;inset:0;background:var(--bg);z-index:99;display:grid;place-items:center;font-family:Anton,Impact,sans-serif;font-size:clamp(2rem,8vw,5rem);color:var(--g);transition:opacity .6s,visibility .6s}
+#ld.off{opacity:0;visibility:hidden}
+/* nav */
+header{position:fixed;top:0;left:0;right:0;z-index:20;padding:calc(env(safe-area-inset-top,0px) + .9rem) 0 .9rem;background:linear-gradient(var(--bg),transparent)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-family:Anton,Impact,sans-serif;font-size:1.7rem}
+.logo b{color:var(--g)}
+nav{display:flex;gap:1.6rem;align-items:center}
+nav a{font-size:.9rem;color:var(--mut);transition:color .2s}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-block;padding:.9rem 1.5rem;border-radius:99px;border:1px solid var(--g);background:var(--g);color:#061006;font-weight:700;cursor:pointer;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--g)}
+.btn.ghost:hover{background:var(--g);color:#061006}
+#mb{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:.5rem .8rem;cursor:pointer;position:relative;z-index:3;min-height:44px;min-width:44px}
+header .btn .sm{display:none}
+nav{z-index:2}
+@media(max-width:820px){#mb{display:block}nav{position:fixed;inset:0;background:var(--bg);flex-direction:column;justify-content:center;font-size:1.6rem;display:none}nav.open{display:flex}nav a{font-size:1.6rem}header .btn{padding:.6rem 1rem;font-size:.85rem;position:relative;z-index:3}header .btn .lg{display:none}header .btn .sm{display:inline}header .wrap{gap:.6rem}}
+/* hero */
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding-bottom:6vh}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln span{display:block}
+.hero p.lead{margin:1.6rem 0 2rem;font-size:1.1rem}
+.cta{display:flex;gap:.8rem;flex-wrap:wrap}
+.stats{display:flex;gap:2.5rem;margin-top:3rem;flex-wrap:wrap}
+.stats b{display:block;font:400 2.6rem/1 Anton,Impact,sans-serif;color:var(--g)}
+.stats span{color:var(--mut);font-size:.85rem}
+/* marquee */
+.mq{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:1rem 0;background:rgba(5,7,6,.85)}
+.mq div{display:inline-block;font:400 2.4rem/1 Anton,Impact,sans-serif;text-transform:uppercase;animation:mq 22s linear infinite}
+.mq i{color:var(--g);font-style:normal;margin:0 1.2rem}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* about */
+.cine{position:relative;margin-top:2rem;padding:clamp(2.5rem,7vw,5rem) clamp(1rem,4vw,3rem);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:radial-gradient(ellipse at 50% 120%,rgba(166,255,46,.16),transparent 60%),var(--card);text-align:center}
+.cine:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent);transform:scaleX(0);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.cine.in:before{transform:scaleX(1)}
+.cl{display:block;overflow:hidden;line-height:1.05}
+.cl>span{display:inline-block;transform:translateY(110%);opacity:0;filter:blur(8px);transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity 1s,filter 1s}
+.cl:nth-child(2)>span{transition-delay:.15s}.cl:nth-child(3)>span{transition-delay:.3s}.cl:nth-child(4)>span{transition-delay:.55s}
+.cine.in .cl>span{transform:none;opacity:1;filter:none}
+.cl:first-child{font-size:clamp(.8rem,2vw,1rem);letter-spacing:.35em;text-transform:uppercase;color:var(--g);margin-bottom:1rem}
+.cl.big{font-family:Anton,Impact,sans-serif;font-size:clamp(2.6rem,10vw,7.5rem);text-transform:uppercase;letter-spacing:.01em}
+.cl.big>span{color:var(--ink)}
+.cl.big em{color:var(--g);font-style:normal;text-shadow:0 0 30px rgba(166,255,46,.45)}
+.cl.sub{margin-top:1.4rem;font-size:clamp(.78rem,1.8vw,.95rem);color:var(--mut);letter-spacing:.08em;text-transform:uppercase}
+@media(prefers-reduced-motion:reduce){.cl>span{transition:none;transform:none;opacity:1;filter:none}.cine:before{transform:none;transition:none}}
+.cinefx{position:fixed;inset:0;pointer-events:none;z-index:44}
+.vig{background:radial-gradient(ellipse at 50% 45%,transparent 45%,rgba(0,0,0,.65) 100%)}
+.grain{inset:-50%;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");animation:gr .8s steps(6) infinite}
+@keyframes gr{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-5%,-2%)}80%{transform:translate(4%,4%)}100%{transform:translate(0,0)}}
+.bar{position:fixed;left:0;right:0;height:11vh;background:#000;z-index:46;pointer-events:none;animation:bar 1.4s cubic-bezier(.7,0,.2,1) 2.2s forwards}
+.bar.t{top:0}.bar.b{bottom:0}
+@keyframes bar{to{transform:translateY(-101%)}}
+.bar.b{animation-name:barb}@keyframes barb{to{transform:translateY(101%)}}
+.streak{position:fixed;left:-10vw;right:-10vw;top:46%;height:2px;z-index:43;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(166,255,46,.0) 20%,rgba(190,255,110,.55) 50%,rgba(166,255,46,0) 80%,transparent);filter:blur(1px);mix-blend-mode:screen;opacity:0;animation:stk 7s ease-in-out 3.6s infinite}
+@keyframes stk{0%,100%{opacity:0;transform:scaleX(.3)}45%,55%{opacity:.8;transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.grain,.streak{animation:none}.bar{display:none}.streak{opacity:.3}}
+@media(max-width:820px){.bar{height:6vh}}
+@media(pointer:fine){html,body,a,button,label,.rail,.rail.dn,.pc,summary{cursor:none!important}}
+#cur{display:grid;place-items:center;mix-blend-mode:normal;transition:width .3s cubic-bezier(.2,.8,.2,1),height .3s cubic-bezier(.2,.8,.2,1),margin .3s cubic-bezier(.2,.8,.2,1),background .25s,border-color .25s}
+#cur span{font:700 .62rem/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#061006;opacity:0;transition:opacity .2s}
+#cur.big{width:74px;height:74px;margin:-37px 0 0 -37px;background:var(--g)}
+#cur.big span{opacity:1}
+#cur.dn{width:22px;height:22px;margin:-11px 0 0 -11px;background:rgba(166,255,46,.35)}
+#dot{position:fixed;left:0;top:0;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--g);box-shadow:0 0 12px var(--g),0 0 28px rgba(166,255,46,.6);z-index:81;pointer-events:none;transition:opacity .2s}
+#dot.hide{opacity:0}
+@media(pointer:coarse){#dot{display:none}}
+#snd{position:fixed;left:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:45;display:flex;align-items:center;gap:.6rem;padding:.65rem 1rem;border-radius:99px;border:1px solid var(--line);background:rgba(5,7,6,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--ink);font:600 .78rem/1 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;min-height:44px;transition:border-color .25s}
+#snd:hover,#snd.on{border-color:var(--g)}
+#snd i{display:flex;align-items:flex-end;gap:2px;height:14px}
+#snd i b{display:block;width:3px;height:3px;border-radius:2px;background:var(--g);transition:height .3s}
+#snd.on i b{animation:eq 1s ease-in-out infinite}
+#snd.on i b:nth-child(2){animation-delay:.2s}#snd.on i b:nth-child(3){animation-delay:.4s}#snd.on i b:nth-child(4){animation-delay:.1s}
+@keyframes eq{0%,100%{height:3px}50%{height:14px}}
+@media(prefers-reduced-motion:reduce){#snd.on i b{animation:none;height:8px}}
+#ld .ldw{width:min(80vw,520px);text-align:left}
+#ld .ldn{font-size:clamp(5rem,22vw,12rem);line-height:.9;color:var(--ink)}
+#ld .ldn sup{font-size:.35em;color:var(--g);vertical-align:top;margin-left:.1em}
+#ld .ldt{letter-spacing:.3em;font-size:clamp(.9rem,2.4vw,1.2rem);color:var(--g);margin:.8rem 0 1rem}
+#ld .ldb{height:2px;background:var(--line);overflow:hidden}
+#ld .ldb i{display:block;height:100%;width:0;background:var(--g);box-shadow:0 0 14px var(--g)}
+.stmt{padding:clamp(5rem,14vw,11rem) 0}
+.stmt p{font-family:Anton,Impact,sans-serif;text-transform:uppercase;font-size:clamp(1.9rem,6.2vw,5.2rem);line-height:1.08;max-width:18ch;max-width:min(22ch,100%)}
+.stmt p .w.on{color:var(--ink)}.stmt p .w.g.on{color:var(--g)}
+.stmt{--lp:0}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
+#programs.pin{overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:6rem 0 3rem}
+#programs.pin .rail{overflow:visible;width:max-content;scroll-snap-type:none;padding:2.5rem 8vw 1.5rem;gap:2rem;cursor:default}
+#programs.pin .pc{flex:0 0 460px}
+#programs.pin .pc.cta4{display:flex;flex-direction:column;justify-content:center;background:radial-gradient(circle at 30% 20%,rgba(166,255,46,.18),transparent 60%),var(--card)}
+#pbar{height:2px;background:var(--line);margin:1rem 8vw 0;overflow:hidden}#pbar i{display:block;height:100%;width:0;background:var(--g);box-shadow:0 0 12px var(--g)}
+.creds{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.creds article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.5rem;transition:border-color .25s,transform .25s}
+.creds article:hover{border-color:var(--g);transform:translateY(-4px)}
+.creds small{color:var(--g);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem}
+.creds h3{margin:.5rem 0}
+.creds img{width:100%;border-radius:10px;margin-bottom:1rem;border:1px solid var(--line);display:block}
+.creds p{opacity:.8;line-height:1.6}
+@media(max-width:820px){.creds{grid-template-columns:1fr}}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.about img{width:100%;border-radius:18px;aspect-ratio:4/5;object-fit:cover;background:var(--card)}
+dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1.5rem;margin-top:1.5rem}
+dt{color:var(--mut)}
+@media(max-width:820px){.about{grid-template-columns:1fr}}
+/* programs drag row */
+.rail{display:flex;gap:1.2rem;overflow-x:auto;padding:0 clamp(1rem,4vw,2.5rem) 1.5rem;scroll-snap-type:x proximity;cursor:grab;scrollbar-width:none;user-select:none}
+.rail::-webkit-scrollbar{display:none}
+.rail.dn{cursor:grabbing;scroll-snap-type:none}
+.pc{flex:0 0 min(86vw,420px);scroll-snap-align:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:2rem;transition:border-color .25s,transform .25s}
+.pc:hover{border-color:var(--g)}
+.pc small{color:var(--g);font-weight:700}
+.pc h3{font-size:3rem;margin:.6rem 0}
+.pc ul{list-style:none;margin:1.2rem 0 1.6rem;color:var(--mut)}
+.pc li{padding:.4rem 0;border-bottom:1px solid var(--line)}
+.hint{color:var(--mut);font-size:.85rem;margin-top:.5rem}
+/* workouts */
+.tabs{display:flex;gap:.6rem;margin-bottom:1.5rem}
+.tab{padding:.6rem 1.2rem;border-radius:99px;border:1px solid var(--line);background:none;cursor:pointer}
+.tab[aria-selected=true]{background:var(--g);color:#061006;border-color:var(--g);font-weight:700}
+.day{border:1px solid var(--line);border-radius:16px;margin-bottom:.7rem;background:rgba(12,17,12,.9);overflow:hidden}
+.day button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.1rem 1.4rem;background:none;border:0;cursor:pointer;text-align:left}
+.day button strong{font:400 1.7rem/1 Anton,Impact,sans-serif;text-transform:uppercase}
+.day button span{color:var(--mut);font-size:.88rem}
+.day .bd{display:none;padding:0 1.4rem 1.2rem}
+.day.open .bd{display:block}
+.day.open{border-color:var(--g)}
+.ex{display:flex;justify-content:space-between;padding:.5rem 0;border-top:1px solid var(--line)}
+.ex b{color:var(--g);font-weight:500}
+/* tools */
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+@media(max-width:820px){.tools{grid-template-columns:1fr}}
+.box{background:rgba(12,17,12,.92);border:1px solid var(--line);border-radius:22px;padding:1.8rem}
+.box h3{margin-bottom:1rem}
+fieldset{border:0;margin-bottom:1rem}
+legend{color:var(--mut);font-size:.88rem;margin-bottom:.4rem}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{padding:.5rem 1rem;border:1px solid var(--line);border-radius:99px;cursor:pointer;font-size:.92rem}
+.chips input:checked+label{background:var(--g);color:#061006;border-color:var(--g);font-weight:700}
+.chips input:focus-visible+label{outline:2px solid var(--g);outline-offset:2px}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.f label,.fl{display:grid;gap:.3rem;font-size:.85rem;color:var(--mut)}
+input[type=text],input[type=tel],input[type=email],input[type=number],select,textarea{width:100%;background:#070b07;border:1px solid var(--line);border-radius:10px;padding:.7rem .8rem}
+.res{margin-top:1rem;padding:1.2rem;border:1px dashed var(--g);border-radius:14px;min-height:5rem}
+.big{font:400 3.6rem/1 Anton,Impact,sans-serif;color:var(--g)}
+.mac{display:flex;gap:1.5rem;margin-top:.6rem;color:var(--mut)}
+.mac b{color:var(--ink)}
+small.n{display:block;color:var(--mut);margin-top:.8rem;font-size:.78rem}
+/* contact */
+.ct{display:grid;grid-template-columns:1fr 1.2fr;gap:2.5rem}
+@media(max-width:820px){.ct{grid-template-columns:1fr}}
+.ct dl a{color:var(--g)}
+footer{padding:2rem 0 calc(2rem + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);color:var(--mut);font-size:.85rem;background:var(--bg)}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.hid{display:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+.w{display:inline-block;opacity:.2;transition:opacity .3s,color .3s}
+.w.on{opacity:1;color:var(--ink)}
+.mq div{animation:none;will-change:transform}
+.mag{will-change:transform;transition:background .2s,color .2s,transform .25s cubic-bezier(.2,.8,.2,1)}
+.pc{position:relative;transition:border-color .25s,transform .35s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.pc::after{content:"";position:absolute;inset:0;border-radius:22px;background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(166,255,46,.16),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.pc:hover::after{opacity:1}
+#cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid var(--g);border-radius:50%;z-index:80;pointer-events:none;transition:width .25s,height .25s,margin .25s,background .25s}
+#cur.big{width:68px;height:68px;margin:-34px 0 0 -34px;background:rgba(166,255,46,.2)}
+@media(pointer:coarse){#cur{display:none}}
+.day.open .bd{animation:op .4s ease}
+@keyframes op{from{opacity:0;transform:translateY(-8px)}}
+.toast{position:fixed;left:50%;bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,150%);background:var(--g);color:#061006;font-weight:700;padding:.8rem 1.3rem;border-radius:99px;z-index:60;transition:transform .35s;max-width:90vw;text-align:center}
+.toast.on{transform:translate(-50%,0)}
+#pg{position:fixed;top:0;left:0;height:3px;width:0;background:var(--g);z-index:70}
+.wa{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:40;width:3.4rem;height:3.4rem;border-radius:50%;background:var(--g);color:#061006;display:grid;place-items:center;font-weight:700;font-size:.8rem;box-shadow:0 0 0 0 rgba(166,255,46,.6);animation:pl 2.4s infinite}
+@keyframes pl{70%{box-shadow:0 0 0 14px rgba(166,255,46,0)}100%{box-shadow:0 0 0 0 rgba(166,255,46,0)}}
+.hp{position:absolute;left:-9999px;opacity:0}
+</style>
+</head>
+<body>
+<div id="pg"></div><div id="cur" aria-hidden="true"><span id="curt"></span></div><div id="dot" aria-hidden="true"></div><div class="toast" id="ts" role="status"></div><button id="snd" type="button" aria-pressed="false" aria-label="Toggle background sound"><i aria-hidden="true"><b></b><b></b><b></b><b></b></i><span id="sndt">Sound off</span></button><a class="wa" href="https://wa.me/919399862732" aria-label="Chat on WhatsApp">Chat</a>
+<div id="ld"><div class="ldw"><div class="ldn"><span id="ldn">0</span><sup>%</sup></div><div class="ldt">SOVRNS</div><div class="ldb"><i id="ldb"></i></div></div></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<header>
+ <div class="wrap">
+  <a class="logo" href="#top">Sovrns<b>.</b></a>
+  <button id="mb" aria-expanded="false" aria-controls="nv">Menu</button>
+  <nav id="nv">
+   <a href="#about">About</a><a href="#credentials">Credentials</a><a href="#programs">Programs</a><a href="#workouts">Workouts</a><a href="#tools">Tools</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="btn" href="#contact"><span class="lg">Book a consultation</span><span class="sm">Book now</span></a>
+ </div>
+</header>
+
+<main id="top">
+ <section class="hero">
+  <div class="wrap">
+   <h1 aria-label="Build a stronger you">
+    <span class="ln"><span>Build a</span></span>
+    <span class="ln"><span><em>Stronger</em></span></span>
+    <span class="ln"><span>You.</span></span>
+   </h1>
+   <p class="lead">Structured training, clear progress and a coach who keeps you accountable. With Aman, in person and online.</p>
+   <div class="cta"><a class="btn" href="#contact">Book free consultation</a><a class="btn ghost" href="#tools">Find my program</a></div>
+   <div class="stats">
+    <div><b data-n="30" data-s="+">0</b><span>Clients trained</span></div>
+    <div><b data-n="2">0</b><span>Certifications</span></div>
+    <div><b data-n="5">0</b><span>Day plans available</span></div>
+   </div>
+  </div>
+ </section>
+
+ <div class="mq" aria-hidden="true"><div><span>Strength<i>/</i>Fat loss<i>/</i>Muscle<i>/</i>Mobility<i>/</i>Confidence<i>/</i></span><span>Strength<i>/</i>Fat loss<i>/</i>Muscle<i>/</i>Mobility<i>/</i>Confidence<i>/</i></span></div></div>
+
+ <section class="stmt" id="stmt"><div class="wrap"><p id="stmtp" aria-label="Strength is built one rep at a time. 30 clients trained. 2 certifications. One coach who keeps you accountable.">Strength is built one rep at a time. <span class="gx">30 clients trained.</span> <span class="gx">2 certifications.</span> One coach who keeps you accountable.</p></div></section>
+
+
+ <section id="about" style="background:var(--bg)">
+  <div class="wrap about">
+   <img class="rv" src="../assets/aman-about-v3.jpg" alt="Aman training at the gym" loading="lazy">
+   <div class="rv">
+    <h2>Certified. Hands-on. <em>Focused.</em></h2>
+    <p class="lead">I am Aman, a certified fitness personal trainer. I have trained 30 clients to get stronger, lose fat and build habits that last. Every plan is built around your goal, your schedule and your current level, with clear progress to track.</p>
+    <dl><dt>Role</dt><dd>Certified fitness personal trainer</dd><dt>Certified by</dt><dd>Fabulous Body Academy</dd><dt>Style</dt><dd>Strength and conditioning</dd><dt>Sessions</dt><dd>In person and online</dd></dl>
+   </div>
+  </div>
+ </section>
+
+ <section id="credentials" style="background:var(--bg);padding-top:0">
+  <div class="wrap">
+   <h2 class="rv">Credentials and <em>experience.</em></h2>
+   <div class="cine" id="cine" aria-label="Certified by Fabulous Body Academy">
+    <span class="cl"><span>Certified by</span></span>
+    <span class="cl big"><span>Fabulous</span></span>
+    <span class="cl big"><span><em>Body</em> Academy</span></span>
+    <span class="cl sub"><span>2 certificates · 15 CPD hours each · Accredited training provider</span></span>
+   </div>
+   <div class="creds">
+    <article class="rv"><a href="../assets/cert-fitness.jpg" target="_blank" rel="noopener" aria-label="Open Certified in Fitness certificate"><img src="../assets/cert-fitness.jpg" alt="Certificate in Fitness awarded to Aman Kumar Panika by Fabulous Body Academy" loading="lazy"></a><small>Dec 2025 · 15 CPD hours</small><h3>Certified in Fitness</h3><p>Certificate in Fitness, Fabulous Body Academy. Accredited training provider.</p></article>
+    <article class="rv"><a href="../assets/cert-advanced.jpg" target="_blank" rel="noopener" aria-label="Open Certified in Advanced Fitness certificate"><img src="../assets/cert-advanced.jpg" alt="Certificate in Advanced Fitness awarded to Aman Kumar Panika by Fabulous Body Academy" loading="lazy"></a><small>May 2026 · 15 CPD hours</small><h3>Certified in Advanced Fitness</h3><p>Certificate in Advanced Fitness, Fabulous Body Academy. Accredited training provider.</p></article>
+    <article class="rv"><small>Hands-on experience</small><h3>30 clients transformed</h3><p>I have helped 30 clients get stronger, lose fat and build habits that last, with plans built around each person and progress tracked every week.</p></article>
+   </div>
+   <p class="lead rv" style="margin-top:1.5rem">Certified knowledge, proven with real client results.</p>
+  </div>
+ </section>
+
+ <section id="programs">
+  <div class="wrap"><h2 class="rv">Pick your <em>program.</em></h2><p class="hint" id="phint">Drag or swipe to see all three.</p></div>
+  <div class="rail" id="rail" tabindex="0" aria-label="Training programs">
+   <article class="pc"><small>4 weeks · 3 sessions a week</small><h3>Foundations</h3><p class="lead">Learn the main lifts with good form and build a base you can grow on.</p><ul><li>Squat, hinge, push and pull technique</li><li>Full body sessions</li><li>Simple weekly check-ins</li></ul><a class="btn ghost" href="#contact" data-p="Foundations">Enquire</a></article>
+   <article class="pc"><small>8 weeks · 4 sessions a week · Popular</small><h3>Lean in 8</h3><p class="lead">Strength training and conditioning for steady, lasting fat loss.</p><ul><li>Upper and lower split</li><li>Conditioning finishers</li><li>Calorie and protein targets</li></ul><a class="btn ghost" href="#contact" data-p="Lean in 8">Enquire</a></article>
+   <article class="pc"><small>12 weeks · 5 sessions a week</small><h3>Muscle build</h3><p class="lead">Push, pull and legs with planned progression to build size and strength.</p><ul><li>Push, pull, legs, upper and lower</li><li>Progressive overload tracking</li><li>Nutrition for a calorie surplus</li></ul><a class="btn ghost" href="#contact" data-p="Muscle build">Enquire</a></article>
+   <article class="pc cta4" id="cta4" hidden><small>Not sure which one?</small><h3>Find yours</h3><p class="lead">Answer three quick questions and get a recommendation, or book a free consultation.</p><div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem"><a class="btn" href="#tools">Find my program</a><a class="btn ghost" href="#contact">Book now</a></div></article>
+  </div>
+  <div id="pbar" hidden><i></i></div>
+ </section>
+
+ <section id="workouts">
+  <div class="wrap">
+   <h2 class="rv">A full week, <em>planned.</em></h2>
+   <div class="tabs" role="tablist"><button class="tab" role="tab" aria-selected="true" data-k="4">4-day plan</button><button class="tab" role="tab" aria-selected="false" data-k="5">5-day plan</button></div>
+   <div id="days"></div>
+  </div>
+ </section>
+
+ <section id="tools">
+  <div class="wrap">
+   <h2 class="rv">Find your program. <em>Plan your food.</em></h2>
+   <div class="tools">
+    <div class="box">
+     <h3>Program finder</h3>
+     <fieldset><legend>Your goal</legend><div class="chips" id="fg"></div></fieldset>
+     <fieldset><legend>Experience</legend><div class="chips" id="fe"></div></fieldset>
+     <fieldset><legend>Days you can train each week</legend><div class="chips" id="fd"></div></fieldset>
+     <div class="res" id="fr" aria-live="polite">Answer the three questions and your recommended program appears here.</div>
+    </div>
+    <div class="box">
+     <h3>Calorie calculator</h3>
+     <form id="cc" class="f">
+      <label>Sex<select id="sx"><option value="m">Male</option><option value="f">Female</option></select></label>
+      <label>Age<input id="ag" type="number" min="14" max="90" value="25"></label>
+      <label>Height (cm)<input id="ht" type="number" min="120" max="230" value="170"></label>
+      <label>Weight (kg)<input id="wt" type="number" min="30" max="250" value="70"></label>
+      <label>Activity<select id="ac"><option value="1.2">Mostly seated</option><option value="1.375">Light, 1 to 3 days</option><option value="1.55" selected>Moderate, 3 to 5 days</option><option value="1.725">Heavy, 6 to 7 days</option></select></label>
+      <label>Goal<select id="gl2"><option value="-450">Lose fat</option><option value="0" selected>Maintain</option><option value="300">Build muscle</option></select></label>
+     </form>
+     <div class="res" aria-live="polite"><span class="big" id="kc">0</span> kcal / day
+      <div class="mac"><span>Protein <b id="mp">0 g</b></span><span>Carbs <b id="mc">0 g</b></span><span>Fat <b id="mf">0 g</b></span></div></div>
+     <small class="n">An estimate from the Mifflin-St Jeor equation, not medical advice. Your coach will adjust it to you.</small>
+     <p style="margin-top:1rem"><a class="btn ghost" href="#contact" id="cta" data-p="Not sure yet">Get a plan built on these numbers</a></p>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section id="contact">
+  <div class="wrap ct">
+   <div class="rv">
+    <h2>Ready to <em>begin?</em></h2>
+    <p class="lead">Book a free consultation to talk about your goals and find the right program.</p>
+    <dl>
+     <dt>WhatsApp</dt><dd><a href="https://wa.me/919399862732">+91 93998 62732</a></dd>
+     <dt>Email</dt><dd><a href="mailto:amanpanika7067@gmail.com">amanpanika7067@gmail.com</a></dd>
+     <dt>Instagram</dt><dd><a href="https://instagram.com/_amanpanika">@_amanpanika</a></dd>
+     <dt>Sessions</dt><dd>In person and online</dd>
+    </dl>
+   </div>
+   <form class="box f" id="eq">
+    <h3 style="grid-column:1/-1">Write your enquiry</h3>
+    <input class="hp" type="text" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label>Your name<input type="text" id="qn" required autocomplete="name"></label>
+    <label>Phone or WhatsApp<input type="tel" id="qp" required autocomplete="tel"></label>
+    <label>Email (optional)<input type="email" id="qe" autocomplete="email"></label>
+    <label>Program<select id="qg"><option>Not sure yet</option><option>Foundations</option><option>Lean in 8</option><option>Muscle build</option></select></label>
+    <label>Where<select id="qw"><option>In person</option><option>Online</option></select></label>
+    <label>Best time to call<select id="qt"><option>Any time</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label>
+    <label class="fl" style="grid-column:1/-1">Your goal<textarea id="qo" rows="3"></textarea></label>
+    <div style="grid-column:1/-1;display:flex;gap:.8rem;flex-wrap:wrap"><button class="btn" type="submit">Send enquiry</button><button class="btn ghost" type="button" id="em">Send by email</button></div>
+    <p id="qs" class="hint" style="grid-column:1/-1" aria-live="polite"></p>
+   </form>
+  </div>
+ </section>
+</main>
+<footer><div class="wrap"><span>© 2026 Sovrns. Coaching by Aman.</span><span><a href="https://wa.me/919399862732">WhatsApp</a> · <a href="https://instagram.com/_amanpanika">Instagram</a> · <a href="mailto:amanpanika7067@gmail.com">Email</a></span></div></footer>
+
+<div class="cinefx vig" aria-hidden="true"></div><div class="cinefx grain" aria-hidden="true"></div><div class="streak" aria-hidden="true"></div><div class="bar t" aria-hidden="true"></div><div class="bar b" aria-hidden="true"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* scroll progress */
+addEventListener('scroll',function(){var h=document.documentElement;$('#pg').style.width=(scrollY/(h.scrollHeight-innerHeight||1)*100)+'%'},{passive:true});
+
+/* nav */
+var nv=$('#nv'),mb=$('#mb');
+mb.onclick=function(){var o=nv.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.textContent=o?'Close':'Menu';document.body.style.overflow=o?'hidden':''};
+addEventListener('keydown',function(e){if(e.key==='Escape'&&nv.classList.contains('open'))mb.click()});
+$$('#nv a').forEach(function(a){a.onclick=function(){nv.classList.remove('open');mb.setAttribute('aria-expanded',false);mb.textContent='Menu';document.body.style.overflow=''}});
+
+/* drag rail with momentum */
+var rail=$('#rail'),d=false,sx=0,sl=0,v=0,lx=0,raf;
+rail.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;d=true;sx=e.clientX;sl=rail.scrollLeft;lx=e.clientX;v=0;rail.classList.add('dn');cancelAnimationFrame(raf)});
+window.addEventListener('pointermove',function(e){if(!d)return;rail.scrollLeft=sl-(e.clientX-sx);v=e.clientX-lx;lx=e.clientX});
+window.addEventListener('pointerup',function(){if(!d)return;d=false;rail.classList.remove('dn');(function g(){if(Math.abs(v)<.4)return;rail.scrollLeft-=v;v*=.94;raf=requestAnimationFrame(g)})()});
+rail.addEventListener('dragstart',function(e){e.preventDefault()});
+
+/* workouts */
+var W={
+u4a:['Upper A','Mon · Chest, back, shoulders · 55 min',[['Bench press','4 x 6-8'],['Barbell row','4 x 8'],['Overhead press','3 x 8-10'],['Lat pulldown','3 x 10'],['Lateral raise','3 x 15'],['Triceps pushdown','3 x 12']]],
+l4a:['Lower A','Tue · Quads, hamstrings, calves · 55 min',[['Back squat','4 x 6-8'],['Romanian deadlift','3 x 8-10'],['Leg press','3 x 10-12'],['Leg curl','3 x 12'],['Standing calf raise','4 x 12-15'],['Plank','3 x 45 sec']]],
+u4b:['Upper B','Thu · Chest, back, arms · 55 min',[['Incline dumbbell press','4 x 8-10'],['Pull-up','4 x 6-10'],['Seated dumbbell press','3 x 10'],['Seated cable row','3 x 10-12'],['Dumbbell curl','3 x 12'],['Overhead triceps extension','3 x 12']]],
+l4b:['Lower B','Fri · Glutes, hamstrings, core · 55 min',[['Deadlift','3 x 5'],['Walking lunge','3 x 12 each leg'],['Hip thrust','3 x 10'],['Leg extension','3 x 12'],['Seated calf raise','4 x 15'],['Hanging knee raise','3 x 12']]],
+push:['Push','Mon · Chest, shoulders, triceps · 50 min',[['Bench press','4 x 8'],['Overhead press','3 x 10'],['Incline dumbbell press','3 x 10'],['Lateral raise','3 x 15'],['Triceps pushdown','3 x 12']]],
+pull:['Pull','Tue · Back, biceps · 50 min',[['Deadlift','3 x 5'],['Pull-up','4 x 8'],['Barbell row','3 x 10'],['Face pull','3 x 15'],['Dumbbell curl','3 x 12']]],
+leg:['Legs','Wed · Quads, hamstrings, glutes · 55 min',[['Back squat','4 x 8'],['Romanian deadlift','3 x 10'],['Walking lunge','3 x 12 each leg'],['Leg press','3 x 12'],['Calf raise','4 x 15']]],
+up5:['Upper','Thu · Chest, back, shoulders, arms · 55 min',[['Incline barbell press','3 x 10'],['Lat pulldown','3 x 10'],['Seated dumbbell press','3 x 10'],['Seated cable row','3 x 12'],['Hammer curl','3 x 12'],['Overhead triceps extension','3 x 12']]],
+lc5:['Lower and core','Fri · Glutes, hamstrings, core · 55 min',[['Hip thrust','4 x 10'],['Bulgarian split squat','3 x 10 each leg'],['Leg curl','3 x 12'],['Leg extension','3 x 12'],['Hanging knee raise','3 x 12'],['Plank','3 x 45 sec']]]};
+var PL={4:['u4a','l4a','u4b','l4b'],5:['push','pull','leg','up5','lc5']};
+function days(k){var h='';PL[k].forEach(function(id,i){var w=W[id];h+='<div class="day'+(i?'':' open')+'"><button aria-expanded="'+(i?'false':'true')+'"><strong>Day '+(i+1)+': '+w[0]+'</strong><span>'+w[1]+'</span></button><div class="bd">'+w[2].map(function(x){return '<div class="ex"><span>'+x[0]+'</span><b>'+x[1]+'</b></div>'}).join('')+'<div class="ex"><span>Rest between sets</span><b>60 to 90 sec</b></div></div></div>'});$('#days').innerHTML=h}
+$('#days').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var p=b.parentNode,o=p.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+$$('.tab').forEach(function(t){t.onclick=function(){$$('.tab').forEach(function(x){x.setAttribute('aria-selected',x===t)});days(t.dataset.k)}});
+days(4);
+
+/* chips */
+function chips(id,name,opts){$('#'+id).innerHTML=opts.map(function(o,i){var u=name+i;return '<input type="radio" name="'+name+'" id="'+u+'" value="'+o[0]+'"><label for="'+u+'">'+o[1]+'</label>'}).join('')}
+chips('fg','g',[['fat','Lose fat'],['muscle','Build muscle'],['basics','Learn the basics']]);
+chips('fe','e',[['b','Beginner'],['i','Intermediate'],['a','Advanced']]);
+chips('fd','d',[['3','3 days'],['4','4 days'],['5','5 days']]);
+function find(){var g=($('input[name=g]:checked')||{}).value,e=($('input[name=e]:checked')||{}).value,dd=+(($('input[name=d]:checked')||{}).value||0);if(!g||!e||!dd)return;
+var p,why;
+if(g==='basics'||e==='b'){p='Foundations';why='4 weeks, 3 sessions a week. Learn the main lifts with good form and build a base.'}
+else if(g==='fat'){p='Lean in 8';why='8 weeks, 4 sessions a week. Strength plus conditioning for steady fat loss'+(dd>=4?'. Pairs well with the 4-day upper and lower plan.':'. A 4-day week works best if you can fit it in.')}
+else{if(dd>=4){p='Muscle build';why='12 weeks, 5 sessions a week. Push, pull and legs with planned progression'+(dd>=5?'.':'. With 4 days, the upper and lower plan fits well.')}else{p='Foundations';why='With 3 days a week, build a strong base first, then step up to a 4 or 5 day plan.'}}
+$('#fr').innerHTML='<span class="big">'+p+'</span><p class="lead" style="margin:.5rem 0 1rem">'+why+'</p><a class="btn" href="#contact" data-p="'+p+'">Enquire about this program</a>'}
+$$('#tools .chips input').forEach(function(i){i.onchange=find});
+
+/* calculator */
+var calcNote='',calcUsed=false;
+function calc(){var w=+$('#wt').value,h=+$('#ht').value,a=+$('#ag').value;if(!w||!h||!a)return;
+var bmr=10*w+6.25*h-5*a+($('#sx').value==='m'?5:-161),k=Math.round(bmr*$('#ac').value+ +$('#gl2').value),pr=Math.round(2*w),fa=Math.round(.8*w),cb=Math.max(0,Math.round((k-pr*4-fa*9)/4));
+calcNote='Calorie calculator result: '+k+' kcal/day ('+$('#gl2').options[$('#gl2').selectedIndex].text.toLowerCase()+'), protein '+pr+' g, carbs '+cb+' g, fat '+fa+' g. Age '+a+', '+h+' cm, '+w+' kg.';$('#kc').textContent=k;$('#mp').textContent=pr+' g';$('#mf').textContent=fa+' g';$('#mc').textContent=cb+' g'}
+$$('#cc input,#cc select').forEach(function(i){i.oninput=calc;i.onchange=calc});calc();
+
+/* enquiry */
+document.addEventListener('click',function(e){var a=e.target.closest('[data-p]');if(!a)return;$('#qg').value=a.dataset.p;if(a.id==='cta'){calcUsed=true;if(!$('#qo').value.trim())$('#qo').value='Please help me plan training and nutrition around my calorie target.'}});
+function msg(){return 'Hi Aman, I would like a free consultation.\nName: '+$('#qn').value+'\nPhone: '+$('#qp').value+($('#qe').value?'\nEmail: '+$('#qe').value:'')+'\nProgram: '+$('#qg').value+'\nTraining: '+$('#qw').value+'\nBest time: '+$('#qt').value+($('#qo').value?'\nGoal: '+$('#qo').value:'')+(calcUsed&&calcNote?'\n'+calcNote:'')}
+function toast(t){var el=$('#ts');el.textContent=t;el.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(function(){el.classList.remove('on')},4500)}
+$('#eq').onsubmit=function(e){e.preventDefault();var f=e.target,b=f.querySelector('button[type=submit]'),lab=b.textContent,name=$('#qn').value.trim(),phone=$('#qp').value.trim(),mail=$('#qe').value.trim();
+ if($('#hp').value)return;
+ if(name.length<2){$('#qs').textContent='Please enter your name.';$('#qn').focus();return}
+ if(phone.replace(/\D/g,'').length<8){$('#qs').textContent='Please enter a valid phone or WhatsApp number so Aman can reach you.';$('#qp').focus();return}
+ if(mail&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){$('#qs').textContent='That email does not look right. Fix it or leave it empty.';$('#qe').focus();return}
+ $('#qs').textContent='';var wa='https://wa.me/919399862732?text='+encodeURIComponent(msg());
+ b.disabled=true;b.textContent='Sending...';
+ var pl={_subject:'New consultation request from '+name+' (Sovrns)',_template:'table',_captcha:'false',Name:name,Phone:phone,Email:mail||'not given',Program:$('#qg').value,Where:$('#qw').value,'Best time to call':$('#qt').value,Goal:$('#qo').value.trim()||'not given',Calculator:(calcUsed&&calcNote)?calcNote:'not used',Message:msg()};
+ if(mail)pl._replyto=mail;
+ var ctl=('AbortController' in window)?new AbortController():null,to=setTimeout(function(){if(ctl)ctl.abort()},15000);
+ fetch('https://formsubmit.co/ajax/amanpanika7067@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(pl),signal:ctl?ctl.signal:undefined})
+ .then(function(r){return r.json().then(function(j){return{r:r,j:j}})})
+ .then(function(x){clearTimeout(to);if(!x.r.ok||String(x.j.success)==='false')throw 0;f.reset();calcUsed=false;toast('Enquiry received. Aman will contact you soon.');$('#qs').textContent='Sent. Aman will contact you at your best time.'})
+ .catch(function(){clearTimeout(to);window.open(wa,'_blank');$('#qs').textContent='We could not send it right now, so WhatsApp opened with your enquiry instead. Press send there to finish.'})
+ .then(function(){b.disabled=false;b.textContent=lab})};
+$('#em').onclick=function(){var f=$('#eq');if(!f.reportValidity())return;location.href='mailto:amanpanika7067@gmail.com?subject='+encodeURIComponent('Consultation enquiry')+'&body='+encodeURIComponent(msg());$('#qs').textContent='Your email app opened with the enquiry. Press send there to finish.'};
+
+/* count up + reveal fallback */
+function count(){$$('[data-n]').forEach(function(el){var n=+el.dataset.n,s=el.dataset.s||'';if(!window.gsap||reduce){el.textContent=n+s;return}var o={v:0};gsap.to(o,{v:n,duration:1.6,delay:.9,ease:'power2.out',onUpdate:function(){el.textContent=Math.round(o.v)+s}})})}
+count();
+
+/* GSAP */
+var LD0=Date.now(),LDT=2300,ldn=document.getElementById('ldn'),ldb=document.getElementById('ldb');
+(function cnt(){var p=Math.min(1,(Date.now()-LD0)/LDT),e=1-Math.pow(1-p,2.2);if(ldn)ldn.textContent=Math.round(e*100);if(ldb)ldb.style.width=(e*100)+'%';if(p<1)requestAnimationFrame(cnt)})();
+function anim(){
+ var ld=$('#ld'),wait=Math.max(450,LD0+LDT+150-Date.now());
+ if(!window.gsap||reduce){setTimeout(function(){ld.classList.add('off')},reduce?0:wait);return}
+ gsap.registerPlugin(window.ScrollTrigger);
+ gsap.set('.hero h1 .ln span',{yPercent:110});
+ gsap.set('.rv:not(h2):not(img)',{opacity:0,y:40});gsap.set('h2.rv',{clipPath:'inset(0 0 100% 0)',y:50});gsap.set('img.rv',{clipPath:'inset(100% 0 0 0)',scale:1.15});
+ setTimeout(function(){ld.classList.add('off')},wait);
+ gsap.to('.hero h1 .ln span',{yPercent:0,duration:1.1,stagger:.12,ease:'power4.out',delay:wait/1000+.15});
+ $$('.rv').forEach(function(el){var t=el.tagName,st={trigger:el,start:'top 85%'};if(t==='H2')gsap.to(el,{clipPath:'inset(0 0 -12% 0)',y:0,duration:1.1,ease:'power4.out',scrollTrigger:st});else if(t==='IMG')gsap.to(el,{clipPath:'inset(0% 0 0 0)',scale:1,duration:1.4,ease:'power4.out',scrollTrigger:st});else gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:st})});
+ gsap.to('.about img',{yPercent:-6,ease:'none',scrollTrigger:{trigger:'#about',scrub:true}});
+}
+
+/* Three.js */
+function scene(){
+ if(!window.THREE||reduce){return}
+ var cv=$('#gl'),mob=innerWidth<820;
+ var r;try{r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:!mob})}catch(x){return}
+ r.setPixelRatio(Math.min(devicePixelRatio,mob?1.25:2));
+ var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(45,1,.1,100);cam.position.z=9;
+ sc.add(new THREE.AmbientLight(0x88aa88,.6));
+ var l1=new THREE.PointLight(0xa6ff2e,2.2,40);l1.position.set(4,3,6);sc.add(l1);
+ var l2=new THREE.PointLight(0xffffff,.8,40);l2.position.set(-5,-2,5);sc.add(l2);
+ var mat=new THREE.MeshStandardMaterial({color:0x0e140e,metalness:.9,roughness:.25,emissive:0x1d3a05,emissiveIntensity:.8});
+ var glow=new THREE.MeshBasicMaterial({color:0xa6ff2e,wireframe:true,transparent:true,opacity:.35});
+ var db=new THREE.Group();
+ function cyl(rt,h,x){var m=new THREE.Mesh(new THREE.CylinderGeometry(rt,rt,h,32),mat);m.rotation.z=Math.PI/2;m.position.x=x;db.add(m);var w=new THREE.Mesh(new THREE.CylinderGeometry(rt*1.02,rt*1.02,h*1.02,16),glow);w.rotation.z=Math.PI/2;w.position.x=x;db.add(w)}
+ cyl(.2,5,0);
+ [-1,1].forEach(function(s){cyl(1.1,.5,s*2.2);cyl(.85,.4,s*2.65);cyl(.6,.3,s*3)});
+ db.rotation.set(.35,0,-.25);sc.add(db);
+ [2.6,3.6].forEach(function(rad,i){var t=new THREE.Mesh(new THREE.TorusGeometry(rad,.015,8,100),new THREE.MeshBasicMaterial({color:0xa6ff2e,transparent:true,opacity:.35-i*.1}));t.rotation.x=1.2+i*.5;t.userData.s=.003*(i?-1:1);sc.add(t)});
+ var n=mob?220:600,pos=new Float32Array(n*3);for(var i=0;i<n*3;i++)pos[i]=(Math.random()-.5)*(i%3===2?12:22);
+ var pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+ var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xa6ff2e,size:.04,transparent:true,opacity:.7}));sc.add(pts);
+
+ // ---- cinematic extras (preview) ----
+ sc.fog=new THREE.FogExp2(0x050706,.045);
+ var bc=document.createElement('canvas');bc.width=128;bc.height=256;var bx=bc.getContext('2d'),gr=bx.createLinearGradient(0,0,128,0);gr.addColorStop(0,'rgba(166,255,46,0)');gr.addColorStop(.5,'rgba(166,255,46,1)');gr.addColorStop(1,'rgba(166,255,46,0)');bx.fillStyle=gr;bx.fillRect(0,0,128,256);
+ var bt=new THREE.CanvasTexture(bc),beams=new THREE.Group();sc.add(beams);
+ [[-5,0,-5,.38,.10],[3,1,-6,-.3,.08],[7,-1,-7,.5,.07]].forEach(function(d,i){var m=new THREE.Mesh(new THREE.PlaneGeometry(2.6+i,22),new THREE.MeshBasicMaterial({map:bt,transparent:true,opacity:d[4],blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide}));m.position.set(d[0],d[1],d[2]);m.rotation.z=d[3];m.userData={r:d[3],o:d[4],ph:i*2.1};beams.add(m)});
+ var rings=[0,1,2].map(function(i){var m=new THREE.Mesh(new THREE.RingGeometry(.98,1,96),new THREE.MeshBasicMaterial({color:0xa6ff2e,transparent:true,opacity:0,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,depthWrite:false}));m.userData.o=i/3;sc.add(m);return m});
+ function size(){var w=innerWidth,h=innerHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();db.scale.setScalar(w<820?.55:1)}
+ size();addEventListener('resize',size);
+ var mx=0,my=0,sy=0;
+ addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+ addEventListener('scroll',function(){sy=scrollY/(document.body.scrollHeight-innerHeight||1)},{passive:true});
+ var t0=0;
+ (function loop(t){requestAnimationFrame(loop);t0=t*.001;
+  var tx=(innerWidth<820?0:Math.sin(sy*Math.PI*2)*3.2);
+  db.position.x+=(tx-db.position.x)*.05;
+  db.position.y+=((-my*.8)-db.position.y)*.05;
+  db.rotation.y+=(mx*1.2+sy*Math.PI*4-db.rotation.y)*.05;
+  db.rotation.x=.35+Math.sin(t0*.6)*.08;
+  sc.children.forEach(function(c){if(c.userData.s)c.rotation.z+=c.userData.s});
+  try{
+   var dz=Math.min(scrollY/innerHeight,1.4);
+   cam.position.z=9-dz*2.2+Math.sin(t0*.25)*.25;
+   cam.position.x+=((mx*1.4+Math.sin(t0*.2)*.4)-cam.position.x)*.03;
+   cam.position.y+=((-my*.8+Math.cos(t0*.17)*.25)-cam.position.y)*.03;
+   cam.lookAt(0,0,0);
+   l1.position.set(Math.cos(t0*.55)*6.5,1.5+Math.sin(t0*.4)*2.5,4+Math.sin(t0*.55)*2);
+   l1.intensity=2.2+Math.sin(t0*1.3)*.6;
+   beams.children.forEach(function(m){var u=m.userData;m.rotation.z=u.r+Math.sin(t0*.18+u.ph)*.08;m.material.opacity=u.o*(.65+.35*Math.sin(t0*.5+u.ph))});
+   rings.forEach(function(m){var p=((t0*.11+m.userData.o)%1),e=1-Math.pow(1-p,2.4);m.position.copy(db.position);m.scale.setScalar(1.3+e*(mob?4:8));m.material.opacity=Math.pow(1-p,1.6)*.45;m.quaternion.copy(cam.quaternion)})
+  }catch(err){}
+  pts.rotation.y=t0*.02;
+  r.render(sc,cam)})(0);
+}
+
+function fx(){
+ var fine=matchMedia('(pointer:fine)').matches;
+ var lp=$('#about .lead');
+ if(lp){var ws=lp.textContent.trim().split(/\s+/);lp.innerHTML=ws.map(function(w){return '<span class="w'+(reduce?' on':'')+'">'+w+'</span>'}).join(' ');ws=$$('.w',lp);
+  if(!reduce){var lit=function(){var r=lp.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.9-r.top)/(innerHeight*.45))),n=Math.round(p*ws.length);ws.forEach(function(w,i){w.classList.toggle('on',i<n)})};addEventListener('scroll',lit,{passive:true});lit()}}
+ if(reduce)return;
+
+ /* --- preview: smooth scroll, statement words, pinned programs --- */
+ var lenis=null;
+ if(window.Lenis&&!reduce){try{lenis=new Lenis({duration:1.15,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t))},anchors:true});
+  if(window.gsap&&window.ScrollTrigger){lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0)}
+  else{(function rf(t){lenis.raf(t);requestAnimationFrame(rf)})(0)}
+  var mb2=document.getElementById('mb');if(mb2)mb2.addEventListener('click',function(){setTimeout(function(){document.getElementById('nv').classList.contains('open')?lenis.stop():lenis.start()},0)});
+ }catch(x){lenis=null}}
+ var sp=document.getElementById('stmtp');
+ if(sp){var nodes=[];Array.prototype.forEach.call(sp.childNodes,function(n){var g=n.nodeType===1&&n.classList.contains('gx');String(n.textContent).trim().split(/\s+/).forEach(function(w){if(w)nodes.push([w,g])})});
+  sp.innerHTML=nodes.map(function(x){return '<span class="w'+(x[1]?' g':'')+(reduce?' on':'')+'">'+x[0]+'</span>'}).join(' ');var sw=$$('.w',sp);
+  if(!reduce){var lit2=function(){var r=sp.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(innerHeight*.15+r.height*.9))),n=Math.round(p*sw.length);sw.forEach(function(w,i){w.classList.toggle('on',i<n)})};addEventListener('scroll',lit2,{passive:true});lit2()}}
+ var progs=document.getElementById('programs'),rail2=document.getElementById('rail');
+ if(progs&&rail2&&window.gsap&&window.ScrollTrigger&&!reduce&&innerWidth>=900&&fine){
+  progs.classList.add('pin');rail2.classList.add('pinned');var c4=document.getElementById('cta4');c4.hidden=false;document.getElementById('pbar').hidden=false;
+  var ph=document.getElementById('phint');if(ph)ph.textContent='Keep scrolling to see all programs.';
+  var dist=function(){return Math.max(0,rail2.scrollWidth-innerWidth)};
+  gsap.to(rail2,{x:function(){return -dist()},ease:'none',scrollTrigger:{trigger:progs,start:'top top',end:function(){return '+='+(dist()*1.1)},pin:true,scrub:.6,invalidateOnRefresh:true,onUpdate:function(st){var b=document.querySelector('#pbar i');if(b)b.style.width=(st.progress*100)+'%'}}});
+ }
+ if(window.gsap&&window.ScrollTrigger){
+  gsap.to('.hero .wrap',{scale:.88,opacity:.05,y:-90,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.from('.pc',{x:140,opacity:0,duration:1,stagger:.14,ease:'power3.out',scrollTrigger:{trigger:'#rail',start:'top 85%'}});
+ }
+ var mq=$('.mq div'),mxp=0,ls=scrollY,vl=0,dir=-1;
+ (function mv(){var dy=scrollY-ls;ls=scrollY;vl+=(dy-vl)*.1;if(dy!==0)dir=dy>0?-1:1;mxp+=dir*(1.2+Math.abs(vl)*.6);var half=mq.scrollWidth/2;if(mxp<-half)mxp+=half;if(mxp>0)mxp-=half;mq.style.transform='translateX('+mxp+'px)';requestAnimationFrame(mv)})();
+ if(!fine)return;
+ var c=$('#cur'),ct=$('#curt'),dt=$('#dot'),cx=0,cy=0,tx=0,ty=0;
+ addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY;dt.style.transform='translate('+tx+'px,'+ty+'px)';dt.classList.remove('hide')});
+ document.documentElement.addEventListener('pointerleave',function(){dt.classList.add('hide')});
+ (function f(){cx+=(tx-cx)*.14;cy+=(ty-cy)*.14;c.style.transform='translate('+cx+'px,'+cy+'px)';requestAnimationFrame(f)})();
+ document.addEventListener('pointerover',function(e){var t=e.target,big=t.closest&&t.closest('a,button,.pc,.rail,label,summary');c.classList.toggle('big',!!big);ct.textContent=!big?'':(t.closest('.pc,.rail')?(document.getElementById('rail').classList.contains('pinned')?'Scroll':'Drag'):(t.closest('#snd')?'Sound':'Open'))});
+ document.addEventListener('pointerdown',function(){c.classList.add('dn')});document.addEventListener('pointerup',function(){c.classList.remove('dn')});
+ $$('.btn').forEach(function(b){b.classList.add('mag');b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+(e.clientX-r.left-r.width/2)*.25+'px,'+(e.clientY-r.top-r.height/2)*.35+'px)'});b.addEventListener('pointerleave',function(){b.style.transform=''})});
+ $$('.pc').forEach(function(p){p.addEventListener('pointermove',function(e){if(d)return;var r=p.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;p.style.transform='perspective(900px) rotateY('+x*8+'deg) rotateX('+(-y*8)+'deg)';p.style.setProperty('--mx',(x+.5)*100+'%');p.style.setProperty('--my',(y+.5)*100+'%')});p.addEventListener('pointerleave',function(){p.style.transform=''})});
+}
+window.addEventListener('load',function(){anim();scene();fx()});
+setTimeout(function(){$('#ld').classList.add('off')},Math.max(4000,LDT+1500));
+})();
+(function(){var c=document.getElementById('cine');if(!c)return;if(!('IntersectionObserver' in window)){c.classList.add('in');return}var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){c.classList.add('in');io.disconnect()}})},{threshold:.35});io.observe(c)})();
+(function(){
+var b=document.getElementById('snd');if(!b)return;var AC=window.AudioContext||window.webkitAudioContext;if(!AC){b.style.display='none';return}
+var ctx,master,on=false,beat,started=false;
+function store(v){try{localStorage.setItem('sovrns-sound',v)}catch(e){}}function pref(){try{return localStorage.getItem('sovrns-sound')}catch(e){return null}}
+function build(){ctx=new AC();master=ctx.createGain();master.gain.value=0;master.connect(ctx.destination);
+ var lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=520;lp.Q.value=.7;lp.connect(master);
+ var lfo=ctx.createOscillator(),lg=ctx.createGain();lfo.frequency.value=.07;lg.gain.value=220;lfo.connect(lg);lg.connect(lp.frequency);lfo.start();
+ [[55,'sawtooth',.16,-6],[55,'sawtooth',.16,7],[82.41,'sine',.2,0],[110,'triangle',.1,3],[164.81,'sine',.05,-4]].forEach(function(d){var o=ctx.createOscillator(),g=ctx.createGain();o.type=d[1];o.frequency.value=d[0];o.detune.value=d[3];g.gain.value=d[2];o.connect(g);g.connect(lp);o.start()});
+ var buf=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate),ch=buf.getChannelData(0);for(var i=0;i<ch.length;i++)ch[i]=Math.random()*2-1;
+ var n=ctx.createBufferSource();n.buffer=buf;n.loop=true;var bp=ctx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=900;bp.Q.value=.6;var ng=ctx.createGain();ng.gain.value=.018;n.connect(bp);bp.connect(ng);ng.connect(master);n.start();
+ function thump(){if(!on||ctx.state!=='running')return;var t=ctx.currentTime,o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(70,t);o.frequency.exponentialRampToValueAtTime(34,t+.35);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.55,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+.6);o.connect(g);g.connect(master);o.start(t);o.stop(t+.7)}
+ beat=setInterval(thump,1700);started=true}
+function set(v){on=v;b.classList.toggle('on',v);b.setAttribute('aria-pressed',v);document.getElementById('sndt').textContent=v?'Sound on':'Sound off';store(v?'on':'off');
+ if(v){if(!started)build();ctx.resume().then(function(){master.gain.cancelScheduledValues(ctx.currentTime);master.gain.setTargetAtTime(.22,ctx.currentTime,.9)})}
+ else if(ctx){master.gain.cancelScheduledValues(ctx.currentTime);master.gain.setTargetAtTime(0,ctx.currentTime,.25)}}
+b.addEventListener('click',function(e){e.stopPropagation();set(!on)});
+if(pref()!=='off'){var arm=function(e){if(e.target&&e.target.closest&&e.target.closest('#snd')){removeEventListener('pointerdown',arm,true);removeEventListener('keydown',arm,true);return}removeEventListener('pointerdown',arm,true);removeEventListener('keydown',arm,true);if(!on&&pref()!=='off')set(true)};addEventListener('pointerdown',arm,true);addEventListener('keydown',arm,true)}
+document.addEventListener('visibilitychange',function(){if(!ctx)return;if(document.hidden)ctx.suspend();else if(on)ctx.resume()});
+})();
+</script>
+</body>
+</html>
