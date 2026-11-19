@@ -530,7 +530,7 @@ function set(v){on=v;b.classList.toggle('on',v);b.setAttribute('aria-pressed',v)
  if(v){if(!started)build();ctx.resume().then(function(){master.gain.cancelScheduledValues(ctx.currentTime);master.gain.setTargetAtTime(.22,ctx.currentTime,.9)})}
  else if(ctx){master.gain.cancelScheduledValues(ctx.currentTime);master.gain.setTargetAtTime(0,ctx.currentTime,.25)}}
 b.addEventListener('click',function(e){e.stopPropagation();set(!on)});
-if(pref()==='on'){var arm=function(){removeEventListener('pointerdown',arm,true);removeEventListener('keydown',arm,true);if(!on&&pref()==='on')set(true)};addEventListener('pointerdown',arm,true);addEventListener('keydown',arm,true)}
+if(pref()!=='off'){var arm=function(e){if(e.target&&e.target.closest&&e.target.closest('#snd')){removeEventListener('pointerdown',arm,true);removeEventListener('keydown',arm,true);return}removeEventListener('pointerdown',arm,true);removeEventListener('keydown',arm,true);if(!on&&pref()!=='off')set(true)};addEventListener('pointerdown',arm,true);addEventListener('keydown',arm,true)}
 document.addEventListener('visibilitychange',function(){if(!ctx)return;if(document.hidden)ctx.suspend();else if(on)ctx.resume()});
 })();
 </script>
