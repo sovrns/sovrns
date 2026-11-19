@@ -61,6 +61,19 @@ nav{z-index:2}
 .mq i{color:var(--g);font-style:normal;margin:0 1.2rem}
 @keyframes mq{to{transform:translateX(-50%)}}
 /* about */
+.cine{position:relative;margin-top:2rem;padding:clamp(2.5rem,7vw,5rem) clamp(1rem,4vw,3rem);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:radial-gradient(ellipse at 50% 120%,rgba(166,255,46,.16),transparent 60%),var(--card);text-align:center}
+.cine:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent);transform:scaleX(0);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.cine.in:before{transform:scaleX(1)}
+.cl{display:block;overflow:hidden;line-height:1.05}
+.cl>span{display:inline-block;transform:translateY(110%);opacity:0;filter:blur(8px);transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity 1s,filter 1s}
+.cl:nth-child(2)>span{transition-delay:.15s}.cl:nth-child(3)>span{transition-delay:.3s}.cl:nth-child(4)>span{transition-delay:.55s}
+.cine.in .cl>span{transform:none;opacity:1;filter:none}
+.cl:first-child{font-size:clamp(.8rem,2vw,1rem);letter-spacing:.35em;text-transform:uppercase;color:var(--g);margin-bottom:1rem}
+.cl.big{font-family:Anton,Impact,sans-serif;font-size:clamp(2.6rem,10vw,7.5rem);text-transform:uppercase;letter-spacing:.01em}
+.cl.big>span{color:var(--ink)}
+.cl.big em{color:var(--g);font-style:normal;text-shadow:0 0 30px rgba(166,255,46,.45)}
+.cl.sub{margin-top:1.4rem;font-size:clamp(.78rem,1.8vw,.95rem);color:var(--mut);letter-spacing:.08em;text-transform:uppercase}
+@media(prefers-reduced-motion:reduce){.cl>span{transition:none;transform:none;opacity:1;filter:none}.cine:before{transform:none;transition:none}}
 .creds{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
 .creds article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.5rem;transition:border-color .25s,transform .25s}
 .creds article:hover{border-color:var(--g);transform:translateY(-4px)}
@@ -196,6 +209,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
  <section id="credentials" style="background:var(--bg);padding-top:0">
   <div class="wrap">
    <h2 class="rv">Credentials and <em>experience.</em></h2>
+   <div class="cine" id="cine" aria-label="Certified by Fabulous Body Academy">
+    <span class="cl"><span>Certified by</span></span>
+    <span class="cl big"><span>Fabulous</span></span>
+    <span class="cl big"><span><em>Body</em> Academy</span></span>
+    <span class="cl sub"><span>2 certificates · 15 CPD hours each · Accredited training provider</span></span>
+   </div>
    <div class="creds">
     <article class="rv"><a href="assets/cert-fitness.jpg" target="_blank" rel="noopener" aria-label="Open Certified in Fitness certificate"><img src="assets/cert-fitness.jpg" alt="Certificate in Fitness awarded to Aman Kumar Panika by Fabulous Body Academy" loading="lazy"></a><small>Dec 2025 · 15 CPD hours</small><h3>Certified in Fitness</h3><p>Certificate in Fitness, Fabulous Body Academy. Accredited training provider.</p></article>
     <article class="rv"><a href="assets/cert-advanced.jpg" target="_blank" rel="noopener" aria-label="Open Certified in Advanced Fitness certificate"><img src="assets/cert-advanced.jpg" alt="Certificate in Advanced Fitness awarded to Aman Kumar Panika by Fabulous Body Academy" loading="lazy"></a><small>May 2026 · 15 CPD hours</small><h3>Certified in Advanced Fitness</h3><p>Certificate in Advanced Fitness, Fabulous Body Academy. Accredited training provider.</p></article>
@@ -442,6 +461,7 @@ function fx(){
 window.addEventListener('load',function(){anim();scene();fx()});
 setTimeout(function(){$('#ld').classList.add('off')},4000);
 })();
+(function(){var c=document.getElementById('cine');if(!c)return;if(!('IntersectionObserver' in window)){c.classList.add('in');return}var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){c.classList.add('in');io.disconnect()}})},{threshold:.35});io.observe(c)})();
 </script>
 </body>
 </html>
