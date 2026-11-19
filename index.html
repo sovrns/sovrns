@@ -105,6 +105,12 @@ nav{z-index:2}
 #snd.on i b:nth-child(2){animation-delay:.2s}#snd.on i b:nth-child(3){animation-delay:.4s}#snd.on i b:nth-child(4){animation-delay:.1s}
 @keyframes eq{0%,100%{height:3px}50%{height:14px}}
 @media(prefers-reduced-motion:reduce){#snd.on i b{animation:none;height:8px}}
+#ld .ldw{width:min(80vw,520px);text-align:left}
+#ld .ldn{font-size:clamp(5rem,22vw,12rem);line-height:.9;color:var(--ink)}
+#ld .ldn sup{font-size:.35em;color:var(--g);vertical-align:top;margin-left:.1em}
+#ld .ldt{letter-spacing:.3em;font-size:clamp(.9rem,2.4vw,1.2rem);color:var(--g);margin:.8rem 0 1rem}
+#ld .ldb{height:2px;background:var(--line);overflow:hidden}
+#ld .ldb i{display:block;height:100%;width:0;background:var(--g);box-shadow:0 0 14px var(--g)}
 .creds{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
 .creds article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.5rem;transition:border-color .25s,transform .25s}
 .creds article:hover{border-color:var(--g);transform:translateY(-4px)}
@@ -192,7 +198,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 </head>
 <body>
 <div id="pg"></div><div id="cur" aria-hidden="true"><span id="curt"></span></div><div id="dot" aria-hidden="true"></div><div class="toast" id="ts" role="status"></div><button id="snd" type="button" aria-pressed="false" aria-label="Toggle background sound"><i aria-hidden="true"><b></b><b></b><b></b><b></b></i><span id="sndt">Sound off</span></button><a class="wa" href="https://wa.me/919399862732" aria-label="Chat on WhatsApp">Chat</a>
-<div id="ld">SOVRNS</div>
+<div id="ld"><div class="ldw"><div class="ldn"><span id="ldn">0</span><sup>%</sup></div><div class="ldt">SOVRNS</div><div class="ldb"><i id="ldb"></i></div></div></div>
 <canvas id="gl" aria-hidden="true"></canvas>
 
 <header>
@@ -420,14 +426,16 @@ function count(){$$('[data-n]').forEach(function(el){var n=+el.dataset.n,s=el.da
 count();
 
 /* GSAP */
+var LD0=Date.now(),LDT=2300,ldn=document.getElementById('ldn'),ldb=document.getElementById('ldb');
+(function cnt(){var p=Math.min(1,(Date.now()-LD0)/LDT),e=1-Math.pow(1-p,2.2);if(ldn)ldn.textContent=Math.round(e*100);if(ldb)ldb.style.width=(e*100)+'%';if(p<1)requestAnimationFrame(cnt)})();
 function anim(){
- var ld=$('#ld');
- if(!window.gsap||reduce){ld.classList.add('off');return}
+ var ld=$('#ld'),wait=Math.max(450,LD0+LDT+150-Date.now());
+ if(!window.gsap||reduce){setTimeout(function(){ld.classList.add('off')},reduce?0:wait);return}
  gsap.registerPlugin(window.ScrollTrigger);
  gsap.set('.hero h1 .ln span',{yPercent:110});
  gsap.set('.rv:not(h2):not(img)',{opacity:0,y:40});gsap.set('h2.rv',{clipPath:'inset(0 0 100% 0)',y:50});gsap.set('img.rv',{clipPath:'inset(100% 0 0 0)',scale:1.15});
- setTimeout(function(){ld.classList.add('off')},450);
- gsap.to('.hero h1 .ln span',{yPercent:0,duration:1,stagger:.12,ease:'power4.out',delay:.5});
+ setTimeout(function(){ld.classList.add('off')},wait);
+ gsap.to('.hero h1 .ln span',{yPercent:0,duration:1,stagger:.12,ease:'power4.out',delay:wait/1000+.05});
  $$('.rv').forEach(function(el){var t=el.tagName,st={trigger:el,start:'top 85%'};if(t==='H2')gsap.to(el,{clipPath:'inset(0 0 -12% 0)',y:0,duration:1.1,ease:'power4.out',scrollTrigger:st});else if(t==='IMG')gsap.to(el,{clipPath:'inset(0% 0 0 0)',scale:1,duration:1.4,ease:'power4.out',scrollTrigger:st});else gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:st})});
  gsap.to('.about img',{yPercent:-6,ease:'none',scrollTrigger:{trigger:'#about',scrub:true}});
 }
@@ -511,7 +519,7 @@ function fx(){
  $$('.pc').forEach(function(p){p.addEventListener('pointermove',function(e){if(d)return;var r=p.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;p.style.transform='perspective(900px) rotateY('+x*8+'deg) rotateX('+(-y*8)+'deg)';p.style.setProperty('--mx',(x+.5)*100+'%');p.style.setProperty('--my',(y+.5)*100+'%')});p.addEventListener('pointerleave',function(){p.style.transform=''})});
 }
 window.addEventListener('load',function(){anim();scene();fx()});
-setTimeout(function(){$('#ld').classList.add('off')},4000);
+setTimeout(function(){$('#ld').classList.add('off')},Math.max(4000,LDT+1500));
 })();
 (function(){var c=document.getElementById('cine');if(!c)return;if(!('IntersectionObserver' in window)){c.classList.add('in');return}var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){c.classList.add('in');io.disconnect()}})},{threshold:.35});io.observe(c)})();
 (function(){
