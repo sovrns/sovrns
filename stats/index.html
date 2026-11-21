@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="color-scheme" content="dark"><meta name="darkreader-lock">
+<title>Sovrns Stats</title>
+<style>
+:root{color-scheme:dark;--bg:#050706;--card:#0e1310;--line:#1d2620;--ink:#f1f5ee;--mut:#8b968d;--g:#a6ff2e}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;padding:clamp(1rem,4vw,3rem)}
+.w{max-width:980px;margin:0 auto}
+h1{font-size:clamp(1.8rem,5vw,3rem);letter-spacing:-.02em}h1 em{color:var(--g);font-style:normal}
+p.s{color:var(--mut);margin:.4rem 0 2rem}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem}
+.c{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.4rem}
+.c small{color:var(--mut);text-transform:uppercase;letter-spacing:.08em;font-size:.72rem}
+.c b{display:block;font-size:2.6rem;color:var(--g);line-height:1.1;margin-top:.4rem}
+.btn{display:inline-block;margin-top:2rem;background:var(--g);color:#061006;font-weight:700;padding:.9rem 1.4rem;border-radius:99px;text-decoration:none}
+.btn.o{background:none;color:var(--g);border:1px solid var(--g);margin-left:.6rem}
+.note{margin-top:1.6rem;color:var(--mut);font-size:.9rem;max-width:62ch}
+#err{display:none;margin-top:1.4rem;border:1px solid #5a4a12;background:#1a1606;padding:1rem;border-radius:12px;color:#f3d77a;font-size:.9rem}
+</style></head><body><div class="w">
+<h1>Sovrns <em>visits</em></h1>
+<p class="s">Live numbers from your GoatCounter. Updated each time you open this page.</p>
+<div class="g">
+ <div class="c"><small>Today</small><b id="d0">…</b></div>
+ <div class="c"><small>Yesterday</small><b id="d1">…</b></div>
+ <div class="c"><small>Last 7 days</small><b id="w">…</b></div>
+ <div class="c"><small>Last 30 days</small><b id="m">…</b></div>
+ <div class="c"><small>All time</small><b id="t">…</b></div>
+</div>
+<div id="err">Counts could not load. In GoatCounter go to Settings → turn on "Allow adding visitor counts on your website", save, then refresh this page.</div>
+<a class="btn" href="https://sovrns.goatcounter.com" target="_blank" rel="noopener">Open full dashboard</a><a class="btn o" href="/">Back to site</a>
+<p class="note">The full dashboard has visits by hour, day and week, plus countries, devices, browsers, screen sizes and where visitors came from. Those details stay private in your GoatCounter login.</p>
+</div>
+<script>
+(function(){
+var B='https://sovrns.goatcounter.com/counter/TOTAL.json',bad=0;
+function ymd(d){var z=new Date(d.getTime()-d.getTimezoneOffset()*6e4);return z.toISOString().slice(0,10)}
+var now=new Date(),day=function(n){return new Date(now.getFullYear(),now.getMonth(),now.getDate()-n)};
+function get(id,q){fetch(B+(q?'?'+q:''),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){document.getElementById(id).textContent=String(j.count||'0').trim()}).catch(function(){document.getElementById(id).textContent='—';if(!bad){bad=1;document.getElementById('err').style.display='block'}})}
+get('d0','start='+ymd(day(0))+'&end='+ymd(day(0)));
+get('d1','start='+ymd(day(1))+'&end='+ymd(day(1)));
+get('w','start='+ymd(day(6))+'&end='+ymd(day(0)));
+get('m','start='+ymd(day(29))+'&end='+ymd(day(0)));
+get('t','');
+})();
+</script></body></html>
