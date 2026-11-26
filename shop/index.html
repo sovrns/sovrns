@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="dark"><meta name="darkreader-lock">
+<title>Sovrns Shop</title>
+<meta name="description" content="Sovrns training gear and merch.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#050706;--ink:#f2f5ee;--mut:#8b948a;--g:#a6ff2e;--line:#1d241d;--card:#0c110c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--g);outline-offset:3px}
+h1,h2,h3{font-family:Anton,Impact,'Arial Narrow',sans-serif;font-weight:400;text-transform:uppercase;line-height:.95;letter-spacing:.01em}
+em{font-style:normal;color:var(--g)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+header{position:sticky;top:0;z-index:20;background:rgba(5,7,6,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font:400 1.6rem Anton,Impact,sans-serif;letter-spacing:.04em}.logo i{color:var(--g);font-style:normal}
+.hn{display:flex;gap:1.2rem;align-items:center;font-size:.9rem;color:var(--mut)}.hn a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--g);color:#050706;font-weight:700;padding:.75rem 1.4rem;border-radius:999px;border:0;font-size:.95rem;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.cartb{position:relative;background:transparent;border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem;font-size:.9rem}
+.cartb b{background:var(--g);color:#050706;border-radius:99px;padding:0 .45rem;margin-left:.4rem;font-size:.8rem}
+.hero{padding:clamp(3rem,9vw,7rem) 0 2rem}
+.hero h1{font-size:clamp(3.4rem,13vw,9.5rem)}
+.hero p{max-width:34rem;color:var(--mut);margin:1.4rem 0 1.8rem}
+.bar{display:flex;gap:2rem;flex-wrap:wrap;border-block:1px solid var(--line);padding:1rem 0;margin-top:2.5rem;color:var(--mut);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em}
+.bar span:before{content:"●";color:var(--g);margin-right:.5rem;font-size:.6rem}
+.tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin:3rem 0 1.5rem}
+.tab{background:transparent;border:1px solid var(--line);border-radius:999px;padding:.45rem 1.1rem;font-size:.9rem;color:var(--mut)}
+.tab[aria-pressed=true]{background:var(--g);color:#050706;border-color:var(--g);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.1rem;padding-bottom:4rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}
+.card:hover{border-color:var(--g);transform:translateY(-4px)}
+.pic{aspect-ratio:1/1;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#16200f,#070a07 70%);position:relative}
+.pic svg{width:62%;height:auto;filter:drop-shadow(0 10px 30px rgba(166,255,46,.15))}
+.tag{position:absolute;top:.8rem;left:.8rem;background:var(--g);color:#050706;font-size:.7rem;font-weight:700;padding:.15rem .6rem;border-radius:99px;text-transform:uppercase}
+.info{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.info h3{font-size:1.5rem}.info p{color:var(--mut);font-size:.88rem;flex:1}
+.row{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-top:.4rem}
+.price{font:400 1.5rem Anton,sans-serif;color:var(--g)}
+.sizes{display:flex;gap:.35rem;flex-wrap:wrap}.sizes button{background:transparent;border:1px solid var(--line);border-radius:8px;min-width:2.2rem;padding:.2rem .5rem;font-size:.8rem}
+.sizes button[aria-pressed=true]{border-color:var(--g);color:var(--g)}
+.add{background:var(--g);color:#050706;border:0;border-radius:999px;padding:.5rem 1rem;font-weight:700;font-size:.85rem}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(400px,100%);background:#080c08;border-left:1px solid var(--line);z-index:40;transform:translateX(100%);transition:transform .35s;display:flex;flex-direction:column;padding:1.4rem}
+.drawer.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}.dh h3{font-size:2rem}
+.x{background:none;border:0;font-size:1.6rem;color:var(--mut)}
+#items{flex:1;overflow:auto;display:flex;flex-direction:column;gap:.8rem}
+.it{display:flex;justify-content:space-between;gap:.8rem;border:1px solid var(--line);border-radius:12px;padding:.8rem}
+.it small{color:var(--mut);display:block}
+.it button{background:none;border:0;color:var(--mut);font-size:.8rem;text-decoration:underline}
+.empty{color:var(--mut);text-align:center;margin-top:3rem}
+.tot{display:flex;justify-content:space-between;font-size:1.1rem;padding:1rem 0;border-top:1px solid var(--line)}
+.ck{width:100%;text-align:center;margin-bottom:.6rem}
+.note{color:var(--mut);font-size:.78rem;text-align:center}
+.shade{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:30;opacity:0;pointer-events:none;transition:opacity .3s}.shade.on{opacity:1;pointer-events:auto}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mut);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media(max-width:560px){.hn .hide{display:none}.grid{grid-template-columns:1fr 1fr;gap:.7rem}.info{padding:.8rem}.info h3{font-size:1.2rem}.info p{display:none}.row{flex-wrap:wrap}.add{width:100%}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <a class="logo" href="/">SOVRNS<i>.</i></a>
+ <div class="hn"><a class="hide" href="/">Training</a><a class="hide" href="#shop">Shop</a><button class="cartb" id="open" aria-label="Open cart">Cart<b id="count">0</b></button></div>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+ <h1>Train<br>in <em>Sovrns.</em></h1>
+ <p>Gear built for the gym floor. Simple, clean and made to be worn hard.</p>
+ <a class="btn" href="#shop">Shop the drop</a>
+ <div class="bar"><span>Free shipping over ₹1999</span><span>UPI &amp; cards</span><span>Easy size exchange</span></div>
+</div></section>
+
+<section id="shop"><div class="wrap">
+ <div class="tabs" id="tabs"></div>
+ <div class="grid" id="grid"></div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>© Sovrns · sovrns.in</span><a href="https://wa.me/919399862732" style="color:var(--g)">Questions? WhatsApp Aman</a></div></footer>
+
+<div class="shade" id="shade"></div>
+<aside class="drawer" id="drawer" aria-label="Cart">
+ <div class="dh"><h3>Your cart</h3><button class="x" id="close" aria-label="Close cart">×</button></div>
+ <div id="items"></div>
+ <div class="tot"><span>Total</span><b id="total">₹0</b></div>
+ <a class="btn ck" id="checkout" href="#">Checkout</a>
+ <p class="note" id="cnote"></p>
+</aside>
+
+<script>
+/* ===== EDIT HERE: products, prices, and Razorpay links =====
+   pay: paste a Razorpay Payment Link for that product (https://rzp.io/...). 
+   Leave it empty and the button sends the order to WhatsApp instead. */
+var WA="919399862732";
+var P=[
+ {id:"tee",   cat:"Apparel",name:"Core Tee",        price:899, desc:"Heavy cotton, boxy fit, lime logo.",       sizes:["S","M","L","XL"],tag:"New",pay:"",t:"tee"},
+ {id:"hood",  cat:"Apparel",name:"Heavy Hoodie",    price:1799,desc:"450 GSM fleece. Warm-up ready.",            sizes:["S","M","L","XL"],tag:"",pay:"",t:"hood"},
+ {id:"short", cat:"Apparel",name:"Training Shorts", price:999, desc:"Light, quick-dry, deep pockets.",           sizes:["S","M","L","XL"],tag:"",pay:"",t:"short"},
+ {id:"tank",  cat:"Apparel",name:"Stringer Tank",   price:799, desc:"Cut low for full range of motion.",         sizes:["S","M","L","XL"],tag:"Hot",pay:"",t:"tank"},
+ {id:"cap",   cat:"Gear",   name:"Sovrns Cap",      price:599, desc:"Structured, adjustable strap.",             sizes:[],tag:"",pay:"",t:"cap"},
+ {id:"bottle",cat:"Gear",   name:"Shaker Bottle",   price:499, desc:"700 ml, leak-proof, steel ball mixer.",     sizes:[],tag:"",pay:"",t:"bottle"},
+ {id:"strap", cat:"Gear",   name:"Lifting Straps",  price:449, desc:"Cotton straps for heavy pulls.",            sizes:[],tag:"",pay:"",t:"strap"},
+ {id:"bag",   cat:"Gear",   name:"Gym Duffel",      price:1499,desc:"Shoe compartment and wet pocket.",          sizes:[],tag:"",pay:"",t:"bag"}
+];
+/* simple drawn product shapes */
+var S={
+tee:'<path d="M60 30l-40 25 15 30 15-8v85h100V77l15 8 15-30-40-25c-5 12-18 18-30 18S65 42 60 30z"/>',
+hood:'<path d="M70 28c0 12 12 20 30 20s30-8 30-20l35 22 10 45-25 8-5-20v95H55V83l-5 20-25-8 10-45z"/><path d="M80 80h40v30H80z" fill="#050706" opacity=".35"/>',
+short:'<path d="M45 40h110l12 100h-48l-19-45-19 45H33z"/>',
+tank:'<path d="M70 28l-10 40 10 20v90h60V88l10-20-10-40-15 14h-30z"/>',
+cap:'<path d="M35 110c0-45 30-70 65-70s65 25 65 70z"/><path d="M110 110c40 0 70 6 80 18-20 8-60 6-80 0z"/>',
+bottle:'<rect x="70" y="30" width="60" height="22" rx="6"/><path d="M62 60h76l-6 120H68z"/>',
+strap:'<path d="M50 60c30-30 70-30 100 0v20c-30-30-70-30-100 0z"/><path d="M50 120c30-30 70-30 100 0v20c-30-30-70-30-100 0z"/>',
+bag:'<rect x="30" y="80" width="140" height="75" rx="30"/><path d="M70 80c0-30 60-30 60 0" fill="none" stroke="currentColor" stroke-width="10"/>'
+};
+function pic(t){return '<svg viewBox="0 0 200 200" fill="#a6ff2e" color="#a6ff2e" aria-hidden="true">'+S[t]+'</svg>'}
+var cart=[],cat="All",sel={};
+try{cart=JSON.parse(localStorage.getItem("sv_cart")||"[]")}catch(e){}
+var $=function(i){return document.getElementById(i)};
+function money(n){return "₹"+n.toLocaleString("en-IN")}
+function tabs(){var c=["All"].concat(P.map(function(p){return p.cat}).filter(function(v,i,a){return a.indexOf(v)==i}));
+ $("tabs").innerHTML=c.map(function(x){return '<button class="tab" aria-pressed="'+(x==cat)+'" data-c="'+x+'">'+x+'</button>'}).join("")}
+function grid(){$("grid").innerHTML=P.filter(function(p){return cat=="All"||p.cat==cat}).map(function(p){
+ var sz=p.sizes.length?'<div class="sizes" data-id="'+p.id+'">'+p.sizes.map(function(s){return '<button aria-pressed="'+(sel[p.id]==s)+'" data-s="'+s+'">'+s+'</button>'}).join("")+'</div>':'';
+ return '<article class="card"><div class="pic">'+(p.tag?'<span class="tag">'+p.tag+'</span>':'')+pic(p.t)+'</div><div class="info"><h3>'+p.name+'</h3><p>'+p.desc+'</p>'+sz+'<div class="row"><span class="price">'+money(p.price)+'</span><button class="add" data-id="'+p.id+'">Add</button></div></div></article>'}).join("")}
+function save(){try{localStorage.setItem("sv_cart",JSON.stringify(cart))}catch(e){}}
+function render(){var n=0,t=0;
+ $("items").innerHTML=cart.length?cart.map(function(c,i){var p=P.filter(function(x){return x.id==c.id})[0];n+=c.q;t+=p.price*c.q;
+  return '<div class="it"><div><b>'+p.name+'</b><small>'+(c.s?"Size "+c.s+" · ":"")+"Qty "+c.q+'</small><button data-r="'+i+'">Remove</button></div><b>'+money(p.price*c.q)+'</b></div>'}).join(""):'<p class="empty">Your cart is empty.</p>';
+ $("count").textContent=n;$("total").textContent=money(t);save();
+ var one=cart.length==1&&cart[0].q==1&&P.filter(function(x){return x.id==cart[0].id})[0].pay;
+ $("cnote").textContent=one?"Secure payment by Razorpay (UPI, cards, netbanking).":"We confirm your order on WhatsApp, then you pay by UPI.";}
+function msg(){var t=0,l=cart.map(function(c){var p=P.filter(function(x){return x.id==c.id})[0];t+=p.price*c.q;return "- "+p.name+(c.s?" ("+c.s+")":"")+" x"+c.q+" = "+money(p.price*c.q)}).join("\n");
+ return "Hi Sovrns, I want to order:\n"+l+"\nTotal: "+money(t)+"\nName:\nAddress:\nPincode:"}
+function open(o){$("drawer").classList.toggle("on",o);$("shade").classList.toggle("on",o)}
+document.addEventListener("click",function(e){var b=e.target.closest("button,a");if(!b)return;
+ if(b.dataset.c){cat=b.dataset.c;tabs();grid()}
+ else if(b.dataset.s){var id=b.parentNode.dataset.id;sel[id]=b.dataset.s;grid()}
+ else if(b.classList.contains("add")){var p=P.filter(function(x){return x.id==b.dataset.id})[0];
+  if(p.sizes.length&&!sel[p.id]){var s=b.closest(".card").querySelector(".sizes");s.style.outline="1px solid #a6ff2e";setTimeout(function(){s.style.outline=""},900);return}
+  var f=cart.filter(function(c){return c.id==p.id&&c.s==(sel[p.id]||"")})[0];if(f)f.q++;else cart.push({id:p.id,s:sel[p.id]||"",q:1});render();open(true)}
+ else if(b.dataset.r){cart.splice(+b.dataset.r,1);render()}
+ else if(b.id=="open")open(true);else if(b.id=="close")open(false);
+ else if(b.id=="checkout"){e.preventDefault();if(!cart.length)return;
+  var p=P.filter(function(x){return x.id==cart[0].id})[0];
+  if(cart.length==1&&cart[0].q==1&&p.pay)location.href=p.pay;
+  else window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(msg()),"_blank","noopener")}});
+$("shade").onclick=function(){open(false)};
+document.addEventListener("keydown",function(e){if(e.key=="Escape")open(false)});
+tabs();grid();render();
+</script>
+<script data-goatcounter="https://sovrns.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body></html>
