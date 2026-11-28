@@ -194,7 +194,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
   <a class="logo" href="#top">Sovrns<b>.</b></a>
   <button id="mb" aria-expanded="false" aria-controls="nv">Menu</button>
   <nav id="nv">
-   <a href="#about">About</a><a href="#credentials">Credentials</a><a href="#programs">Programs</a><a href="#workouts">Workouts</a><a href="#tools">Tools</a><a href="#contact">Contact</a>
+   <a href="#about">About</a><a href="#credentials">Credentials</a><a href="#programs">Programs</a><a href="#workouts">Workouts</a><a href="#clothing">Clothing</a><a href="#tools">Tools</a><a href="#contact">Contact</a>
   </nav>
   <a class="btn" href="#contact"><span class="lg">Book a consultation</span><span class="sm">Book now</span></a>
  </div>
@@ -264,6 +264,51 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
    <div class="tabs" role="tablist"><button class="tab" role="tab" aria-selected="true" data-k="4">4-day plan</button><button class="tab" role="tab" aria-selected="false" data-k="5">5-day plan</button></div>
    <div id="days"></div>
   </div>
+ </section>
+
+
+ <section id="clothing">
+  <style>
+  #clothing .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.1rem;margin-top:2rem}
+  #clothing .cc{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .3s,box-shadow .3s}
+  #clothing .cc:hover{border-color:var(--g);transform:translateY(-6px);box-shadow:0 20px 50px rgba(166,255,46,.1)}
+  #clothing .cp{aspect-ratio:1/1;display:grid;place-items:center;background:radial-gradient(circle at 50% 42%,#16200f,#070a07 72%);position:relative}
+  #clothing .cp svg{width:62%;transition:transform .5s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 12px 26px rgba(166,255,46,.2))}
+  #clothing .cc:hover .cp svg{transform:translateY(-10px) scale(1.08) rotate(-3deg)}
+  #clothing .ct{position:absolute;top:.8rem;left:.8rem;background:var(--g);color:#061006;font-size:.7rem;font-weight:700;padding:.15rem .65rem;border-radius:99px;text-transform:uppercase}
+  #clothing .ci{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+  #clothing .ci h3{font-size:1.7rem}#clothing .ci p{color:var(--mut);font-size:.9rem;flex:1}
+  #clothing .cs{display:flex;gap:.35rem;flex-wrap:wrap}
+  #clothing .cs button{background:transparent;border:1px solid var(--line);border-radius:8px;min-width:2.4rem;min-height:2.2rem;padding:.2rem .5rem;font-size:.82rem;cursor:pointer;transition:all .2s}
+  #clothing .cs button:hover{border-color:var(--g)}
+  #clothing .cs button[aria-pressed=true]{background:var(--g);color:#061006;border-color:var(--g);font-weight:700}
+  #clothing .cr{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-top:.3rem}
+  #clothing .cprice{font:400 1.6rem Anton,Impact,sans-serif;color:var(--g)}
+  #clothing .co{padding:.6rem 1.1rem;font-size:.85rem}
+  #clothing .cn{color:var(--mut);font-size:.85rem;margin-top:1.4rem}
+  @media(max-width:560px){#clothing .cgrid{grid-template-columns:1fr 1fr;gap:.7rem}#clothing .ci{padding:.8rem}#clothing .ci h3{font-size:1.25rem}#clothing .ci p{display:none}#clothing .cr{flex-wrap:wrap}#clothing .co{width:100%;text-align:center}}
+  </style>
+  <div class="wrap">
+   <h2 class="rv">Wear the <em>work.</em></h2>
+   <p class="lead">Sovrns training clothing. Pick a size and order on WhatsApp.</p>
+   <div class="cgrid" id="cgrid"></div>
+   <p class="cn">Orders are confirmed on WhatsApp. You pay by UPI after we confirm size and delivery.</p>
+  </div>
+  <script>
+  (function(){var WA="919399862732";
+   var P=[{n:"Core Tee",p:899,d:"Heavy cotton, boxy fit, Sovrns mark.",t:"New",s:'<path d="M60 30l-40 25 15 30 15-8v85h100V77l15 8 15-30-40-25c-5 12-18 18-30 18S65 42 60 30z"/>'},
+    {n:"Heavy Hoodie",p:1799,d:"450 GSM fleece. Warm-up ready.",t:"",s:'<path d="M70 28c0 12 12 20 30 20s30-8 30-20l35 22 10 45-25 8-5-20v95H55V83l-5 20-25-8 10-45z"/>'},
+    {n:"Training Shorts",p:999,d:"Light, quick-dry, deep pockets.",t:"",s:'<path d="M45 40h110l12 100h-48l-19-45-19 45H33z"/>'},
+    {n:"Stringer Tank",p:799,d:"Cut low for full range of motion.",t:"Hot",s:'<path d="M70 28l-10 40 10 20v90h60V88l10-20-10-40-15 14h-30z"/>'}];
+   var sel={},g=document.getElementById("cgrid");
+   g.innerHTML=P.map(function(x,i){return '<article class="cc"><div class="cp">'+(x.t?'<span class="ct">'+x.t+'</span>':'')+'<svg viewBox="0 0 200 200" fill="#a6ff2e" aria-hidden="true">'+x.s+'<text x="100" y="'+(i==2?88:112)+'" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="32" fill="#061006" opacity=".85">S.</text></svg></div><div class="ci"><h3>'+x.n+'</h3><p>'+x.d+'</p><div class="cs" data-i="'+i+'">'+["S","M","L","XL"].map(function(s){return '<button type="button" aria-pressed="false" data-s="'+s+'">'+s+'</button>'}).join("")+'</div><div class="cr"><span class="cprice">\u20B9'+x.p.toLocaleString("en-IN")+'</span><a class="btn co" href="#" data-i="'+i+'">Order</a></div></div></article>'}).join("");
+   g.addEventListener("click",function(e){var b=e.target.closest("button[data-s]"),o=e.target.closest("a.co");
+    if(b){var w=b.parentNode;sel[w.dataset.i]=b.dataset.s;[].forEach.call(w.children,function(c){c.setAttribute("aria-pressed",c===b)})}
+    else if(o){e.preventDefault();var i=o.dataset.i;if(!sel[i]){var w=o.closest(".ci").querySelector(".cs");w.style.outline="1px solid #a6ff2e";w.style.outlineOffset="4px";setTimeout(function(){w.style.outline=""},900);return}
+     var m="Hi Aman, I want to order: "+P[i].n+" (size "+sel[i]+") for \u20B9"+P[i].p+".\nName:\nAddress:\nPincode:";
+     window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(m),"_blank","noopener")}});
+  })();
+  </script>
  </section>
 
  <section id="tools">
